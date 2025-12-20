@@ -1,44 +1,38 @@
-// Highlight nav pill based on scroll position + smooth scroll
 document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // NAV PILLS
   // =========================
   const pills = document.querySelectorAll(".nav-pill[data-target]");
-  const sections = Array.from(pills).map((pill) => {
-    const id = pill.getAttribute("data-target");
-    return document.getElementById(id);
-  });
+  const navWrap = document.querySelector(".nav-wrap");
+
+  const sections = Array.from(pills)
+    .map((pill) => document.getElementById(pill.getAttribute("data-target")))
+    .filter(Boolean);
+
+  const getOffset = () => {
+    const navH = navWrap ? navWrap.offsetHeight : 0;
+    return navH + 18; // spacing under sticky nav
+  };
 
   function setActivePill() {
     const scrollY = window.scrollY;
-    const offset = 120; // distance from top
+    const offset = getOffset();
 
     let activeIndex = 0;
 
     sections.forEach((section, index) => {
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const top = rect.top + window.scrollY;
-
-      if (scrollY + offset >= top) {
-        activeIndex = index;
-      }
+      const top = section.getBoundingClientRect().top + window.scrollY;
+      if (scrollY + offset >= top) activeIndex = index;
     });
 
     pills.forEach((pill, index) => {
-      if (index === activeIndex) {
-        pill.classList.add("active");
-      } else {
-        pill.classList.remove("active");
-      }
+      pill.classList.toggle("active", index === activeIndex);
     });
   }
 
-  // Initial state + scroll listener
   setActivePill();
-  window.addEventListener("scroll", setActivePill);
+  window.addEventListener("scroll", setActivePill, { passive: true });
 
-  // Smooth scroll on click
   pills.forEach((pill) => {
     pill.addEventListener("click", (e) => {
       const targetId = pill.getAttribute("data-target");
@@ -46,34 +40,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!targetEl) return;
 
       e.preventDefault();
-      const rect = targetEl.getBoundingClientRect();
-      const top = rect.top + window.scrollY - 80; // adjust for sticky nav
+      const top = targetEl.getBoundingClientRect().top + window.scrollY - getOffset();
 
-      window.scrollTo({
-        top,
-        behavior: "smooth",
-      });
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
     });
   });
 
   // =========================
   // EmailJS contact form hook
   // =========================
-
   const EMAILJS_PUBLIC_KEY = "IavxRtiZvs4FLoFc7";
   const EMAILJS_SERVICE_ID = "service_aj58jzd";
   const EMAILJS_TEMPLATE_ID = "template_vttb9qs";
 
-  // Init EmailJS
   if (window.emailjs) {
     try {
       emailjs.init(EMAILJS_PUBLIC_KEY);
-      console.log("EmailJS initialized");
     } catch (err) {
       console.error("EmailJS init error:", err);
     }
-  } else {
-    console.warn("EmailJS script not loaded.");
   }
 
   const contactForm = document.getElementById("contact-form");
@@ -90,8 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       emailjs
         .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
-        .then((response) => {
-          console.log("EmailJS success:", response);
+        .then(() => {
           if (statusEl) {
             statusEl.textContent = "Message sent. I’ll get back to you soon.";
             statusEl.classList.add("ok");

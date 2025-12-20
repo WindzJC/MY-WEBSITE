@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,264 +6,353 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Astra Productions – Visuals for Authors</title>
 
+  <meta name="description" content="Cinematic book trailers & author websites designed to help readers feel the story fast—and click buy." />
+  <meta name="theme-color" content="#060913" />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Astra Productions – Visuals for Authors" />
+  <meta property="og:description" content="Cinematic book trailers & author websites designed to help readers feel the story fast—and click buy." />
+  <meta property="og:type" content="website" />
+
   <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-<link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" />
 
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
+
 <body id="top">
+  <a class="skip-link" href="#overview">Skip to content</a>
+
+  <!-- Decorative background -->
+  <div class="bg" aria-hidden="true">
+    <span class="orb o1"></span>
+    <span class="orb o2"></span>
+    <span class="orb o3"></span>
+    <span class="grid"></span>
+  </div>
+
   <div class="page">
-    <!-- HEADER -->
-    <header>
+    <!-- TOP BAR -->
+    <header class="topbar">
       <div class="brand">
         <img
           class="brand-logo"
           src="https://uploads.onecompiler.io/443vn4433/4444jgje8/ASTRA%20LOGO.png"
           alt="Astra Productions logo"
+          width="54"
+          height="54"
+          decoding="async"
         />
-        <div>
+        <div class="brand-text">
           <div class="brand-text-main">Astra Productions</div>
           <div class="brand-text-sub">Cinematic book trailers & author websites.</div>
         </div>
       </div>
+
+      <div class="topbar-cta">
+        <a class="btn btn-secondary" href="#contact">Get a quote</a>
+      </div>
     </header>
 
-    <!-- NAV PILLS -->
-    <div class="nav-wrap">
-      <nav class="nav-pills">
-        <a class="nav-pill primary-pill" href="#overview" data-target="overview">Overview</a>
-        <a class="nav-pill" href="#trailer" data-target="trailer">Trailers</a>
-        <a class="nav-pill" href="#website" data-target="website">Author website</a>
-      </nav>
+    <!-- STICKY COMMAND BAR -->
+    <div class="commandbar" role="navigation" aria-label="Primary">
+      <div class="commandbar-inner">
+        <nav class="nav-pills" aria-label="Sections">
+          <a class="nav-pill is-active" href="#overview" data-target="overview" aria-current="page">Overview</a>
+          <a class="nav-pill" href="#trailer" data-target="trailer">Trailers</a>
+          <a class="nav-pill" href="#website" data-target="website">Author website</a>
+          <a class="nav-pill" href="#contact" data-target="contact">Contact</a>
+        </nav>
+
+        <div class="commandbar-actions">
+          <a class="btn btn-main" href="#contact">Request a concept</a>
+        </div>
+      </div>
+
+      <div class="progress" aria-hidden="true">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
     </div>
 
-  <!-- HERO / OVERVIEW -->
-<section class="card" id="overview">
-  <div class="hero-layout">
-    
-    <!-- Left: text -->
-   <div class="hero-copy">
-  <h1 class="hero-title">Visual idea for your book</h1>
+    <main id="main">
+      <!-- HERO / OVERVIEW -->
+      <section class="panel hero" id="overview">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="hero-kicker">Visuals for authors</p>
 
-  <p class="hero-text">
-    I’m Windelle JC, a freelance video editor and website designer behind Astra Productions. For the past six years, I’ve helped authors turn their books into cinematic trailers and focused author websites that move readers from scrolling to clicking “buy.”
-  </p>
+            <h1 class="hero-title">Make readers feel your story—before they scroll past.</h1>
 
-  <p class="hero-text">
-    I’ve worked with Barnes &amp; Noble and other publishing companies, creating promotional visuals built to capture attention fast and make the story instantly felt.
-  </p>
+            <p class="hero-text">
+              I’m Windelle JC, a freelance video editor and website designer behind Astra Productions. For the past six years,
+              I’ve helped authors turn books into cinematic trailers and focused author websites that guide readers from
+              curiosity to “buy.”
+            </p>
 
-  <p class="hero-text">
-    Most books still rely on a small cover image and a long block of text on crowded store pages—so even strong titles can get scrolled past if readers don’t connect quickly.
-  </p>
+            <ul class="hero-list">
+              <li>Trailer that captures the hook fast (built for attention + emotion)</li>
+              <li>Clean author site readers can remember and share anywhere</li>
+              <li>Direct links that reduce friction to purchase</li>
+            </ul>
 
-  <p class="hero-text">
-    I help your book make a stronger first impression: a movie-trailer-style teaser paired with a clean author site that shows the story’s hook and points readers straight to where they can buy.
-  </p>
+            <div class="cta-actions hero-actions">
+              <a class="btn btn-main" href="#contact">Request a concept</a>
+              <a class="btn btn-secondary" href="#trailer">See trailer examples</a>
+            </div>
 
-  <p class="hero-text" style="font-weight: 500; margin-top: 10px;">
-    Below you’ll find real trailers, a real author website, and a simple way to get a visual idea for your own book.
-  </p>
-</div>
+            <div class="hero-badges" aria-label="Highlights">
+              <div class="badge">
+                <span class="badge-strong">6+</span>
+                <span class="badge-text">years editing for authors</span>
+              </div>
+              <div class="badge">
+                <span class="badge-strong">Hook-first</span>
+                <span class="badge-text">trailers under a minute</span>
+              </div>
+              <div class="badge">
+                <span class="badge-strong">One link</span>
+                <span class="badge-text">clean author landing page</span>
+              </div>
+            </div>
 
-
- <!-- Right: portrait YouTube video -->
-<div class="hero-video">
-  <div class="video-portrait">
-    <iframe
-      src="https://youtube.com/embed/db5cccy1ii0"
-      title="Astra Productions book trailer"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
-
-
-  </div>
-</section>
-
-
-    <!-- EXAMPLE – BOOK TRAILERS -->
-    <div class="section-label">Example – Book trailers</div>
-    <section class="card" id="trailer">
-      <h2 class="example-title">Cinematic book trailers</h2>
-      <p class="example-sub">Short trailers built from the core idea of each book.</p>
-
-      <p class="example-text">
-        Goal: show what the book feels like in under a minute, instead of just another online store link.
-      </p>
-
-      <div class="trailer-grid">
-        <!-- CARD 1 -->
-        <article class="trailer-card">
-          <div class="trailer-thumb">
-            <img
-              src="https://uploads.onecompiler.io/443vn4433/444mzgjm2/Screenshot%202025-11-14%20at%2011.29.17%20PM.png"
-              alt="Book trailer 1 thumbnail"
-            />
+            <p class="hero-footnote">
+              Experience includes projects for Barnes &amp; Noble and other publishing teams.
+            </p>
           </div>
-          <h3>Trailer · Money: How to Make It Work for You</h3>
-          <a
-            class="trailer-link"
-            href="https://www.youtube.com/watch?v=LbDFSLkLLf8"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Watch on YouTube
-          </a>
-        </article>
 
-        <!-- CARD 2 -->
-        <article class="trailer-card">
-          <div class="trailer-thumb">
-            <img
-              src="https://uploads.onecompiler.io/443vn4433/444mzgjm2/Screenshot%202025-11-14%20at%2011.33.53%20PM.png"
-              alt="Book trailer 2 thumbnail"
-            />
+          <div class="hero-media" aria-label="Astra Productions profile reel">
+            <div class="device">
+              <div class="device-frame">
+                <iframe
+                  loading="lazy"
+                  src="https://www.youtube-nocookie.com/embed/db5cccy1ii0?rel=0"
+                  title="Astra Productions profile reel"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
           </div>
-          <h3>Trailer · The Storytelling Journey of Ana Lydia Peeks</h3>
-          <a
-            class="trailer-link"
-            href="https://www.youtube.com/watch?v=oSrxf3alEzQ"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Watch on YouTube
-          </a>
-        </article>
+        </div>
+      </section>
 
-        <!-- CARD 3 -->
-        <article class="trailer-card">
-          <div class="trailer-thumb">
-            <img
-              src="https://uploads.onecompiler.io/443vn4433/4446md5kb/DWIGHT%20BOOK%20TRAILER-Cover.jpg"
-              alt="Book trailer 3 thumbnail"
-            />
+      <!-- EXAMPLE – BOOK TRAILERS -->
+      <div class="section-label">Example – Book trailers</div>
+      <section class="panel" id="trailer">
+        <div class="section-head">
+          <div>
+            <h2 class="example-title">Cinematic book trailers</h2>
+            <p class="example-sub">Short trailers built from the core idea of each book.</p>
           </div>
-          <h3>Trailer · Black Ink</h3>
-          <a
-            class="trailer-link"
-            href="https://www.youtube.com/watch?v=KiO5WABFP6c"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Watch on YouTube
-          </a>
-        </article>
-      </div>
-      
-       <p class="example-text" style="margin-top: 20px;">
-        You can see more trailers I’ve done here:
-        <a href="https://www.youtube.com/@astraproduction" target="_blank" rel="noopener noreferrer">
-         AstraProductionsbyjc.com
-        </a>
-      </p>
-    </section>
-    
-    
+        </div>
 
-    <!-- EXAMPLE – AUTHOR WEBSITES -->
-    <div class="section-label">Examples – Author websites</div>
-    <section class="card" id="website">
-      <h2 class="example-title">Author websites</h2>
-      <p class="example-sub">One website link an author can send everywhere.</p>
+        <p class="example-text">
+          Goal: communicate what the book feels like in under a minute—so readers get it instantly.
+        </p>
 
-      <p class="example-text">
-        Goal: give an author a single page that shows who they are, their books, and where to buy or get in touch.
-      </p>
+        <div class="work-grid">
+          <article class="work-card">
+            <a class="work-media" href="https://www.youtube.com/watch?v=LbDFSLkLLf8" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://uploads.onecompiler.io/443vn4433/444mzgjm2/Screenshot%202025-11-14%20at%2011.29.17%20PM.png"
+                alt="Trailer thumbnail – Money: How to Make It Work for You"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="work-overlay" aria-hidden="true"></span>
+              <span class="work-pill" aria-hidden="true">Watch</span>
+            </a>
+            <h3 class="work-title">Trailer · Money: How to Make It Work for You</h3>
+            <a class="work-link" href="https://www.youtube.com/watch?v=LbDFSLkLLf8" target="_blank" rel="noopener noreferrer">
+              Watch on YouTube
+            </a>
+          </article>
 
-      <div class="website-grid">
-        <!-- WEBSITE 1 -->
-        <article class="website-card">
-          <div class="website-thumb">
-            <img
-              src="https://uploads.onecompiler.io/443vn4433/444ntb48z/Screenshot%202025-11-15%20at%203.46.03%20AM.png"
-              alt="Sample author website preview – Jason Mailey"
-            />
+          <article class="work-card">
+            <a class="work-media" href="https://www.youtube.com/watch?v=oSrxf3alEzQ" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://uploads.onecompiler.io/443vn4433/444mzgjm2/Screenshot%202025-11-14%20at%2011.33.53%20PM.png"
+                alt="Trailer thumbnail – The Storytelling Journey of Ana Lydia Peeks"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="work-overlay" aria-hidden="true"></span>
+              <span class="work-pill" aria-hidden="true">Watch</span>
+            </a>
+            <h3 class="work-title">Trailer · The Storytelling Journey of Ana Lydia Peeks</h3>
+            <a class="work-link" href="https://www.youtube.com/watch?v=oSrxf3alEzQ" target="_blank" rel="noopener noreferrer">
+              Watch on YouTube
+            </a>
+          </article>
+
+          <article class="work-card">
+            <a class="work-media" href="https://www.youtube.com/watch?v=KiO5WABFP6c" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://uploads.onecompiler.io/443vn4433/4446md5kb/DWIGHT%20BOOK%20TRAILER-Cover.jpg"
+                alt="Trailer thumbnail – Black Ink"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="work-overlay" aria-hidden="true"></span>
+              <span class="work-pill" aria-hidden="true">Watch</span>
+            </a>
+            <h3 class="work-title">Trailer · Black Ink</h3>
+            <a class="work-link" href="https://www.youtube.com/watch?v=KiO5WABFP6c" target="_blank" rel="noopener noreferrer">
+              Watch on YouTube
+            </a>
+          </article>
+        </div>
+
+        <p class="example-text spaced">
+          More work:
+          <a href="https://www.youtube.com/@astraproduction" target="_blank" rel="noopener noreferrer">YouTube channel</a>
+        </p>
+      </section>
+
+      <!-- EXAMPLE – AUTHOR WEBSITES -->
+      <div class="section-label">Examples – Author websites</div>
+      <section class="panel" id="website">
+        <div class="section-head">
+          <div>
+            <h2 class="example-title">Author websites</h2>
+            <p class="example-sub">One clean link an author can send everywhere.</p>
           </div>
-          <h3>Sample author website – Jason Mailey</h3>
-          <p>
-            A clean page that introduces the author, showcases multiple books, and links straight to their store pages so readers
-            can buy in one click.
+        </div>
+
+        <p class="example-text">
+          Goal: a single page that introduces the author, showcases books, and points readers straight to purchase or contact.
+        </p>
+
+        <div class="work-grid">
+          <article class="work-card">
+            <a class="work-media" href="https://jasonmailey.oneapp.dev/" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://uploads.onecompiler.io/443vn4433/444ntb48z/Screenshot%202025-11-15%20at%203.46.03%20AM.png"
+                alt="Sample author website preview – Jason Mailey"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="work-overlay" aria-hidden="true"></span>
+              <span class="work-pill" aria-hidden="true">Open</span>
+            </a>
+            <h3 class="work-title">Sample author website – Jason Mailey</h3>
+            <p class="work-desc">
+              Clean layout: author intro, multiple books, and direct store links so readers can buy in one click.
+            </p>
+            <a class="work-link" href="https://jasonmailey.oneapp.dev/" target="_blank" rel="noopener noreferrer">
+              Open sample author website
+            </a>
+          </article>
+
+          <article class="work-card">
+            <a class="work-media" href="https://eileenapstone.oneapp.dev/" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://uploads.onecompiler.io/443vn4433/443xs8zz7/kimberly%20stone.jpg"
+                alt="Sample author website preview – Eileen Apstone"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="work-overlay" aria-hidden="true"></span>
+              <span class="work-pill" aria-hidden="true">Open</span>
+            </a>
+            <h3 class="work-title">Sample author website – Eileen Apstone</h3>
+            <p class="work-desc">
+              Focused page: key book, concise bio, and clear calls to action so readers know the next step instantly.
+            </p>
+            <a class="work-link" href="https://eileenapstone.oneapp.dev/" target="_blank" rel="noopener noreferrer">
+              Open sample author website
+            </a>
+          </article>
+
+          <article class="work-card">
+            <a class="work-media" href="https://rejectionastra.oneapp.dev/" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://uploads.onecompiler.io/443vn4433/443vzxfh3/rejection.jpg"
+                alt="Sample author website preview – Rejection project"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="work-overlay" aria-hidden="true"></span>
+              <span class="work-pill" aria-hidden="true">Open</span>
+            </a>
+            <h3 class="work-title">Sample author website – Rejection</h3>
+            <p class="work-desc">
+              Mood-forward layout: book, hook, and buy buttons centered so the story stays front and center.
+            </p>
+            <a class="work-link" href="https://rejectionastra.oneapp.dev/" target="_blank" rel="noopener noreferrer">
+              Open sample author website
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <div class="section-label">Contact</div>
+      <section class="panel" id="contact">
+        <div class="section-head">
+          <div>
+            <h2 class="example-title">Tell me about your book</h2>
+            <p class="example-sub">A few details is enough to start. I’ll reply with next steps.</p>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <!-- Honeypot (spam bots) -->
+          <div class="hp" aria-hidden="true">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+            </div>
+
+            <div class="contact-field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="contact-field">
+            <label for="project">What do you need?</label>
+            <input id="project" name="project" type="text" placeholder="Trailer, website, or both" />
+          </div>
+
+          <div class="contact-field">
+            <label for="message">Book details</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Title + genre + a short blurb + any deadlines/links."></textarea>
+          </div>
+
+          <button class="btn btn-main" type="submit">Send message</button>
+          <div class="contact-status" id="contact-status" role="status" aria-live="polite"></div>
+
+          <p class="example-text" style="margin-top: 10px; margin-bottom: 0;">
+            Prefer email? <a href="mailto:windellejcr@gmail.com">windellejcr@gmail.com</a>
           </p>
-          <a
-            class="website-link"
-            href="https://jasonmailey.oneapp.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open sample author website
-          </a>
-        </article>
+        </form>
+      </section>
+    </main>
 
-        <!-- WEBSITE 2 -->
-        <article class="website-card">
-          <div class="website-thumb">
-            <img
-              src="https://uploads.onecompiler.io/443vn4433/443xs8zz7/kimberly%20stone.jpg"
-              alt="Sample author website preview – Eileen Apstone"
-            />
-          </div>
-          <h3>Sample author website – Eileen Apstone</h3>
-          <p>
-            A focused author site that highlights the core book, a short bio, and clear calls to action so readers know exactly
-            where to go next.
-          </p>
-          <a
-            class="website-link"
-            href="https://eileenapstone.oneapp.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open sample author website
-          </a>
-        </article>
-
-        <!-- WEBSITE 3 -->
-        <article class="website-card">
-          <div class="website-thumb">
-            <img
-              src="https://uploads.onecompiler.io/443vn4433/443vzxfh3/rejection.jpg"
-              alt="Sample author website preview – Rejection project"
-            />
-          </div>
-          <h3>Sample author website – Rejection</h3>
-          <p>
-            A darker, moodier layout built for a more intense theme, with the book, blurb, and buy buttons centred on the page
-            so the hook stays in front of the reader.
-          </p>
-          <a
-            class="website-link"
-            href="https://rejectionastra.oneapp.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open sample author website
-          </a>
-        </article>
-      </div>
-
-      <p class="example-text" style="margin-top: 20px;">
-        You can see more trailers I have done here:
-        <a href="https://www.youtube.com/@astraproduction" target="_blank" rel="noopener noreferrer">
-          AstraProductionsbyjc.com
-        </a>
-      </p>
-    </section>
-
-    <footer>
+    <footer class="footer">
       <div>© 2021–2025 Astra Productions · Visuals for Authors</div>
       <div><a href="#top">Back to top</a></div>
     </footer>
   </div>
 
-  <!-- Scripts -->
   <script src="script.js" defer></script>
 </body>
 </html>
