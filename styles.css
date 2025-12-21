@@ -22,14 +22,13 @@
   --max: 1120px;
 
   /* set by JS for accurate sticky offset */
-  --stickyH: 120px;  
+  --stickyH: 120px;
   /* header/logo sizing (avoid layout shift) */
   --topbarH: 120px;
-  --logoBoxH: 96px;
-  --logoScale: 1;
-  --logoMask: url("./LOGOASTRA.png");
+  --logoBoxH: 96px;   /* reserved layout height */
+  --logoScale: .5;     /* ✅ change this (ex: 1.15) */
+  --logoMask: url("LOGOASTRA.png");
 }
-
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -590,7 +589,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   *{transition:none !important;animation:none !important}
 }
 
-
 /* Testimonials */
 .testimonials-grid{
   margin-top: 14px;
@@ -711,7 +709,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .t-cta{flex-direction:column;align-items:stretch}
   .t-cta .btn{width:100%}
 }
-
 
 /* Services notes */
 .market-note{
@@ -922,16 +919,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .cover-card .work-desc{font-size:15px}
 }
 
-/* Dropdown option readability (browser support varies) */
-.contact-field select option{
-  background-color: var(--bg1);
-  color: var(--ink);
-}
-.contact-field select option:disabled{
-  color: rgba(154,166,196,.85);
-}
-
-
 /* Graphics showcase banner image */
 .graphics-showcase-media{
   margin-top: 14px;
@@ -946,7 +933,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   height: auto;
   display: block;
 }
-
 
 /* Graphics add-on callout in Services (prevents “mashed” layout) */
 .addon{
@@ -1021,7 +1007,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .addon-actions .btn{width:100%}
 }
 
-
 /* Testimonials enhancements */
 .t-link{
   display:inline-flex;
@@ -1039,7 +1024,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size: 12px;
 }
 
-
 /* Header: logo-only + masked light sweep (no box/halo background) */
 /* Lock header height so resizing the logo doesn’t move the rest of the page */
 .topbar{ min-height: var(--topbarH); }
@@ -1053,63 +1037,64 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   height: var(--logoBoxH); /* stable layout height */
 }
 
+/* Logo sheen (book-style), masked to LOGOASTRA.png */
 .logo-sweep{
   position:relative;
-  display:inline-flex;
-  align-items:center;
-  height:100%;
-  transform: scale(var(--logoScale)); /* EDIT VISUAL SIZE HERE */
+  display:inline-block;
+  line-height:0;
+  overflow:hidden;
+  isolation:isolate;
+  transform: scale(var(--logoScale));
   transform-origin: left center;
-  isolation:isolate; /* improves blend-mode reliability */
 }
 
-/* Logo image fills the stable box */
 .brand-logo-img{
-  height: 500%;
+  position:relative;
+  z-index:1;
+  height:100%;
   width:auto;
   display:block;
-  opacity:1;
-  filter:
-    drop-shadow(0 10px 26px rgba(34,211,238,.22))
-    drop-shadow(0 0 18px rgba(96,165,250,.14))
-    saturate(1.05);
 }
 
-/* Light sweep masked to logo */
 .logo-sweep::after{
   content:"";
   position:absolute;
-  inset:-30%;
+  inset:0;
+
   background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,0) 44%,
-    rgba(255,255,255,.92) 50%,
-    rgba(255,255,255,0) 56%,
-    transparent 100%
+    115deg,
+    transparent 42%,
+    rgba(255,255,255,.22) 49%,
+    rgba(255,255,255,.55) 50%,
+    rgba(255,255,255,.22) 51%,
+    transparent 58%
   );
-  transform: translateX(-160%) skewX(-20deg);
+  background-size: 220% 100%;
+  background-position: -120% 0;
+
   opacity:0;
-  mix-blend-mode:screen;
   pointer-events:none;
+  mix-blend-mode: screen;
   z-index:2;
-  animation: logoSweep 4.8s ease-in-out infinite;
 
   -webkit-mask-image: var(--logoMask);
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
   -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 
   mask-image: var(--logoMask);
   mask-repeat: no-repeat;
-  mask-size: 100% 100%;
   mask-position: center;
+  mask-size: contain;
+
+  animation: logoSheen 3.8s cubic-bezier(.2,.8,.2,1) infinite;
 }
 
-@keyframes logoSweep{
-  0%, 70% { transform: translateX(-160%) skewX(-20deg); opacity: 0; }
-  73%     { opacity: .9; }
-  100%    { transform: translateX(520%) skewX(-20deg); opacity: 0; }
+@keyframes logoSheen{
+  0%   { background-position: -120% 0; opacity: 0; }
+  6%   { opacity: .75; }
+  22%  { background-position: 120% 0; opacity: 0; }
+  100% { background-position: 120% 0; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -1120,7 +1105,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 620px){
   .brand-mark{ height: 76px; }
 }
-
 
 /* Graphics: simple CTA row under showcase image */
 .graphics-cta-row{
@@ -1151,7 +1135,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: rgba(0,0,0,.25);
   font-weight: 900;
   font-size: 12px;
-  color: var(--text);
+  color: var(--ink); /* ✅ fixed (you had var(--text)) */
 }
 @media (max-width: 720px){
   .graphics-cta-row{flex-direction:column; align-items:stretch;}
