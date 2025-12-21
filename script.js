@@ -90,7 +90,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  
+  // Auto-fill service in contact form when clicking a CTA with data-service
+  const setServiceValue = (value) => {
+    const select = document.getElementById("service");
+    if (!select || !value) return;
+    const exists = Array.from(select.options).some((o) => o.value === value);
+    if (exists) select.value = value;
+  };
+
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-service]");
+    if (!el) return;
+    setServiceValue(el.getAttribute("data-service"));
+  });
+
+
   // Init measurements and listeners
+  
+  // If a service is passed via query string, preselect it (e.g., ?service=Bundle%20($1299))
+  try{
+    const sp = new URLSearchParams(window.location.search);
+    const sv = sp.get("service");
+    if (sv) setServiceValue(sv);
+  }catch(_e){}
+
+
   setStickyHeightVar();
   setActivePill();
   setProgress();
