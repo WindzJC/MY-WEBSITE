@@ -28,6 +28,7 @@
   --logoBoxH: 96px;   /* reserved layout height */
   --logoScale: .5;     /* ✅ change this (ex: 1.15) */
   --logoMask: url("LOGOASTRA.png");
+  --logoSheenCycle: 10s; /* slower, more premium */
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -1087,7 +1088,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   mask-position: center;
   mask-size: contain;
 
-  animation: logoSheen 3.8s cubic-bezier(.2,.8,.2,1) infinite;
+  animation: logoSheen var(--logoSheenCycle) cubic-bezier(.2,.8,.2,1) infinite;
 }
 
 @keyframes logoSheen{
