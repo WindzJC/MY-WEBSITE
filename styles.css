@@ -28,7 +28,7 @@
   --logoBoxH: 96px;   /* reserved layout height */
   --logoScale: .5;     /* ✅ change this (ex: 1.15) */
   --logoMask: url("LOGOASTRA.png");
-  --logoSheenCycle: 10s; /* slower, more premium */
+  --logoSheenCycle: 3s; /* slower, more premium */
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
