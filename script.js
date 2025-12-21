@@ -1,51 +1,109 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // NAV PILLS
-  // =========================
-  const pills = document.querySelectorAll(".nav-pill[data-target]");
-  const navWrap = document.querySelector(".nav-wrap");
-
-  const sections = Array.from(pills)
+  const commandbar = document.querySelector(".commandbar");
+  const pills = Array.from(document.querySelectorAll(".nav-pill[data-target]"));
+  const sections = pills
     .map((pill) => document.getElementById(pill.getAttribute("data-target")))
     .filter(Boolean);
 
-  const getOffset = () => {
-    const navH = navWrap ? navWrap.offsetHeight : 0;
-    return navH + 18; // spacing under sticky nav
+  const progressBar = document.getElementById("progress-bar");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const setStickyHeightVar = () => {
+    const h = commandbar ? Math.ceil(commandbar.getBoundingClientRect().height) : 0;
+    document.documentElement.style.setProperty("--stickyH", `${h}px`);
   };
 
-  function setActivePill() {
+  const getOffset = () => {
+    // commandbar is sticky with top:10px, add a small breathing room
+    const h = commandbar ? commandbar.getBoundingClientRect().height : 0;
+    return h + 10 + 14;
+  };
+
+  const setActivePill = () => {
+    if (!sections.length) return;
+
     const scrollY = window.scrollY;
     const offset = getOffset();
 
     let activeIndex = 0;
+    for (let i = 0; i < sections.length; i++) {
+      const top = sections[i].offsetTop;
+      if (scrollY + offset >= top) activeIndex = i;
+    }
 
-    sections.forEach((section, index) => {
-      const top = section.getBoundingClientRect().top + window.scrollY;
-      if (scrollY + offset >= top) activeIndex = index;
+    pills.forEach((pill, idx) => {
+      const isActive = idx === activeIndex;
+      pill.classList.toggle("is-active", isActive);
+      if (isActive) pill.setAttribute("aria-current", "page");
+      else pill.removeAttribute("aria-current");
     });
+  };
 
-    pills.forEach((pill, index) => {
-      pill.classList.toggle("active", index === activeIndex);
+  const setProgress = () => {
+    if (!progressBar) return;
+    const doc = document.documentElement;
+    const height = doc.scrollHeight - doc.clientHeight;
+    const pct = height > 0 ? (doc.scrollTop / height) * 100 : 0;
+    progressBar.style.width = `${pct}%`;
+  };
+
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      setActivePill();
+      setProgress();
+      ticking = false;
     });
-  }
+  };
 
-  setActivePill();
-  window.addEventListener("scroll", setActivePill, { passive: true });
+  // Smooth scroll for internal anchors + focus management
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
 
-  pills.forEach((pill) => {
-    pill.addEventListener("click", (e) => {
-      const targetId = pill.getAttribute("data-target");
-      const targetEl = document.getElementById(targetId);
-      if (!targetEl) return;
+    const href = link.getAttribute("href");
+    if (!href || href === "#" || href.length < 2) return;
 
-      e.preventDefault();
-      const top = targetEl.getBoundingClientRect().top + window.scrollY - getOffset();
+    const target = document.querySelector(href);
+    if (!target) return;
 
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
-    });
+    e.preventDefault();
+
+    const top =
+      href === "#top"
+        ? 0
+        : target.getBoundingClientRect().top + window.scrollY - getOffset();
+
+    window.scrollTo({ top, behavior: reduceMotion.matches ? "auto" : "smooth" });
+
+    // Focus the section for keyboard/screen reader users (no jump)
+    if (href !== "#top") {
+      const prevTabIndex = target.getAttribute("tabindex");
+      target.setAttribute("tabindex", "-1");
+      window.setTimeout(() => {
+        target.focus({ preventScroll: true });
+        if (prevTabIndex === null) target.removeAttribute("tabindex");
+        else target.setAttribute("tabindex", prevTabIndex);
+      }, reduceMotion.matches ? 0 : 350);
+    }
   });
+
+  // Init measurements and listeners
+  setStickyHeightVar();
+  setActivePill();
+  setProgress();
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener(
+    "resize",
+    () => {
+      setStickyHeightVar();
+      onScroll();
+    },
+    { passive: true }
+  );
 
   // =========================
   // EmailJS contact form hook
@@ -69,10 +127,17 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      // Honeypot check
+      const hp = contactForm.querySelector('input[name="company"]');
+      if (hp && hp.value.trim() !== "") return;
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+
       if (statusEl) {
         statusEl.textContent = "Sending...";
         statusEl.classList.remove("ok", "error");
       }
+      if (submitBtn) submitBtn.disabled = true;
 
       emailjs
         .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
@@ -90,6 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
               "Something went wrong. Please try again or email me directly.";
             statusEl.classList.add("error");
           }
+        })
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
         });
     });
   }
