@@ -15,12 +15,12 @@
   <meta property="og:type" content="website" />
 
   <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=1" />
+  <!-- Styles (cache-bust when you update) -->
+  <link rel="stylesheet" href="styles.css" />
 
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -40,13 +40,16 @@
   <div class="page">
     <!-- TOP BAR -->
     <header class="topbar">
+      <!-- Logo-only (glow + sweep is handled in CSS via .logo-sweep) -->
       <div class="brand brand-only">
         <a class="brand-mark" href="#top" aria-label="Astra Productions">
           <span class="logo-sweep">
             <img
               class="brand-logo-img"
-              src="./LOGO%20ASTRA.png"
+              src="./LOGOASTRA.png"
               alt="Astra Productions"
+              width="520"
+              height="170"
               decoding="async"
             />
           </span>
@@ -93,7 +96,8 @@
 
             <p class="hero-text">
               I’m Windelle JC, a freelance video editor, website designer, and graphics designer behind Astra Productions.
-              For <strong>6+ years</strong>, I’ve helped authors solve the hardest marketing problem: <strong>getting attention, building trust, and earning clicks</strong>.
+              For <strong>6+ years</strong>, I’ve helped authors solve the hardest marketing problem:
+              <strong>getting attention, building trust, and earning clicks</strong>.
               That includes freelance work with <strong>Barnes &amp; Noble</strong> for six years, plus projects for other publishing teams and brands.
             </p>
 
@@ -250,6 +254,7 @@
           Market note: some studios quote <strong>$3,000+</strong> for a trailer alone. Astra starts at <strong>$999</strong>.
         </p>
 
+        <!-- Simple graphics callout (no duplicate package list) -->
         <div class="addon" aria-label="Graphics add-on">
           <div class="addon-left">
             <div class="addon-kicker">Add-on for launches</div>
@@ -307,7 +312,6 @@
         <section class="case-inline" id="case-study" aria-label="Mini case study">
           <div class="case-inline-head">
             <h3 class="process-title">Mini case study</h3>
-            <p class="process-note">Replace the outcome with real results when you have them.</p>
           </div>
 
           <div class="case-grid">
@@ -328,42 +332,10 @@
               <div class="case-title">Clearer message + easier path to purchase</div>
               <p class="case-text">
                 Launch-ready assets that communicate tone fast, build trust, and reduce friction to buy.
-                <span class="case-note">Optional: add real results here (views, CTR, signups, etc.).</span>
               </p>
             </article>
           </div>
         </section>
-
-        <div class="process" aria-label="Workflow">
-          <h3 class="process-title">Simple process</h3>
-          <div class="process-steps">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div>
-                <div class="step-title">Brief &amp; assets</div>
-                <div class="step-text">Book link, blurb, cover, tone references, and any key scenes/quotes you want included.</div>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">2</div>
-              <div>
-                <div class="step-title">First cut / first layout</div>
-                <div class="step-text">You get a strong initial direction fast, then we refine pacing, visuals, and messaging.</div>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">3</div>
-              <div>
-                <div class="step-title">Final delivery &amp; launch</div>
-                <div class="step-text">Exports ready for YouTube + socials, plus a site you can share anywhere.</div>
-              </div>
-            </div>
-          </div>
-
-          <p class="process-note">
-            Pricing shown in USD. If you have a hard deadline (launch week, preorder push), include it in the contact form.
-          </p>
-        </div>
       </section>
 
       <!-- EXAMPLE – BOOK TRAILERS -->
@@ -723,6 +695,6 @@
     </footer>
   </div>
 
-  <script src="script.js?v=1" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
