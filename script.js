@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       // Honeypot check
-      const hp = contactForm.querySelector('input[name="company"]');
+      const hp = contactForm.querySelector('input[name="website"]');
       if (hp && hp.value.trim() !== "") return;
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
