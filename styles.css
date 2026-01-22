@@ -475,17 +475,27 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .work-item{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
+  flex-direction:column;
+  gap: 8px;
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
 }
+.work-item-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+}
 .work-item-title{font-weight:800;color:var(--ink)}
 .work-item-link{font-weight:900;color:var(--a)}
 .work-item-link:hover{text-decoration: underline}
+.work-item-copy{
+  color: var(--soft);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
 .work-card{
   grid-column: span 4;
   border-radius: var(--r2);
