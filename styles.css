@@ -473,28 +473,66 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   flex-direction:column;
   gap: 10px;
 }
-.work-item{
+.work-item-simple{
   display:flex;
-  flex-direction:column;
-  gap: 8px;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
 }
-.work-item-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-}
 .work-item-title{font-weight:800;color:var(--ink)}
 .work-item-link{font-weight:900;color:var(--a)}
 .work-item-link:hover{text-decoration: underline}
-.work-item-copy{
+
+/* Results */
+.results-grid{
+  margin-top: 16px;
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.results-block{
+  grid-column: span 6;
+  border-radius: var(--r2);
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+  padding: 16px;
+}
+.results-title{
+  font-size:16px;
+  font-weight:900;
+  margin-bottom: 10px;
+}
+.results-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.result-item{
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+.result-item-title{font-weight:800;color:var(--ink)}
+.result-item-text{
   color: var(--soft);
   font-size: 13.5px;
   line-height: 1.7;
+}
+.result-item-text strong{color: var(--ink); font-weight: 800}
+.results-note{
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12.5px;
 }
 .work-card{
   grid-column: span 4;
@@ -627,6 +665,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 980px){
   .work-card{grid-column: span 6}
   .work-block{grid-column: span 12}
+  .results-block{grid-column: span 12}
 }
 @media (max-width: 620px){
   .page{padding: 20px 14px 46px}
