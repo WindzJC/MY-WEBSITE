@@ -157,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (hp && hp.value.trim() !== "") return;
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
+      let wasSuccessful = false;
 
       if (statusEl) {
         statusEl.textContent = "Sending...";
@@ -167,8 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
       emailjs
         .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
         .then(() => {
+          wasSuccessful = true;
           if (statusEl) {
-            statusEl.textContent = "Message sent. I’ll get back to you soon.";
+            statusEl.textContent = "Thanks! Your request is in. I’ll reply with next steps.";
             statusEl.classList.add("ok");
           }
           contactForm.reset();
@@ -182,7 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .finally(() => {
-          if (submitBtn) submitBtn.disabled = false;
+          if (!submitBtn) return;
+          if (wasSuccessful) {
+            window.setTimeout(() => {
+              submitBtn.disabled = false;
+            }, 3000);
+          } else {
+            submitBtn.disabled = false;
+          }
         });
     });
   }
