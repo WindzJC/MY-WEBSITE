@@ -214,10 +214,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero{padding: 30px 22px 24px}
 .hero-layout{
   display:grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1.18fr) minmax(260px, 360px);
   gap: 26px;
-  align-items: stretch;
+  align-items: center;
 }
+.hero-copy{min-width:0}
 .hero-kicker{
   font-size:12px;
   letter-spacing:.18em;
@@ -237,6 +238,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--soft);
   max-width: 660px;
   margin-bottom: 12px;
+}
+.hero-for{
+  color: var(--muted);
+  font-size: 14px;
+  margin: -4px 0 10px;
 }
 .hero-list{
   margin: 10px 0 14px;
@@ -282,7 +288,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .badge-text{font-size:13px;color:var(--muted)}
 
 /* Hero media “device” */
-.hero-media{display:flex;align-items:center;justify-content:center}
+.hero-media{display:flex;align-items:center;justify-content:flex-end}
 .device{width:min(360px,100%);position:relative}
 .device-frame{
   position:relative;
@@ -300,7 +306,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   opacity: .55;
   z-index: -1;
 }
-.device-frame iframe{
+.device-frame iframe,
+.device-frame video{
   width:100%;
   aspect-ratio: 9 / 16;
   border:0;border-radius: 18px;
@@ -368,6 +375,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   padding:4px 8px;
   border-radius:999px;
   width:fit-content;
+}
+.price-trigger{
+  font-size:12px;
+  color: var(--muted);
+  font-weight:700;
 }
 .price-label{
   margin-top: 6px;
@@ -500,10 +512,80 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   display:flex;
   flex-direction:column;
   gap: 8px;
-  padding: 10px 12px;
+  padding: 10px 12px 12px;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
+  overflow: hidden;
+}
+.work-card-thumb{
+  position: relative;
+  display:block;
+  border-radius: 10px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  aspect-ratio: 16 / 9;
+}
+.work-card-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform: scale(1.02);
+  transition: transform .3s ease;
+}
+.work-card-thumb::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.48));
+  pointer-events:none;
+}
+.work-card-pill{
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  z-index:1;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  color:#050611;
+  background: linear-gradient(90deg,var(--a),var(--a2));
+}
+.website-thumb{
+  padding:0;
+  background: rgba(255,255,255,.02);
+}
+.website-thumb::before{
+  content:none;
+}
+.website-thumb::after{
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.32));
+}
+.website-thumb-label,
+.website-thumb-domain{
+  position:relative;
+  z-index:1;
+}
+.website-thumb-label{
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color: var(--muted);
+  font-weight:800;
+}
+.website-thumb-domain{
+  font-size:13px;
+  color: var(--ink);
+  font-weight:800;
+  word-break: break-word;
+  padding-right: 56px;
+}
+.website-thumb img{
+  object-fit: cover;
+  object-position: center top;
 }
 .work-item-top{
   display:flex;
@@ -518,6 +600,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
+}
+@media (hover:hover) and (pointer:fine){
+  .work-item-simple:hover .work-card-thumb img{transform: scale(1.06)}
+  .work-item-simple:hover{border-color: rgba(34,211,238,.18)}
 }
 
 /* Results */
@@ -540,6 +626,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-weight:900;
   margin-bottom: 10px;
 }
+.results-title-gap{margin-top: 18px;}
 .results-list{
   list-style:none;
   display:flex;
@@ -628,6 +715,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .contact-row{display:flex;gap:12px;flex-wrap:wrap}
 .contact-field{flex:1;display:flex;flex-direction:column;gap:6px}
 .contact-field label{font-size:14px;color:var(--muted)}
+.contact-field-optional label{font-size:12px;}
 .contact-field input,.contact-field textarea,.contact-field select{
   background: rgba(255,255,255,.03);
   border-radius: 14px;
