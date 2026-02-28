@@ -757,6 +757,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   accent-color: #22d3ee;
   flex:0 0 auto;
 }
+.contact-optout-note{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:-4px;
+}
 .contact-legal{
   font-size:12px;
   color:var(--muted);
@@ -765,6 +770,32 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .contact-legal a{
   color:var(--a);
   font-weight:700;
+}
+
+/* Subscribe */
+.subscribe-panel{padding-top:22px;padding-bottom:22px}
+.subscribe-form{
+  margin-top:12px;
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.subscribe-form .contact-field{
+  min-width:260px;
+  flex:1;
+}
+.subscribe-note{
+  width:100%;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
+.subscribe-status{
+  width:100%;
+  font-size:13px;
+  min-height:16px;
+  color:var(--muted);
 }
 
 /* Dropdown option readability (browser support varies) */
@@ -823,6 +854,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
   .work-card{grid-column: span 12}
   .contact-row{flex-direction:column}
+  .subscribe-form{align-items:stretch}
+  .subscribe-form .btn{width:100%}
 }
 
 /* Reduced motion */

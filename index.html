@@ -544,17 +544,37 @@
               placeholder="Blurb, tone references, scenes/quotes, where you will post, and any must-haves."></textarea>
           </div>
 
-          <label class="contact-consent" for="marketing_opt_in">
-            <input id="marketing_opt_in" name="marketing_opt_in" type="checkbox" value="yes" />
-            <span>I want to receive emails about trailer/website offers (you can unsubscribe anytime).</span>
+          <label class="contact-consent" for="request_updates_opt_in">
+            <input id="request_updates_opt_in" name="request_updates_opt_in" type="checkbox" value="yes" />
+            <span>Send me a copy + updates about this request.</span>
           </label>
 
           <button class="btn btn-main" type="submit">Request a concept</button>
+          <p class="contact-optout-note">If unchecked, we'll only email you about this request.</p>
           <div class="contact-status" id="contact-status" role="status" aria-live="polite"></div>
           <p class="contact-legal">
             By sending this form, you agree to our <a href="/privacy">Privacy Policy</a>.
           </p>
 
+        </form>
+      </section>
+
+      <div class="section-label">Subscribe</div>
+      <section class="panel subscribe-panel" id="subscribe">
+        <div class="section-head">
+          <div>
+            <h2 class="example-title">Get trailer tips + offers</h2>
+          </div>
+        </div>
+
+        <form class="subscribe-form" id="subscribe-form">
+          <div class="contact-field">
+            <label for="subscribe_email">Email</label>
+            <input id="subscribe_email" name="subscribe_email" type="email" placeholder="you@email.com" autocomplete="email" required />
+          </div>
+          <button class="btn btn-secondary" type="submit">Subscribe</button>
+          <p class="subscribe-note">Unsubscribe anytime.</p>
+          <div class="subscribe-status" id="subscribe-status" role="status" aria-live="polite"></div>
         </form>
       </section>
     </main>

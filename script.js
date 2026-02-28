@@ -195,4 +195,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
   }
+
+  const subscribeForm = document.getElementById("subscribe-form");
+  const subscribeStatus = document.getElementById("subscribe-status");
+  if (subscribeForm) {
+    subscribeForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = subscribeForm.querySelector('input[type="email"]');
+      const email = emailInput ? emailInput.value.trim() : "";
+
+      if (!email) {
+        if (subscribeStatus) subscribeStatus.textContent = "Please enter an email.";
+        return;
+      }
+
+      if (subscribeStatus) {
+        subscribeStatus.textContent = "Thanks! We'll keep you posted.";
+      }
+      subscribeForm.reset();
+    });
+  }
 });
