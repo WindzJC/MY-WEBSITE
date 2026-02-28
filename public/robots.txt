@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astraproductionsbyjc.pages.dev/sitemap.xml

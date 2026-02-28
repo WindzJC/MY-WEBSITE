@@ -1,0 +1,14 @@
+{
+  "name": "astra-productions-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "seo:generate": "node scripts/generate-seo-files.mjs",
+    "dev": "npm run seo:generate && vite --host --port 3000 --strictPort",
+    "build": "npm run seo:generate && vite build",
+    "preview": "vite preview --host --port 4173 --strictPort"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0"
+  }
+}
