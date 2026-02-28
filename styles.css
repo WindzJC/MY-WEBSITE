@@ -489,79 +489,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
 }
-.work-carousel{
-  margin-top: 16px;
-}
-.work-carousel-track{
-  margin-top: 0;
-  display:grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  grid-template-columns: none;
-  gap: 12px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.work-carousel-track::-webkit-scrollbar{display:none}
-.work-carousel-track:focus-visible{
-  outline: 2px solid rgba(34,211,238,.45);
-  outline-offset: 6px;
-  border-radius: 12px;
-}
-.work-slide{
-  scroll-snap-align: start;
-  min-width: 0;
-}
-.carousel-controls{
-  display:flex;
-  align-items:center;
-  gap: 8px;
-  flex: 0 0 auto;
-}
-.carousel-btn{
-  appearance:none;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-  color: var(--ink);
-  border-radius: 999px;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 800;
-  cursor:pointer;
-  transition: border-color .2s ease, background .2s ease, opacity .2s ease;
-}
-.carousel-btn:hover{
-  border-color: rgba(255,255,255,.22);
-  background: rgba(255,255,255,.05);
-}
-.carousel-btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-.carousel-dots{
-  margin-top: 12px;
-  display:flex;
-  justify-content:center;
-  gap: 8px;
-}
-.carousel-dot{
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  border: 0;
-  padding: 0;
-  background: rgba(255,255,255,.20);
-  cursor:pointer;
-  transition: transform .2s ease, background .2s ease;
-}
-.carousel-dot:hover{background: rgba(255,255,255,.34)}
-.carousel-dot.is-active{
-  background: linear-gradient(90deg, var(--a), var(--a2));
-  transform: scale(1.15);
-}
 .work-block{
   grid-column: span 6;
   border-radius: var(--r2);
@@ -569,10 +496,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: rgba(255,255,255,.03);
   box-shadow: 0 14px 40px rgba(0,0,0,.35);
   padding: 16px;
-}
-.work-carousel-track > .work-slide{
-  grid-column: auto / span 1;
-  width: 100%;
 }
 .work-block-title{
   font-size:16px;
@@ -893,7 +816,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .page{padding: 20px 14px 46px}
   .cta-actions{flex-direction:column}
   .cta-actions .btn{width:100%}
-  .carousel-controls{width:100%; justify-content:flex-end}
 
   .price-card{grid-column: span 12}
   .benefit-card{grid-column: span 12}
