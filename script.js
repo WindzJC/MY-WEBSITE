@@ -153,10 +153,12 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       // Honeypot check
-      const hp = contactForm.querySelector('input[name="website"]');
+      const hp = contactForm.querySelector('input[name="bot_field"]');
       if (hp && hp.value.trim() !== "") return;
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const messageField = contactForm.querySelector('textarea[name="message"]');
+      const originalMessage = messageField ? messageField.value : "";
       let wasSuccessful = false;
 
       if (statusEl) {
@@ -164,6 +166,31 @@ document.addEventListener("DOMContentLoaded", () => {
         statusEl.classList.remove("ok", "error");
       }
       if (submitBtn) submitBtn.disabled = true;
+
+      if (messageField) {
+        const details = [];
+        const service = contactForm.querySelector('[name="service"]')?.value?.trim();
+        const deadline = contactForm.querySelector('[name="deadline"]')?.value?.trim();
+        const website = contactForm.querySelector('[name="author_website"]')?.value?.trim();
+        const company = contactForm.querySelector('[name="company"]')?.value?.trim();
+        const genre = contactForm.querySelector('[name="genre"]')?.value?.trim();
+        const extraNotes = contactForm.querySelector('[name="extra_notes"]')?.value?.trim();
+        const updatesOptIn = contactForm.querySelector('[name="request_updates_opt_in"]')?.checked;
+
+        if (service) details.push(`Service: ${service}`);
+        if (deadline) details.push(`Timeline / deadline: ${deadline}`);
+        if (website) details.push(`Website: ${website}`);
+        if (company) details.push(`Company: ${company}`);
+        if (genre) details.push(`Genre: ${genre}`);
+        if (extraNotes) details.push(`Anything important: ${extraNotes}`);
+        details.push(
+          `Send copy + occasional request-related updates: ${updatesOptIn ? "Yes" : "No"}`
+        );
+
+        messageField.value = [originalMessage, ...details]
+          .filter(Boolean)
+          .join("\n\n");
+      }
 
       emailjs
         .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
@@ -184,6 +211,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .finally(() => {
+          if (messageField && !wasSuccessful) {
+            messageField.value = originalMessage;
+          }
           if (!submitBtn) return;
           if (wasSuccessful) {
             window.setTimeout(() => {
@@ -193,26 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
             submitBtn.disabled = false;
           }
         });
-    });
-  }
-
-  const subscribeForm = document.getElementById("subscribe-form");
-  const subscribeStatus = document.getElementById("subscribe-status");
-  if (subscribeForm) {
-    subscribeForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const emailInput = subscribeForm.querySelector('input[type="email"]');
-      const email = emailInput ? emailInput.value.trim() : "";
-
-      if (!email) {
-        if (subscribeStatus) subscribeStatus.textContent = "Please enter an email.";
-        return;
-      }
-
-      if (subscribeStatus) {
-        subscribeStatus.textContent = "Thanks! We'll keep you posted.";
-      }
-      subscribeForm.reset();
     });
   }
 });
