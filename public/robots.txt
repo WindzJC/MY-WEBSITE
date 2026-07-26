@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://astraproductionsbyjc.pages.dev/sitemap.xml
+Sitemap: https://astraproductions.co/sitemap.xml

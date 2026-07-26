@@ -1046,6 +1046,181 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-weight:700;
 }
 
+/* Conversion qualifiers and internal service links */
+.concept-qualifier{
+  max-width: 70ch;
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+.contact-concept-qualifier{margin-top: 16px;}
+.text-link{
+  font-weight:800;
+  text-decoration:underline;
+  text-decoration-color:rgba(34,211,238,.32);
+  text-underline-offset:3px;
+}
+.service-card-actions{
+  margin-top:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.service-card-actions .price-cta{margin-top:0;}
+
+/* Case studies */
+.section-eyebrow{
+  color:var(--a);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.case-study-grid{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+}
+.case-study-card{
+  min-width:0;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+  box-shadow:0 16px 42px rgba(0,0,0,.30);
+  display:flex;
+  flex-direction:column;
+}
+.case-study-image{
+  display:block;
+  aspect-ratio:14 / 9;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:#050611;
+}
+.case-study-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .3s ease;
+}
+.case-study-copy{
+  padding:17px;
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:9px;
+}
+.case-study-label{
+  display:inline-flex;
+  padding:5px 8px;
+  border-radius:999px;
+  border:1px solid rgba(96,165,250,.28);
+  background:rgba(96,165,250,.08);
+  color:#b9d4ff;
+  font-size:9.5px;
+  font-weight:900;
+  letter-spacing:.11em;
+  line-height:1.25;
+}
+.case-study-label-live{
+  border-color:rgba(34,211,238,.32);
+  background:rgba(34,211,238,.09);
+  color:#8ce9f5;
+}
+.case-study-copy h3{
+  font-size:22px;
+  line-height:1.12;
+  letter-spacing:-.025em;
+}
+.case-study-subtitle{
+  color:var(--soft);
+  font-size:13px;
+  font-weight:800;
+}
+.case-study-copy > p:not(.case-study-label):not(.case-study-subtitle):not(.concept-note){
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.75;
+}
+.case-study-copy ul{
+  padding-left:18px;
+  color:var(--soft);
+  font-size:12.5px;
+  line-height:1.75;
+}
+.case-study-copy .work-feature-cta{margin-top:auto;}
+.concept-note{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.55;
+  font-style:italic;
+}
+@media (hover:hover) and (pointer:fine){
+  .case-study-image:hover img{transform:scale(1.035);}
+}
+
+/* Author Websites service page */
+.service-page .page{padding-top:18px;}
+.service-topbar{justify-content:space-between;}
+.service-back-link{font-size:13px;}
+.service-hero{padding:clamp(30px, 6vw, 72px) clamp(22px, 6vw, 70px);}
+.service-hero-copy{max-width:800px;}
+.service-benefit-grid .result-card{grid-column:span 3;}
+.capability-grid{
+  list-style:none;
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:10px;
+}
+.capability-grid li{
+  position:relative;
+  padding:12px 12px 12px 34px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.025);
+  color:var(--soft);
+  font-size:13px;
+}
+.capability-grid li::before{
+  content:"✓";
+  position:absolute;
+  left:13px;
+  color:var(--a);
+  font-weight:900;
+}
+.service-process-steps .step{grid-column:span 3;}
+.service-page-price{
+  width:min(100%, 660px);
+  margin:0 auto;
+}
+.service-page-price .price-list{margin-top:18px;}
+.service-contact{text-align:center;padding-block:clamp(32px, 6vw, 64px);}
+.service-contact .example-sub{max-width:670px;margin:10px auto 20px;}
+.service-contact .btn{margin-top:4px;}
+
+/* Conversion confirmation page */
+.thank-you-shell{
+  width:min(760px, calc(100% - 28px));
+  min-height:100svh;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:32px 0;
+}
+.thank-you-logo{
+  align-self:flex-start;
+  margin-bottom:18px;
+}
+.thank-you-card{padding:clamp(28px, 7vw, 64px);}
+.thank-you-card .hero-text{max-width:620px;margin:16px 0 24px;}
+
 /* Dropdown option readability (browser support varies) */
 .contact-field select option{
   background-color: var(--bg1);
@@ -1099,6 +1274,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .contact-field-third{grid-column: span 6}
   .contact-field-service{grid-column: span 12}
   .step{grid-column: span 6}
+  .service-benefit-grid .result-card,
+  .service-process-steps .step{grid-column:span 6;}
+  .case-study-grid{grid-template-columns:1fr 1fr;}
+  .case-study-card:last-child{grid-column:1 / -1;}
+  .capability-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
 }
 @media (max-width: 980px){
   .work-card{grid-column: span 6}
@@ -1129,6 +1309,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .price-card-compact{grid-column: span 12}
   .benefit-card{grid-column: span 12}
   .step{grid-column: span 12}
+  .case-study-grid{grid-template-columns:1fr;}
+  .case-study-card:last-child{grid-column:auto;}
+  .service-benefit-grid .result-card,
+  .service-process-steps .step{grid-column:span 12;}
+  .capability-grid{grid-template-columns:1fr;}
+  .service-topbar{align-items:flex-end;}
+  .service-back-link{max-width:130px;text-align:right;}
+  .thank-you-card .cta-actions{gap:10px;}
 
   .work-card{grid-column: span 12}
   .contact-row{flex-direction:column}

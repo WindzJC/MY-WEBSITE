@@ -5,6 +5,8 @@ import { getSiteUrl } from "./seo.config.mjs";
 function cleanUrlRoutes() {
   const rewrite = (req, _res, next) => {
     if (req.url === "/privacy") req.url = "/privacy/index.html";
+    if (req.url === "/author-websites") req.url = "/author-websites.html";
+    if (req.url === "/thank-you") req.url = "/thank-you.html";
     next();
   };
 
@@ -21,7 +23,13 @@ function cleanUrlRoutes() {
 
 function getPagePath(pathname = "/") {
   if (pathname === "/privacy" || pathname === "/privacy/" || pathname === "/privacy/index.html") {
-    return "/privacy";
+    return "/privacy/";
+  }
+  if (pathname === "/author-websites" || pathname === "/author-websites.html") {
+    return "/author-websites";
+  }
+  if (pathname === "/thank-you" || pathname === "/thank-you.html") {
+    return "/thank-you";
   }
   return "/";
 }
@@ -52,6 +60,8 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: resolve(process.cwd(), "index.html"),
+          authorWebsites: resolve(process.cwd(), "author-websites.html"),
+          thankYou: resolve(process.cwd(), "thank-you.html"),
           privacy: resolve(process.cwd(), "privacy/index.html"),
         },
       },

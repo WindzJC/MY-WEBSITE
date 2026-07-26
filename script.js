@@ -226,8 +226,12 @@ document.addEventListener("DOMContentLoaded", () => {
           if (statusEl) {
             statusEl.textContent = "Thanks! Your request is in. I’ll reply with next steps.";
             statusEl.classList.add("ok");
+            statusEl.focus({ preventScroll: true });
           }
           contactForm.reset();
+          window.setTimeout(() => {
+            window.location.assign("/thank-you");
+          }, 1200);
         })
         .catch((error) => {
           console.error("EmailJS error:", error);
@@ -242,11 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
             messageField.value = originalMessage;
           }
           if (!submitBtn) return;
-          if (wasSuccessful) {
-            window.setTimeout(() => {
-              submitBtn.disabled = false;
-            }, 3000);
-          } else {
+          if (!wasSuccessful) {
             submitBtn.disabled = false;
           }
         });
