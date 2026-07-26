@@ -931,6 +931,59 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   max-width: 960px;
   gap: 16px;
 }
+.contact-request-guide{
+  max-width:960px;
+  margin-top:16px;
+}
+.contact-request-guide-title{
+  margin-bottom:10px;
+  color:var(--a);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.16em;
+  line-height:1.5;
+}
+.contact-request-steps{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:10px;
+}
+.contact-request-step{
+  min-width:0;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:14px;
+  background:rgba(255,255,255,.025);
+}
+.contact-request-number{
+  flex:0 0 auto;
+  color:var(--a);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  line-height:1.6;
+}
+.contact-request-step h4{
+  margin-bottom:2px;
+  color:var(--ink);
+  font-size:13px;
+  line-height:1.45;
+}
+.contact-request-step p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+}
+.contact-request-note{
+  margin-top:9px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
 .contact-primary-grid{
   display:grid;
   grid-template-columns: repeat(12, 1fr);
@@ -1054,7 +1107,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size: 12.5px;
   line-height: 1.75;
 }
-.contact-concept-qualifier{margin-top: 16px;}
 .text-link{
   font-weight:800;
   text-decoration:underline;
@@ -1320,6 +1372,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
   .work-card{grid-column: span 12}
   .contact-row{flex-direction:column}
+  .contact-request-steps{grid-template-columns:1fr}
   .contact-primary-grid,
   .contact-optional-grid{
     grid-template-columns: 1fr;
