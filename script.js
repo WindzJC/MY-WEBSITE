@@ -31,6 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (scrollY + offset >= top) activeIndex = i;
     }
 
+    const doc = document.documentElement;
+    const isAtPageEnd = window.innerHeight + scrollY >= doc.scrollHeight - 4;
+    if (isAtPageEnd) activeIndex = sections.length - 1;
+
     pills.forEach((pill, idx) => {
       const isActive = idx === activeIndex;
       pill.classList.toggle("is-active", isActive);
@@ -129,6 +133,29 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { passive: true }
   );
+
+  // Keep the mobile CTA clear of the contact form and footer.
+  const mobileCta = document.querySelector(".mobile-sticky-cta");
+  const mobileCtaHideTargets = [
+    document.getElementById("contact"),
+    document.querySelector(".footer"),
+  ].filter(Boolean);
+
+  if (mobileCta && mobileCtaHideTargets.length && "IntersectionObserver" in window) {
+    const visibleTargets = new Set();
+    const mobileCtaObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visibleTargets.add(entry.target);
+          else visibleTargets.delete(entry.target);
+        });
+        mobileCta.classList.toggle("is-hidden", visibleTargets.size > 0);
+      },
+      { threshold: 0.05 }
+    );
+
+    mobileCtaHideTargets.forEach((target) => mobileCtaObserver.observe(target));
+  }
 
   // =========================
   // EmailJS contact form hook
