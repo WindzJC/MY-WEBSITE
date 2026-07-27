@@ -25,18 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrollY = window.scrollY;
     const offset = getOffset();
 
-    let activeIndex = 0;
-    for (let i = 0; i < sections.length; i++) {
-      const top = sections[i].offsetTop;
-      if (scrollY + offset >= top) activeIndex = i;
+    const getDocumentTop = (section) =>
+      section.getBoundingClientRect().top + window.scrollY;
+    const sectionsInPageOrder = [...sections].sort(
+      (a, b) => getDocumentTop(a) - getDocumentTop(b)
+    );
+    let activeSection = sectionsInPageOrder[0];
+    for (const section of sectionsInPageOrder) {
+      if (scrollY + offset + 4 >= getDocumentTop(section)) activeSection = section;
     }
 
     const doc = document.documentElement;
     const isAtPageEnd = window.innerHeight + scrollY >= doc.scrollHeight - 4;
-    if (isAtPageEnd) activeIndex = sections.length - 1;
+    if (isAtPageEnd) activeSection = sectionsInPageOrder.at(-1);
 
-    pills.forEach((pill, idx) => {
-      const isActive = idx === activeIndex;
+    pills.forEach((pill) => {
+      const isActive = pill.getAttribute("data-target") === activeSection.id;
       pill.classList.toggle("is-active", isActive);
       if (isActive) pill.setAttribute("aria-current", "page");
       else pill.removeAttribute("aria-current");
