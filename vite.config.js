@@ -40,7 +40,7 @@ function seoMetaDefaults(siteUrl) {
     transformIndexHtml(html, ctx) {
       const pagePath = getPagePath(ctx?.path || "/");
       const canonicalUrl = `${siteUrl}${pagePath}`;
-      const ogImageUrl = `${siteUrl}/LOGOASTRA.png`;
+      const ogImageUrl = `${siteUrl}/astra-productions-social.png`;
 
       return html
         .replaceAll("__CANONICAL_URL__", canonicalUrl)

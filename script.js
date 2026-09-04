@@ -99,12 +99,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   
-  // Auto-fill service in contact form when clicking a CTA with data-service
+  // Auto-fill assessment focus while preserving known legacy service links.
+  const legacyServiceValues = new Map([
+    ["Author Website ($499)", "Author website / online presence"],
+    ["Book Trailer ($999)", "Book promotion / trailer"],
+    ["Bundle ($1299)", "I’m not sure — I’d like Astra to assess it"],
+    ["Book Cover & Promo Graphics (from $399)", "Upcoming launch"],
+  ]);
+
   const setServiceValue = (value) => {
     const select = document.getElementById("service");
     if (!select || !value) return;
-    const exists = Array.from(select.options).some((o) => o.value === value);
-    if (exists) select.value = value;
+    const normalizedValue = legacyServiceValues.get(value) || value;
+    const exists = Array.from(select.options).some((o) => o.value === normalizedValue);
+    if (exists) select.value = normalizedValue;
   };
 
   document.addEventListener("click", (e) => {
@@ -141,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Keep the mobile CTA clear of the contact form and footer.
   const mobileCta = document.querySelector(".mobile-sticky-cta");
   const mobileCtaHideTargets = [
-    document.getElementById("contact"),
+    document.getElementById("start"),
     document.querySelector(".footer"),
   ].filter(Boolean);
 
@@ -208,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const extraNotes = contactForm.querySelector('[name="extra_notes"]')?.value?.trim();
         const updatesOptIn = contactForm.querySelector('[name="request_updates_opt_in"]')?.checked;
 
-        if (service) details.push(`Service: ${service}`);
+        if (service) details.push(`Assessment focus: ${service}`);
         if (deadline) details.push(`Timeline / deadline: ${deadline}`);
         if (website) details.push(`Website: ${website}`);
         if (company) details.push(`Company: ${company}`);
