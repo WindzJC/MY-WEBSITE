@@ -149,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Keep the mobile CTA clear of the contact form and footer.
   const mobileCta = document.querySelector(".mobile-sticky-cta");
   const mobileCtaHideTargets = [
+    document.getElementById("overview"),
     document.getElementById("start"),
     document.querySelector(".footer"),
   ].filter(Boolean);
