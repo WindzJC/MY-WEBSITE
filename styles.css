@@ -2257,40 +2257,6 @@ summary:focus-visible{
   box-shadow:0 0 12px rgba(34,211,238,.32);
 }
 
-.proof-strip{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-  margin:14px 6px 0;
-  padding:17px 20px;
-  border:1px solid rgba(34,211,238,.2);
-  border-radius:18px;
-  background:linear-gradient(90deg,rgba(34,211,238,.08),rgba(96,165,250,.035));
-}
-
-.proof-strip-quote{
-  max-width:34ch;
-  color:var(--ink);
-  font-size:clamp(17px,2vw,21px);
-  font-weight:700;
-  line-height:1.55;
-}
-
-.proof-strip-credit{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  color:var(--muted);
-  font-size:12.5px;
-  text-align:right;
-}
-
-.proof-strip-credit strong{
-  color:var(--soft);
-  font-size:13px;
-}
-
 .portfolio-grid{
   display:grid;
   grid-template-columns:1fr;
@@ -2446,7 +2412,7 @@ summary:focus-visible{
 }
 
 .testimonials-layout-secondary .t-card-support{
-  grid-column:span 6;
+  grid-column:span 4;
   padding:18px;
 }
 
@@ -2591,22 +2557,6 @@ summary:focus-visible{
     grid-template-columns:1fr;
   }
 
-  .proof-strip{
-    align-items:flex-start;
-    flex-direction:column;
-    gap:8px;
-    margin-inline:0;
-  }
-
-  .proof-strip-credit{
-    align-items:flex-start;
-    text-align:left;
-  }
-
-  .testimonials-layout-secondary .t-card-support{
-    grid-column:span 12;
-  }
-
   .service-card{
     padding:18px;
   }
@@ -2697,7 +2647,6 @@ summary:focus-visible{
 .studio-home .section-head{margin-bottom:28px}
 .studio-home .example-title{font-size:clamp(26px,2.5vw,36px);line-height:1.25;letter-spacing:-.025em}
 .studio-home .example-sub{margin-top:14px;max-width:720px}
-.studio-home .proof-strip{background:none;border:0;border-block:1px solid var(--line);border-radius:0;padding:24px 0;margin-inline:0}
 .studio-home #audit{padding:38px;background:rgba(255,255,255,.025);border-radius:22px}
 .studio-home #work{margin-top:90px}
 .studio-home #testimonials .t-card{background:none;border:0;border-radius:0;box-shadow:none;padding:12px 28px 12px 0}
@@ -2968,6 +2917,9 @@ summary:focus-visible{
   .recommendation-grid article:nth-child(4){
     border-top:1px solid rgba(255,255,255,.1);
   }
+
+  .testimonials-layout-secondary .t-card-support{grid-column:span 12}
+  .studio-home #testimonials .t-card + .t-card{border-left:0;border-top:1px solid var(--line);padding:24px 0}
 }
 
 @media (max-width:920px){
@@ -3008,7 +2960,6 @@ summary:focus-visible{
   .studio-home #faq,.studio-home #start{padding-top:28px;gap:8px}
   .studio-home #start .contact-primary-grid{grid-template-columns:minmax(0,1fr)}
   .studio-home #start .contact-primary-grid > .contact-field{grid-column:1 / -1;min-width:0}
-  .studio-home #testimonials .t-card + .t-card{border-left:0;border-top:1px solid var(--line);padding:24px 0}
   .studio-home .hero-actions{flex-direction:column}
   .recommendation-grid{gap:0}
   .strategy-questions,
