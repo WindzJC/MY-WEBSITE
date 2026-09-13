@@ -1064,8 +1064,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .turnstile-wrap{
   display:flex;
   align-items:center;
-  min-height:0;
-  margin:2px 0 4px;
+  min-height:65px;
+  margin:4px 0 8px;
 }
 .contact-submit-row{
   display:flex;
