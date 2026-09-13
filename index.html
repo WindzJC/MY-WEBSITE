@@ -151,8 +151,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 
 <body id="top" class="studio-home">
@@ -509,17 +509,18 @@
               <div class="contact-field contact-field-optional"><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Publisher or company" autocomplete="organization" /></div>
               <div class="contact-field contact-field-optional"><label for="genre">Genre</label><input id="genre" name="genre" type="text" placeholder="Fantasy, romance, thriller…" /></div>
               <div class="contact-field contact-field-optional contact-field-wide"><label for="extra_notes">Additional notes</label><textarea id="extra_notes" name="extra_notes" rows="4" placeholder="Tone references, must-haves, scenes, quotes, platform notes, or anything else worth knowing."></textarea></div>
-              <label class="contact-consent contact-field-wide" for="request_updates_opt_in">
-                <input id="request_updates_opt_in" name="request_updates_opt_in" type="checkbox" value="yes" />
-                <span>Send me a copy of this request and occasional updates related to it.</span>
-              </label>
             </div>
           </details>
+
+          <div class="turnstile-wrap" aria-label="Security check">
+            <div id="astra-turnstile" class="cf-turnstile" data-sitekey="0x4AAAAAAEY_p6B3e9h-XqTS" data-theme="dark" data-action="project_inquiry" data-appearance="interaction-only" data-refresh-expired="auto"></div>
+          </div>
 
           <div class="contact-submit-row">
             <button class="btn btn-main" type="submit">Send My Project for Review</button>
             <div class="contact-status" id="contact-status" role="status" aria-live="polite" tabindex="-1" data-analytics-event="form-submit-success"></div>
           </div>
+          <p class="contact-clarification">After you submit, Astra will email you a confirmation that your request was received.</p>
           <p class="contact-clarification">Astra will review the book and current online presence and identify the three improvements we would prioritize first. If a visual concept would help demonstrate the recommendation, Astra may offer one.</p>
           <p class="contact-clarification">Paid implementation begins only after scope and pricing are agreed.</p>
           <p class="contact-legal">By sending this form, you agree to our <a href="/privacy">Privacy Policy</a>.</p>

@@ -171,35 +171,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-  // EmailJS contact form hook
+  // Secure project inquiry form
   // =========================
-  const EMAILJS_PUBLIC_KEY = "IavxRtiZvs4FLoFc7";
-  const EMAILJS_SERVICE_ID = "service_aj58jzd";
-  const EMAILJS_TEMPLATE_ID = "template_vttb9qs";
-
-  if (window.emailjs) {
-    try {
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-    } catch (err) {
-      console.error("EmailJS init error:", err);
-    }
-  }
-
   const contactForm = document.getElementById("contact-form");
   const statusEl = document.getElementById("contact-status");
+  let pendingRequestId = null;
+  let isSubmitting = false;
 
-  if (contactForm && window.emailjs) {
-    contactForm.addEventListener("submit", (e) => {
+  const createRequestId = () => {
+    if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+    return `req_${Date.now()}_${Math.random().toString(36).slice(2, 12)}`;
+  };
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (isSubmitting) return;
 
-      // Honeypot check
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
       const hp = contactForm.querySelector('input[name="bot_field"]');
       if (hp && hp.value.trim() !== "") return;
 
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const messageField = contactForm.querySelector('textarea[name="message"]');
-      const originalMessage = messageField ? messageField.value : "";
-      let wasSuccessful = false;
+      const turnstileResponse = contactForm
+        .querySelector('[name="cf-turnstile-response"]')
+        ?.value?.trim();
+      if (!turnstileResponse) {
+        if (statusEl) {
+          statusEl.textContent = "Please complete the security check before submitting.";
+          statusEl.classList.remove("ok");
+          statusEl.classList.add("error");
+          statusEl.focus({ preventScroll: true });
+        }
+        return;
+      }
+      isSubmitting = true;
+      pendingRequestId ||= createRequestId();
 
       if (statusEl) {
         statusEl.textContent = "Sending...";
@@ -207,62 +213,67 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (submitBtn) submitBtn.disabled = true;
 
-      if (messageField) {
-        const details = [];
-        const service = contactForm.querySelector('[name="service"]')?.value?.trim();
-        const deadline = contactForm.querySelector('[name="deadline"]')?.value?.trim();
-        const website = contactForm.querySelector('[name="author_website"]')?.value?.trim();
-        const company = contactForm.querySelector('[name="company"]')?.value?.trim();
-        const genre = contactForm.querySelector('[name="genre"]')?.value?.trim();
-        const extraNotes = contactForm.querySelector('[name="extra_notes"]')?.value?.trim();
-        const updatesOptIn = contactForm.querySelector('[name="request_updates_opt_in"]')?.checked;
+      const formData = new FormData(contactForm);
+      const payload = Object.fromEntries(formData.entries());
+      payload.request_id = pendingRequestId;
 
-        if (service) details.push(`Assessment focus: ${service}`);
-        if (deadline) details.push(`Timeline / deadline: ${deadline}`);
-        if (website) details.push(`Website: ${website}`);
-        if (company) details.push(`Company: ${company}`);
-        if (genre) details.push(`Genre: ${genre}`);
-        if (extraNotes) details.push(`Anything important: ${extraNotes}`);
-        details.push(
-          `Send copy + occasional request-related updates: ${updatesOptIn ? "Yes" : "No"}`
-        );
-
-        messageField.value = [originalMessage, ...details]
-          .filter(Boolean)
-          .join("\n\n");
-      }
-
-      emailjs
-        .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
-        .then(() => {
-          wasSuccessful = true;
-          if (statusEl) {
-            statusEl.textContent = "Thanks! Your request is in. I’ll reply with next steps.";
-            statusEl.classList.add("ok");
-            statusEl.focus({ preventScroll: true });
-          }
-          contactForm.reset();
-          window.setTimeout(() => {
-            window.location.assign("/thank-you");
-          }, 1200);
-        })
-        .catch((error) => {
-          console.error("EmailJS error:", error);
-          if (statusEl) {
-            statusEl.textContent =
-              "Something went wrong. Please try again or email me directly.";
-            statusEl.classList.add("error");
-          }
-        })
-        .finally(() => {
-          if (messageField && !wasSuccessful) {
-            messageField.value = originalMessage;
-          }
-          if (!submitBtn) return;
-          if (!wasSuccessful) {
-            submitBtn.disabled = false;
-          }
+      let wasSuccessful = false;
+      try {
+        const response = await fetch("/api/inquiry", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         });
+
+        let result = {};
+        try {
+          result = await response.json();
+        } catch {
+          result = {};
+        }
+
+        if (!response.ok || !result.ok) {
+          const submissionError = new Error(result.error || "Submission failed");
+          submissionError.code = result.code || "";
+          throw submissionError;
+        }
+
+        wasSuccessful = true;
+        pendingRequestId = null;
+        if (statusEl) {
+          statusEl.textContent = result.confirmationSent === false
+            ? "Thanks! Astra received your request successfully."
+            : "Thanks! Your request is in. Check your email for confirmation.";
+          statusEl.classList.add("ok");
+          statusEl.focus({ preventScroll: true });
+        }
+        contactForm.reset();
+        window.setTimeout(() => {
+          window.location.assign("/thank-you");
+        }, 1200);
+      } catch (error) {
+        console.error("Inquiry submission failed", error);
+        if (window.turnstile) {
+          try {
+            window.turnstile.reset("#astra-turnstile");
+          } catch {
+            // The widget may not have finished rendering; a reload remains a valid retry path.
+          }
+        }
+        if (statusEl) {
+          statusEl.textContent = error?.code === "turnstile_failed"
+            ? "Security check expired. Please complete it again and resubmit."
+            : "Something went wrong. Please try again or email jc@astraproductions.co.";
+          statusEl.classList.add("error");
+          statusEl.focus({ preventScroll: true });
+        }
+      } finally {
+        isSubmitting = false;
+        if (submitBtn && !wasSuccessful) submitBtn.disabled = false;
+      }
     });
   }
 });
