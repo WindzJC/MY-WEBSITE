@@ -423,6 +423,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .price{
   display:flex;align-items:baseline;gap:8px;
 }
+.price-prefix{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.02em}
 .price-amt{font-size:30px;font-weight:900;letter-spacing:-.4px}
 .price-note{font-size:12px;color:var(--muted);font-weight:700}
 .price-sub{font-size:14px;color:var(--soft);line-height:1.75}
@@ -2876,6 +2877,14 @@ summary:focus-visible{
 .implementation-card .price-meta{
   margin-top:0;
   align-self:start;
+}
+
+.pricing-scope-note{
+  margin:20px 0 0;
+  max-width:920px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
 }
 
 .field-note{
