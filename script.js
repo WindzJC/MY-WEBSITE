@@ -175,7 +175,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const contactForm = document.getElementById("contact-form");
   const statusEl = document.getElementById("contact-status");
+  const formStartedAt = Date.now();
   let pendingRequestId = null;
+  let pendingSubmittedAt = null;
   let isSubmitting = false;
 
   const createRequestId = () => {
@@ -192,20 +194,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const hp = contactForm.querySelector('input[name="bot_field"]');
       if (hp && hp.value.trim() !== "") return;
 
-      const turnstileResponse = contactForm
-        .querySelector('[name="cf-turnstile-response"]')
-        ?.value?.trim();
-      if (!turnstileResponse) {
-        if (statusEl) {
-          statusEl.textContent = "Please complete the security check before submitting.";
-          statusEl.classList.remove("ok");
-          statusEl.classList.add("error");
-          statusEl.focus({ preventScroll: true });
-        }
-        return;
-      }
       isSubmitting = true;
       pendingRequestId ||= createRequestId();
+      pendingSubmittedAt ||= new Date().toISOString();
 
       if (statusEl) {
         statusEl.textContent = "Sending...";
@@ -216,6 +207,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new FormData(contactForm);
       const payload = Object.fromEntries(formData.entries());
       payload.request_id = pendingRequestId;
+      payload.form_elapsed_ms = String(Date.now() - formStartedAt);
+      payload.submitted_at = pendingSubmittedAt;
 
       let wasSuccessful = false;
       try {
@@ -243,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         wasSuccessful = true;
         pendingRequestId = null;
+        pendingSubmittedAt = null;
         if (statusEl) {
           statusEl.textContent = result.confirmationSent === false
             ? "Thanks! Astra received your request successfully."
@@ -256,16 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1200);
       } catch (error) {
         console.error("Inquiry submission failed", error);
-        if (window.turnstile) {
-          try {
-            window.turnstile.reset("#astra-turnstile");
-          } catch {
-            // The widget may not have finished rendering; a reload remains a valid retry path.
-          }
-        }
         if (statusEl) {
-          statusEl.textContent = error?.code === "turnstile_failed"
-            ? "Security check expired. Please complete it again and resubmit."
+          statusEl.textContent = error?.code === "rate_limited"
+            ? "Please wait a few minutes before sending another request."
             : "Something went wrong. Please try again or email jc@astraproductions.co.";
           statusEl.classList.add("error");
           statusEl.focus({ preventScroll: true });
@@ -276,4 +263,5 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
 });

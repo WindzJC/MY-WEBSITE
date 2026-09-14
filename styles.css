@@ -1061,12 +1061,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .contact-optional-grid .contact-field-wide{
   grid-column: span 12;
 }
-.turnstile-wrap{
-  display:flex;
-  align-items:center;
-  min-height:65px;
-  margin:4px 0 8px;
-}
 .contact-submit-row{
   display:flex;
   align-items:center;

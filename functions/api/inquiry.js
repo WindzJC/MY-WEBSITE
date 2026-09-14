@@ -1,16 +1,11 @@
 const RESEND_API_URL = "https://api.resend.com/emails";
-const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-const TURNSTILE_ACTION = "project_inquiry";
-const TURNSTILE_HOSTNAMES = new Set([
-  "astraproductions.co",
-  "www.astraproductions.co",
-  "astraproductions.pages.dev",
-]);
-const TURNSTILE_TOKEN_MAX_LENGTH = 4096;
 const INTERNAL_FROM = "Astra Website <website@send.astraproductions.co>";
 const CONFIRMATION_FROM = "Astra Productions <website@send.astraproductions.co>";
 const INTERNAL_RECIPIENT = "jc@astraproductions.co";
 const MAX_BODY_BYTES = 24_000;
+const MIN_FORM_AGE_MS = 1_500;
+const MAX_FORM_AGE_MS = 2 * 60 * 60 * 1000;
+const RATE_WINDOW_MS = 5 * 60 * 1000;
 
 const LIMITS = {
   user_name: 100,
@@ -25,6 +20,8 @@ const LIMITS = {
   extra_notes: 5000,
   bot_field: 200,
   request_id: 100,
+  form_elapsed_ms: 16,
+  submitted_at: 64,
 };
 
 const json = (body, status = 200, extraHeaders = {}) =>
@@ -85,42 +82,6 @@ function normalizePayload(body) {
   return { data };
 }
 
-async function verifyTurnstile(secret, token, remoteIp) {
-  const form = new URLSearchParams({
-    secret,
-    response: token,
-  });
-  if (remoteIp) form.set("remoteip", remoteIp);
-
-  const response = await fetch(TURNSTILE_VERIFY_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "User-Agent": "AstraProductionsWebsite/1.0",
-    },
-    body: form.toString(),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Turnstile verification unavailable (${response.status})`);
-  }
-
-  const result = await response.json();
-  const hostnameOk = TURNSTILE_HOSTNAMES.has(result.hostname);
-  const actionOk = result.action === TURNSTILE_ACTION;
-
-  if (!result.success || !hostnameOk || !actionOk) {
-    console.warn("Turnstile verification rejected", {
-      hostname: result.hostname || "",
-      action: result.action || "",
-      errorCodes: result["error-codes"] || [],
-    });
-    return false;
-  }
-
-  return true;
-}
-
 async function sendEmail(apiKey, payload, idempotencyKey) {
   const response = await fetch(RESEND_API_URL, {
     method: "POST",
@@ -133,15 +94,37 @@ async function sendEmail(apiKey, payload, idempotencyKey) {
     body: JSON.stringify(payload),
   });
 
+  let result = {};
+  try {
+    result = await response.json();
+  } catch {
+    result = {};
+  }
+
   if (!response.ok) {
     console.error("Resend email failed", {
       status: response.status,
       kind: idempotencyKey.split("/")[0],
+      code: result?.name || result?.code || "",
     });
-    throw new Error("Email delivery failed");
+    const error = new Error("Email delivery failed");
+    error.status = response.status;
+    error.code = result?.name || result?.code || "";
+    throw error;
   }
 
-  return response.json();
+  return result;
+}
+
+async function buildRateLimitKey(request) {
+  const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+  const bucket = Math.floor(Date.now() / RATE_WINDOW_MS);
+  const material = new TextEncoder().encode(`${ip}|${bucket}`);
+  const digest = await crypto.subtle.digest("SHA-256", material);
+  const hash = [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+  return `inquiry-window/${hash.slice(0, 40)}`;
 }
 
 function inquiryRows(data, meta) {
@@ -194,18 +177,18 @@ export async function onRequest(context) {
   }
 
   const origin = request.headers.get("Origin");
-  if (origin && origin !== new URL(request.url).origin) {
+  if (!origin || origin !== new URL(request.url).origin) {
+    return json({ ok: false, error: "Invalid request" }, 403);
+  }
+
+  const fetchSite = request.headers.get("Sec-Fetch-Site");
+  if (fetchSite && fetchSite !== "same-origin") {
     return json({ ok: false, error: "Invalid request" }, 403);
   }
 
   if (!env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not configured");
     return json({ ok: false, error: "Submission service unavailable" }, 503);
-  }
-
-  if (!env.TURNSTILE_SECRET_KEY) {
-    console.error("TURNSTILE_SECRET_KEY is not configured");
-    return json({ ok: false, error: "Security check unavailable" }, 503);
   }
 
   const contentType = request.headers.get("Content-Type") || "";
@@ -253,41 +236,14 @@ export async function onRequest(context) {
     return json({ ok: false, error: "Please enter a valid website URL." }, 400);
   }
 
-  const turnstileTokenRaw = body["cf-turnstile-response"];
-  if (typeof turnstileTokenRaw !== "string") {
-    return json(
-      { ok: false, code: "turnstile_failed", error: "Please complete the security check." },
-      403
-    );
+  const formElapsedMs = Number(data.form_elapsed_ms);
+  if (!Number.isFinite(formElapsedMs) || formElapsedMs < MIN_FORM_AGE_MS || formElapsedMs > MAX_FORM_AGE_MS) {
+    return json({ ok: false, error: "Please reload the page and try again." }, 400);
   }
 
-  const turnstileToken = turnstileTokenRaw.trim();
-  if (!turnstileToken || turnstileToken.length > TURNSTILE_TOKEN_MAX_LENGTH) {
-    return json(
-      { ok: false, code: "turnstile_failed", error: "Security check expired. Please try again." },
-      403
-    );
-  }
-
-  let turnstileVerified;
-  try {
-    turnstileVerified = await verifyTurnstile(
-      env.TURNSTILE_SECRET_KEY,
-      turnstileToken,
-      request.headers.get("CF-Connecting-IP") || ""
-    );
-  } catch (error) {
-    console.error("Turnstile verification unavailable", {
-      message: error instanceof Error ? error.message : "Unknown error",
-    });
-    return json({ ok: false, error: "Security check unavailable. Please try again." }, 503);
-  }
-
-  if (!turnstileVerified) {
-    return json(
-      { ok: false, code: "turnstile_failed", error: "Security check expired. Please try again." },
-      403
-    );
+  const submittedAtMs = Date.parse(data.submitted_at);
+  if (!Number.isFinite(submittedAtMs)) {
+    return json({ ok: false, error: "Please reload the page and try again." }, 400);
   }
 
   const requestId = /^[A-Za-z0-9_-]{8,100}$/.test(data.request_id)
@@ -295,8 +251,9 @@ export async function onRequest(context) {
     : crypto.randomUUID();
   const meta = {
     requestId,
-    submittedAt: new Date().toISOString(),
+    submittedAt: new Date(submittedAtMs).toISOString(),
   };
+  const rateLimitKey = await buildRateLimitKey(request);
 
   try {
     await sendEmail(
@@ -309,9 +266,23 @@ export async function onRequest(context) {
         text: buildInternalText(data, meta),
         html: buildInternalHtml(data, meta),
       },
-      `inquiry/${requestId}`
+      rateLimitKey
     );
-  } catch {
+  } catch (error) {
+    if (
+      error?.status === 409 &&
+      ["invalid_idempotent_request", "concurrent_idempotent_requests"].includes(error?.code)
+    ) {
+      return json(
+        {
+          ok: false,
+          code: "rate_limited",
+          error: "Please wait a few minutes before sending another request.",
+        },
+        429,
+        { "Retry-After": "300" }
+      );
+    }
     return json({ ok: false, error: "We could not send your request. Please try again." }, 502);
   }
 
