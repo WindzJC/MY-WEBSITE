@@ -1,0 +1,164 @@
+/* Astra Cinematic Direction — distinct visual identity using Astra's own published trailer stills */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--astra-cyan:#4bd4f4;--astra-azure:#3d91ed;--astra-white:#f7f9fd;--astra-filmline:rgba(255,255,255,.18)}
+body.studio-home,body.astra-page{background:#070a0f;color:var(--astra-white)}
+.studio-home .bg{display:none}
+.studio-home .page{width:min(92vw,1360px)}
+.studio-home .studio-header{position:sticky;top:10px;z-index:90;margin-bottom:0;height:86px}
+.studio-home .studio-header .commandbar-inner{min-height:78px;background:rgba(5,9,16,.80);border:1px solid rgba(255,255,255,.14);border-radius:12px;backdrop-filter:blur(22px);gap:9px}
+.studio-home .studio-header .nav-pills{justify-content:flex-end;gap:0}
+.studio-home .studio-header .nav-pill{border-radius:6px;padding:10px 10px;text-transform:uppercase;letter-spacing:.03em;font-size:11px;font-weight:800;color:#dce5f2}
+.studio-home .studio-header .nav-pill:hover{color:white;background:rgba(255,255,255,.09)}
+.studio-home .studio-header .nav-pill.is-active{color:white;background:rgba(255,255,255,.08)}
+.studio-home .studio-header .nav-pill.is-active::after{background:var(--astra-cyan)}
+.studio-home .studio-header .commandbar-actions .btn{border:0;border-radius:6px;background:linear-gradient(125deg,#29cdeb,#438eea);font-weight:800;letter-spacing:.05em}
+.studio-home .studio-header .commandbar-actions .btn:hover{filter:brightness(1.12)}
+.studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{width:185px}
+.studio-home .studio-header .brand-logo-img{width:330px;height:330px}
+.studio-home .astra-cinema-hero{position:relative;isolation:isolate;display:flex;align-items:center;width:100vw;left:50%;margin-left:-50vw;margin-top:-105px;min-height:clamp(670px,85vh,850px);padding:165px 0 105px;background:#050910;overflow:hidden}
+.astra-cinema-scene{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,rgba(3,6,12,.96) 0%,rgba(5,8,14,.83) 31%,rgba(5,9,14,.44) 58%,rgba(5,9,14,.2) 100%),linear-gradient(0deg,rgba(3,6,12,.95) 0%,transparent 36%,rgba(3,6,12,.15) 95%),url('/cinema/luX6gA05Si4.jpg');background-size:cover;background-position:center 40%;filter:saturate(.82);transform:scale(1.01)}
+.astra-cinema-hero::after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 75% 30%,transparent 26%,rgba(2,6,13,.28) 71%),linear-gradient(90deg,rgba(0,13,19,.13),transparent 65%);pointer-events:none}
+.astra-cinema-content{position:relative;width:min(92vw,1360px);margin:0 auto;padding:45px 0 0}
+.astra-cinema-kicker{display:flex;align-items:center;gap:10px;font:800 11px/1.5 "Manrope",sans-serif;color:#e1eff6;letter-spacing:.18em;margin-bottom:20px}
+.astra-cinema-kicker-divider{color:var(--astra-cyan);margin-inline:7px}
+.astra-live-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--astra-cyan);box-shadow:0 0 18px rgba(75,212,244,.74)}
+.studio-home .astra-cinema-hero h1{font:800 clamp(74px,9vw,150px)/.80 "Barlow Condensed","Arial Narrow",Impact,sans-serif;letter-spacing:-.013em;color:#fff;max-width:900px;margin:0;text-transform:uppercase;text-wrap:balance;text-shadow:0 8px 40px rgba(0,0,0,.32)}
+.astra-cinema-hero h1 span{display:block;color:#eef8fc}
+.astra-cinema-summary{font:500 clamp(16px,1.55vw,21px)/1.7 "Manrope",system-ui,sans-serif;max-width:580px;color:#d8e3e9;margin-top:30px}
+.astra-cinema-actions{display:flex;align-items:center;flex-wrap:wrap;gap:13px;margin-top:31px}
+.astra-cinema-button{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;padding:15px 21px;min-height:54px;min-width:198px;border:1px solid rgba(255,255,255,.72);border-radius:5px;color:white;background:rgba(9,14,22,.25);font:800 12px/1.2 "Manrope",sans-serif;letter-spacing:.1em;transition:background .2s,transform .2s}
+.astra-cinema-button.is-primary{background:linear-gradient(125deg,#32d2ee,#5094ec);border:1px solid #56c8f0;color:#05131d}
+.astra-cinema-button:hover{transform:translateY(-3px);background:rgba(26,52,70,.85)}
+.astra-cinema-button.is-primary:hover{background:#b8f1ff}
+.astra-cinema-button:focus-visible,.astra-cinema-film:focus-visible,.astra-cinema-service:focus-visible{outline:3px solid #92e7ff;outline-offset:4px}
+.astra-cinema-caption{display:flex;gap:22px;align-items:center;margin-top:clamp(56px,8vh,100px);font-size:10px;letter-spacing:.1em;color:#a4b6bf;font-weight:700}
+.astra-cinema-caption em{font-style:normal;color:#e4f1f8}
+.astra-film-frame{padding-right:16px;border-right:1px solid rgba(255,255,255,.35);color:var(--astra-cyan)}
+.astra-cinema-watch{position:absolute;right:max(4vw,calc((100vw - 1360px)/2));bottom:85px;display:flex;gap:13px;align-items:center;color:white;font-size:12px;letter-spacing:.09em;font-weight:800}
+.astra-cinema-watch-icon{width:56px;height:56px;border:1px solid rgba(255,255,255,.65);border-radius:50%;display:grid;place-items:center;background:rgba(5,13,20,.55);font-size:16px;padding-left:3px}
+.astra-cinema-watch:hover .astra-cinema-watch-icon{background:#24b9df}
+.astra-cinema-watch small{display:block;font-weight:500;font-size:10px;letter-spacing:.08em;color:#afcad8;margin-top:4px}
+.astra-cinema-strap{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap;border-block:1px solid rgba(255,255,255,.16);padding:25px 5px;font:800 10px/1.5 "Manrope",sans-serif;letter-spacing:.15em;color:#9fc5d4}
+.studio-home .astra-cinema-featured,.studio-home .astra-cinema-services{margin-top:clamp(75px,9vw,130px);scroll-margin-top:116px}
+.astra-cinema-section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:30px}
+.studio-home .astra-cinema-section-head h2{font:800 clamp(41px,5.4vw,78px)/.98 "Barlow Condensed","Arial Narrow",Impact,sans-serif;max-width:780px;color:#f5f8fd;letter-spacing:-.01em;margin:12px 0 10px}
+.astra-cinema-section-head p:not(.astra-cinema-eyebrow){font-size:15px;line-height:1.7;color:#9fb0c2;max-width:650px}
+.astra-cinema-eyebrow{font-size:10px;font-weight:800;letter-spacing:.18em;color:#4bd4f4}
+.astra-cinema-textlink{color:#d9f5ff;font-size:11px;font-weight:800;letter-spacing:.11em;white-space:nowrap;border-bottom:1px solid rgba(75,212,244,.7);padding:8px 0}
+.astra-cinema-textlink:hover{color:#4bd4f4}
+.astra-cinema-film-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.astra-cinema-film{position:relative;isolation:isolate;aspect-ratio:4/5;overflow:hidden;display:block;background:#0a1117;border:1px solid rgba(255,255,255,.16);border-radius:3px}
+.astra-cinema-film img{width:100%;height:100%;object-fit:cover;filter:brightness(.72) saturate(.8);transition:transform .45s,filter .45s}
+.astra-cinema-film::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.42),transparent 36%,rgba(0,0,0,.86));pointer-events:none}
+.astra-cinema-film:hover img{transform:scale(1.055);filter:brightness(.94) saturate(.96)}
+.astra-film-top,.astra-film-bottom,.astra-film-play{position:absolute;z-index:1}
+.astra-film-top{top:23px;left:22px;color:#d5f2fa;letter-spacing:.15em;font:800 10px "Manrope",sans-serif}
+.astra-film-bottom{left:22px;bottom:25px;right:18px;display:flex;flex-direction:column;gap:9px}
+.astra-film-bottom strong{font:800 clamp(28px,3vw,44px)/.97 "Barlow Condensed","Arial Narrow",Impact,sans-serif;color:white;letter-spacing:.01em}
+.astra-film-bottom small{font:800 10px/1.4 "Manrope",sans-serif;letter-spacing:.14em;color:#8ae5fb}
+.astra-film-play{top:46%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;border:1px solid rgba(255,255,255,.65);border-radius:50%;display:grid;place-items:center;padding-left:3px;background:rgba(8,12,16,.38);color:white;font-size:17px}
+.astra-cinema-film:hover .astra-film-play{background:rgba(53,178,215,.7)}
+.astra-cinema-bottomrow{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid rgba(255,255,255,.16);padding:22px 0;font:800 10px/1.5 "Manrope",sans-serif;letter-spacing:.14em;color:#708b9d}
+.astra-cinema-bottomrow a{color:#c1e6f3}
+.astra-cinema-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.astra-cinema-service{position:relative;isolation:isolate;display:flex;align-items:end;min-height:410px;overflow:hidden;background:#101a21;border:1px solid rgba(255,255,255,.16);border-radius:3px}
+.astra-service-photo{position:absolute;inset:0;z-index:-2;transition:transform .4s;background-size:cover;background-position:center}
+.astra-cinema-service.is-trailer .astra-service-photo{background-image:url('/cinema/YJNUH5L8cFc.jpg')}
+.astra-cinema-service.is-website .astra-service-photo{background-image:url('/case-studies/john-oross-author-website.webp');background-position:center 25%}
+.astra-cinema-service.is-launch .astra-service-photo{background-image:url('/cinema/96weNjdV0A4.jpg')}
+.astra-cinema-service::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(3,5,9,.3) 0%,rgba(5,8,12,.5) 30%,rgba(3,6,11,.96) 100%);pointer-events:none}
+.astra-cinema-service:hover .astra-service-photo{transform:scale(1.045)}
+.astra-service-content{padding:29px 26px;display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+.astra-service-content>span{font:800 10px "Manrope",sans-serif;letter-spacing:.14em;color:#7ad7f3}
+.astra-service-content strong{font:800 clamp(34px,3.4vw,52px)/.99 "Barlow Condensed","Arial Narrow",Impact,sans-serif;color:white}
+.astra-service-content small{font-size:13px;line-height:1.7;color:#c0ccd7;min-height:72px}
+.astra-service-content em{font:800 11px "Manrope",sans-serif;color:#d8f5ff;letter-spacing:.09em;font-style:normal;padding-top:6px}
+.astra-cinema-service-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid rgba(255,255,255,.16);padding:26px 0}
+.astra-cinema-service-footer p{font-size:14px;color:#aebfcc}
+.studio-home .example-title,.astra-page .astra-section h2,.astra-page .astra-cta-band h2{font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:-.035em}
+.studio-home .section-eyebrow,.astra-page .astra-eyebrow{color:#67cbeb}
+.studio-home .section-head,.studio-home .astra-spotlight-opening{color:#f4f8fc}
+.studio-home .astra-intro-services{display:none}
+.studio-home .astra-cinema-hero + .section-label{display:none}
+.studio-home #audit{background:#0d131b;border:1px solid rgba(255,255,255,.12);border-radius:8px}
+.studio-home #spotlight .astra-spotlight-channel{background:#0d1520}
+.studio-home #spotlight .astra-spotlight-aside{background:#102033}
+.astra-page .astra-page-hero h1{font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:-.055em}
+.astra-page .astra-subnav{background:rgba(5,9,15,.94);border-radius:9px}
+.astra-page .astra-subnav nav a[aria-current="page"]{color:#7de1fa;background:rgba(75,212,244,.09)}
+.astra-page .astra-filter-group button[aria-pressed="true"]{background:#46bfea;color:#07131b;border-color:#46bfea}
+.astra-page .astra-project{border-radius:7px}
+.astra-page .astra-project figure{aspect-ratio:16/9}
+.astra-page .astra-project .astra-project-tag{color:#89daf1}
+.astra-page .astra-project .astra-project-links a{color:#97e5f9}
+.astra-page .astra-cta-band{background:#0d1925;border-radius:9px}
+.astra-page .astra-cta-band a{background:#42c4eb}
+@media(max-width:1180px){
+ .studio-home .studio-header .nav-pill{font-size:10px;padding:8px 7px}
+ .studio-home .studio-header .commandbar-inner{grid-template-columns:155px 1fr auto}
+ .studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{width:150px}
+ .studio-home .studio-header .brand-logo-img{width:295px;height:295px}
+}
+@media(max-width:920px){
+ .astra-cinema-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .astra-cinema-service:last-child{grid-column:span 2;min-height:315px}
+ .astra-cinema-film-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .astra-cinema-film:last-child{grid-column:span 2;aspect-ratio:16/8}
+}
+@media(max-width:720px){
+ .studio-home .studio-header{height:76px;top:10px}
+ .studio-home .studio-header .commandbar-inner{border-radius:10px;min-height:72px;padding:8px 12px}
+ .studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{height:48px;width:150px}
+ .studio-home .studio-header .brand-logo-img{width:240px;height:240px}
+ .studio-home .astra-cinema-hero{min-height:680px;margin-top:-95px;padding:128px 0 45px;display:flex;align-items:center}
+ .astra-cinema-scene{background-image:linear-gradient(90deg,rgba(4,8,15,.88) 0%,rgba(4,8,15,.6) 50%,rgba(4,8,15,.42) 100%),linear-gradient(0deg,rgba(4,7,13,.99),transparent 67%),url('/cinema/luX6gA05Si4.jpg');background-position:56% center}
+ .astra-cinema-content{padding:80px 0 10px}
+ .astra-cinema-kicker{font-size:9px;flex-wrap:wrap;gap:7px;letter-spacing:.1em;max-width:95%}
+ .studio-home .astra-cinema-hero h1{font-size:clamp(63px,15.6vw,98px);line-height:.88;max-width:92vw}
+ .astra-cinema-summary{font-size:15px;max-width:90%;margin-top:24px;line-height:1.7}
+ .astra-cinema-actions{gap:10px}
+ .astra-cinema-button{width:100%;min-height:52px;padding:14px 18px}
+ .astra-cinema-caption{margin-top:37px;gap:10px;font-size:9px;max-width:280px;line-height:1.55}
+ .astra-cinema-watch{position:relative;right:auto;bottom:auto;align-self:flex-end;margin:0 4vw 5px 4vw;gap:9px}
+ .astra-cinema-watch-icon{width:40px;height:40px;font-size:12px}
+ .astra-cinema-watch small{font-size:9px}
+ .astra-cinema-strap{display:flex;gap:9px;padding:18px 0}
+ .astra-cinema-strap span{font-size:9px;line-height:1.5;flex:1 1 100%}
+ .studio-home .astra-cinema-featured,.studio-home .astra-cinema-services{margin-top:64px}
+ .astra-cinema-section-head{display:block}
+ .studio-home .astra-cinema-section-head h2{font-size:clamp(40px,12vw,65px)}
+ .astra-cinema-section-head p:not(.astra-cinema-eyebrow){font-size:13px}
+ .astra-cinema-textlink{display:inline-block;margin-top:18px;white-space:normal}
+ .astra-cinema-film-grid{grid-template-columns:1fr;gap:12px}
+ .astra-cinema-film,.astra-cinema-film:last-child{grid-column:span 1;aspect-ratio:4/4.2}
+ .astra-film-bottom strong{font-size:37px}
+ .astra-cinema-bottomrow{display:block}
+ .astra-cinema-bottomrow a{display:block;margin-top:12px}
+ .astra-cinema-service-grid{grid-template-columns:1fr;gap:12px}
+ .astra-cinema-service,.astra-cinema-service:last-child{grid-column:span 1;min-height:360px}
+ .astra-cinema-service-footer{display:block}
+ .astra-cinema-service-footer .astra-cinema-textlink{margin-top:10px}
+ .astra-page .astra-page-hero h1{font-size:clamp(37px,10vw,54px);letter-spacing:-.04em}
+}
+@media(prefers-reduced-motion:reduce){.astra-cinema-film img,.astra-service-photo,.astra-cinema-button{transition:none!important}}
+
+/* Final legibility and mobile hero corrections from visual review */
+.astra-cinema-service.is-website .astra-service-photo{filter:brightness(.47) saturate(.65)}
+.astra-cinema-service.is-launch .astra-service-photo{filter:brightness(.75)}
+@media(max-width:720px){
+ .studio-home .astra-cinema-hero{flex-direction:column;align-items:stretch;justify-content:center;min-height:785px;padding:130px 0 28px}
+ .studio-home .astra-cinema-content{width:92vw;flex:0 0 auto;align-self:center;margin-inline:auto;padding:18px 0 0}
+ .studio-home .astra-cinema-hero h1{font-size:clamp(67px,16vw,93px);max-width:92vw}
+ .astra-cinema-summary{max-width:92vw}
+ .astra-cinema-actions{width:100%}
+ .astra-cinema-watch{position:relative;display:flex;align-self:flex-end;right:auto;bottom:auto;margin:16px 4vw 8px auto}
+ .astra-cinema-caption{margin-top:22px;max-width:92vw}
+}
+
+/* Mobile project browsing without a three-screen vertical gallery */
+.astra-cinema-swipe{display:none}
+@media(max-width:720px){
+ .astra-cinema-film-grid{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#46c6ea #121b27;padding:0 0 14px}
+ .astra-cinema-film,.astra-cinema-film:last-child{grid-column:auto;flex:0 0 min(79vw,320px);aspect-ratio:4/4.35;scroll-snap-align:start}
+ .astra-cinema-swipe{display:block;font:800 10px/1.6 "Manrope",sans-serif;letter-spacing:.14em;color:#79d7f0;margin:3px 0 7px}
+}

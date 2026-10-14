@@ -32,3 +32,9 @@ This branch is reserved for preview review. Do not merge to main or deploy to pr
 - 44 browser page/viewport checks across 360, 390, 768 and 1440 widths: passed with zero errors after mobile menu and media corrections.
 - Gallery images fetched and verified; author concept removed from author websites as well as Our Work.
 - Contact form markup is present, but successful live email delivery was NOT exercised.
+
+## Film-inspired cinematic design revision (2026-10-15)
+- Original Astra branded full-width hero and visual system with local stills from published Astra trailers, not Film 14 assets or copied text.
+- Rebuilt film-first featured work, three visual service panels, high-contrast conversion actions, swipeable mobile trailer previews and coordinated internal-page styling.
+- Kept real-book portfolio, approved project boundaries, original service prices, free review and inquiry form.
+- Browser smoke checks: 40 routes/viewport combinations, zero failures. Contact delivery and permissions still require sign-off before production.
