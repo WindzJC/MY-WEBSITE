@@ -2,3 +2,6 @@
 Astra prod.mp4
 node_modules/
 dist/
+
+# Local visual QA artifacts
+qa/

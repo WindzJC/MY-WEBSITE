@@ -1,0 +1,150 @@
+/* Astra Productions — studio / portfolio upgrade preview, 2026-10-15 */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--astra-paper:#f4f0e7;--astra-gold:#d5b383;--astra-blue:#101c31;--astra-rule:rgba(213,179,131,.24)}
+body.studio-home,body.astra-page{font-family:"Manrope","Poppins",system-ui,sans-serif;background:radial-gradient(circle at 86% -15%,rgba(41,85,129,.3),transparent 35%),linear-gradient(180deg,#060b16 0%,#08101c 52%,#070b12 100%);color:var(--astra-paper)}
+body.studio-home h1,body.studio-home h2,body.astra-page h1,body.astra-page h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;letter-spacing:-.023em}
+body.studio-home .hero-kicker,body.astra-page .section-eyebrow{color:var(--astra-gold)}
+.studio-home .page{width:min(92vw,1360px)}
+.studio-home .studio-header{height:auto}
+.studio-home .studio-header .commandbar-inner{min-height:88px;grid-template-columns:190px minmax(0,1fr) auto;gap:12px}
+.studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{width:180px}
+.studio-home .studio-header .nav-pills{justify-content:flex-end;gap:3px;overflow-x:auto;min-width:0}
+.studio-home .studio-header .nav-pill{font-weight:650;font-size:12px;padding:9px 9px}
+.studio-home .studio-header .commandbar-actions .btn{font-size:12px;padding:11px 14px;white-space:nowrap}
+.studio-home .studio-header .nav-pill.is-active:after{background:var(--astra-gold)}
+.studio-home .studio-header .nav-pill.is-active{color:var(--astra-paper)}
+.studio-home .studio-header .commandbar-inner{background:rgba(9,16,29,.96);border:1px solid var(--astra-rule)}
+.studio-home .hero-copy{padding-top:12px}
+.studio-home .hero-title{font-size:clamp(48px,5.45vw,82px);max-width:14.5ch;line-height:1.01;text-wrap:balance;color:var(--astra-paper)}
+.studio-home .hero-kicker{font-size:11px;letter-spacing:.2em;font-weight:800;margin-bottom:20px}
+.studio-home .hero-text{font-size:clamp(16px,1.25vw,18px);line-height:1.75;max-width:62ch}
+.studio-home .hero-text-secondary{color:#cad1dc;font-size:14px;line-height:1.8}
+.studio-home .hero-layout{grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);align-items:center;gap:clamp(36px,5vw,72px)}
+.studio-home .hero-actions{margin-top:26px}
+.studio-home .hero-trust{max-width:62ch;color:#b2c0d1}
+.studio-home .hero-cred{margin-top:10px;color:#8f9eaf}
+.studio-home .hero-media{align-items:center}
+.studio-home .hero-media .device{width:min(100%,500px)}
+.studio-home .hero-media .device-frame{border:1px solid var(--astra-rule);box-shadow:0 26px 85px rgba(0,0,0,.48)}
+.studio-home .example-title{font-size:clamp(35px,3.5vw,52px);line-height:1.12}
+.studio-home .example-sub{color:#aab7c9}
+.studio-home .section-eyebrow{color:var(--astra-gold);font-size:11px;letter-spacing:.17em;font-weight:800}
+.studio-home #work{margin-top:64px}
+.studio-home #work .portfolio-card{border:1px solid rgba(214,179,127,.16);background:linear-gradient(140deg,rgba(18,32,52,.85),rgba(9,14,25,.95))}
+.studio-home #work .portfolio-card:nth-child(even){background:linear-gradient(140deg,rgba(23,29,42,.9),rgba(11,19,32,.95))}
+.studio-home #work .portfolio-grid{gap:20px}
+.work-view-all{display:flex;justify-content:center;margin-top:27px}
+.work-view-all .btn{gap:10px}
+.astra-intro-services .astra-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.astra-service-grid article{padding:30px 28px;min-width:0;background:linear-gradient(145deg,rgba(32,48,67,.68),rgba(10,17,31,.9));border:1px solid var(--astra-rule);border-radius:20px}
+.astra-service-index{font-size:10px;font-weight:800;letter-spacing:.15em;color:var(--astra-gold)}
+.astra-service-grid h3{font-size:24px;font-weight:750;line-height:1.2;margin:20px 0 12px;color:#fff}
+.astra-service-grid p{min-height:96px;color:#aebdd0;font-size:14px;line-height:1.8}
+.astra-service-grid a{display:inline-block;margin-top:18px;color:#e6c99f;font-size:13px;font-weight:800}
+.astra-service-grid a:hover{color:#fff}
+.studio-home #services,.studio-home #about,.studio-home #journey{scroll-margin-top:125px}
+.astra-journey-grid{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:26px;border-top:1px solid var(--astra-rule)}
+.astra-journey-grid li{padding:24px 22px 10px 0;min-width:0}
+.astra-journey-grid li span{font-size:12px;font-weight:800;color:var(--astra-gold)}
+.astra-journey-grid li h3{margin:18px 0 10px;font-size:24px}
+.astra-journey-grid li p{color:#b0bed0;font-size:13px;line-height:1.85}
+.astra-disclaimer{margin-top:22px;padding:17px 20px;border-left:2px solid var(--astra-gold);background:rgba(213,179,131,.06);color:#c8d1dd;font-size:13px;line-height:1.8}
+.astra-about-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,90px);padding-block:36px;border-top:1px solid var(--astra-rule);border-bottom:1px solid var(--astra-rule)}
+.astra-about-layout p{font-size:15px;line-height:1.9;color:#bfcad6;margin-bottom:16px}
+.astra-about-layout .section-eyebrow{font-size:11px}
+.astra-about-layout .text-link{font-weight:800;color:#edce99}
+.studio-home #work,.studio-home #services,.studio-home #about,.studio-home #journey{position:relative}
+.studio-home #faq,.studio-home #start{border-color:var(--astra-rule)}
+.studio-home .footer a{color:#bdc9d8}
+.studio-home .footer a:hover{color:white}
+/* Dedicated pages */
+.astra-page .page{width:min(92vw,1260px);padding-top:18px}
+.astra-page .astra-subnav{position:sticky;top:12px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 26px;margin-bottom:22px;border:1px solid var(--astra-rule);border-radius:18px;background:rgba(8,15,29,.96);backdrop-filter:blur(12px)}
+.astra-subnav .astra-wordmark{display:flex;align-items:center;gap:12px;color:#fff;font-size:15px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.astra-wordmark img{width:38px;height:38px;object-fit:cover;border-radius:50%;background:#07101f}
+.astra-subnav nav{display:flex;align-items:center;gap:5px;overflow-x:auto;scrollbar-width:thin;max-width:100%}
+.astra-subnav nav a{white-space:nowrap;font-size:12px;font-weight:700;color:#aebdd0;padding:10px 12px;border-radius:9px}
+.astra-subnav nav a[aria-current="page"],.astra-subnav nav a:hover{background:rgba(213,179,131,.1);color:#f4d4a5}
+.astra-page main{min-height:62vh}
+.astra-page .astra-page-hero{padding:clamp(45px,7vw,100px) 0 52px;max-width:950px}
+.astra-page .astra-page-kicker{font-size:11px;color:var(--astra-gold);letter-spacing:.19em;font-weight:800}
+.astra-page .astra-page-hero h1{font-size:clamp(50px,6vw,86px);line-height:1.04;margin:18px 0 25px;text-wrap:balance}
+.astra-page .astra-page-lede{font-size:clamp(17px,1.5vw,21px);line-height:1.75;color:#c0cad8;max-width:750px}
+.astra-page .astra-eyebrow{font-size:11px;color:var(--astra-gold);font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.astra-page .astra-section{padding:46px 0 56px;border-top:1px solid var(--astra-rule)}
+.astra-page .astra-section h2{font-size:clamp(32px,3vw,49px);line-height:1.17;margin:12px 0 18px}
+.astra-page .astra-section-lede{font-size:15px;line-height:1.8;color:#b8c5d5;max-width:720px;margin-bottom:24px}
+.astra-page .astra-filter-group{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0 25px}
+.astra-filter-group button{font:700 13px "Manrope",sans-serif;color:#c6d0dc;padding:11px 17px;border-radius:999px;border:1px solid rgba(255,255,255,.19);background:rgba(255,255,255,.035);cursor:pointer}
+.astra-filter-group button[aria-pressed="true"]{color:#111b28;background:#ebc994;border-color:#ebc994}
+.astra-filter-group button:focus-visible{outline:3px solid #ebc994;outline-offset:3px}
+.astra-project-count{font-size:13px;color:#c2ccd7;padding:4px 0 22px}
+.astra-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.astra-project{min-width:0;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:22px;background:linear-gradient(145deg,#112238,#0b1424)}
+.astra-project[hidden]{display:none!important}
+.astra-project figure{aspect-ratio:16/9;background:#0a1526;overflow:hidden}
+.astra-project figure img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.astra-project:hover figure img{transform:scale(1.035)}
+.astra-project .astra-project-content{padding:25px}
+.astra-project .astra-project-tag{display:inline-flex;gap:8px;color:#e7bf86;letter-spacing:.14em;font-size:10px;text-transform:uppercase;font-weight:800}
+.astra-project h3{font-size:clamp(22px,2vw,28px);line-height:1.25;margin:12px 0 9px;color:#fff}
+.astra-project p{font-size:14px;line-height:1.8;color:#b4c1d0}
+.astra-project .astra-project-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:19px}
+.astra-project .astra-project-links a{font-size:13px;font-weight:800;color:#f2d1a2}
+.astra-project .astra-project-links a:hover{text-decoration:underline}
+.astra-project .astra-concept-caveat{margin-top:13px;font-size:12px;color:#d2bd9d}
+.astra-page .astra-two-col{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:clamp(30px,5vw,70px);align-items:start}
+.astra-page .astra-preview-frame{overflow:hidden;border:1px solid var(--astra-rule);border-radius:20px;box-shadow:0 24px 65px rgba(0,0,0,.32)}
+.astra-page .astra-preview-frame img{width:100%;height:auto}
+.astra-page .astra-detail-facts{padding:25px;border:1px solid var(--astra-rule);border-radius:18px;background:rgba(255,255,255,.035)}
+.astra-detail-facts dt{color:#eccd9e;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.15em;margin-bottom:4px}
+.astra-detail-facts dd{font-size:14px;line-height:1.75;color:#c5d0dd;margin-bottom:20px}
+.astra-detail-facts dd:last-child{margin-bottom:0}
+.astra-page .astra-prose p{font-size:15px;color:#c4cfdd;line-height:1.92;margin-bottom:19px}
+.astra-page .astra-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.astra-page .astra-actions a{font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:12px 20px;border:1px solid var(--astra-rule);border-radius:999px;color:#f1d0a1}
+.astra-page .astra-actions a:first-child{color:#101824;background:#edc991;border-color:#edc991}
+.astra-page .astra-actions a:hover{filter:brightness(1.1)}
+.astra-page .astra-media-video{position:relative;aspect-ratio:16/9;overflow:hidden;background:#081225;border:1px solid var(--astra-rule);border-radius:20px}
+.astra-media-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.astra-page .astra-book-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.astra-page .astra-book{padding:24px;border:1px solid var(--astra-rule);border-radius:20px;background:linear-gradient(145deg,#102136,#0b1524)}
+.astra-book .astra-book-media{aspect-ratio:16/10;overflow:hidden;border-radius:12px;margin-bottom:24px;background:#0a1627}
+.astra-book .astra-book-media img{width:100%;height:100%;object-fit:cover}
+.astra-book h3{font-family:"DM Serif Display",Georgia,serif;font-size:34px;line-height:1.2;margin:12px 0 6px}
+.astra-book p{font-size:14px;color:#c1cddd;line-height:1.8;margin:12px 0}
+.astra-book .astra-book-byline{color:#ebc58e;font-size:13px;font-weight:700}
+.astra-book .astra-book-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.astra-book-actions a{font-size:13px;color:#ebc994;font-weight:800;border-bottom:1px solid rgba(235,201,148,.5);padding-bottom:3px}
+.astra-book .astra-caption{font-size:12px;color:#91a3b7;margin-top:10px}
+.astra-page .astra-note{font-size:13px;line-height:1.85;color:#c3ccd8;border-left:2px solid var(--astra-gold);background:rgba(213,179,131,.055);padding:17px 20px;margin:25px 0}
+.astra-page .astra-cta-band{display:flex;gap:26px;align-items:center;justify-content:space-between;border-radius:20px;padding:32px;margin:35px 0 65px;border:1px solid var(--astra-rule);background:linear-gradient(115deg,#182940,#111b2b)}
+.astra-cta-band h2{font-family:"DM Serif Display",Georgia,serif;font-size:35px;line-height:1.2}
+.astra-cta-band p{color:#b5c2d1;font-size:14px;line-height:1.75}
+.astra-cta-band a{flex:none;padding:13px 20px;background:#e5c08b;border-radius:999px;color:#101826;font-weight:800;font-size:13px}
+.astra-page .footer{border-top:1px solid var(--astra-rule);padding-top:20px}
+.astra-page .footer a{color:#c9d4df}
+@media(max-width:1160px){.studio-home .studio-header .commandbar-actions{display:none}.studio-home .studio-header .commandbar-inner{grid-template-columns:170px minmax(0,1fr)}.studio-home .studio-header .nav-pill{font-size:12px;padding:8px}}
+@media(max-width:920px){.studio-home .hero-layout{grid-template-columns:1fr;gap:26px}.studio-home .hero-title{max-width:19ch}.studio-home .hero-media .device{width:min(100%,530px)}.astra-intro-services .astra-service-grid{grid-template-columns:1fr}.astra-service-grid p{min-height:0}.astra-journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.astra-about-layout{grid-template-columns:1fr}.astra-page .astra-two-col{grid-template-columns:1fr}}
+@media(max-width:720px){.studio-home .studio-header{height:auto}.studio-home .studio-header .commandbar-inner{grid-template-columns:1fr;gap:0;padding:8px 12px}.studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{height:44px;width:145px}.studio-home .studio-header .brand-logo-img{width:226px;height:226px}.studio-home .studio-header .nav-pills{max-width:100%;justify-content:flex-start;overflow-x:auto;padding:4px 0 8px}.studio-home .studio-header .nav-pill{flex:none}.studio-home .hero-title{font-size:clamp(43px,12vw,61px);line-height:1.06}.studio-home .hero-copy{padding-top:8px}.studio-home #work{margin-top:42px}.astra-journey-grid{grid-template-columns:1fr}.astra-journey-grid li{border-bottom:1px solid var(--astra-rule);padding-bottom:22px}.astra-page .astra-subnav{padding:12px;gap:7px;flex-wrap:wrap}.astra-page .astra-subnav nav{width:100%;justify-content:flex-start}.astra-page .astra-page-hero{padding:43px 0 35px}.astra-page .astra-page-hero h1{font-size:clamp(42px,11vw,61px)}.astra-page .astra-gallery,.astra-page .astra-book-list{grid-template-columns:1fr}.astra-page .astra-section{padding:33px 0 44px}.astra-page .astra-cta-band{flex-direction:column;align-items:flex-start;padding:24px}.astra-project .astra-project-content{padding:20px}}
+@media(prefers-reduced-motion:reduce){.astra-project figure img{transition:none!important}.astra-project:hover figure img{transform:none!important}}
+
+/* A fast, intentional featured-work opening rather than a blocking third-party iframe */
+.studio-home .hero-media{display:block}
+.astra-reel-stage{width:100%;max-width:555px;margin-inline:auto}
+.astra-reel-main{display:block;position:relative;overflow:hidden;border:1px solid var(--astra-rule);border-radius:20px;background:#091321;box-shadow:0 28px 80px rgba(0,0,0,.5)}
+.astra-reel-main img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;filter:brightness(.83)}
+.astra-reel-main:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,10,21,.9),transparent 45%);pointer-events:none}
+.astra-reel-play{position:absolute;top:42%;left:50%;z-index:2;transform:translate(-50%,-50%);display:grid;place-items:center;width:68px;height:68px;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:rgba(10,19,33,.68);color:white;font-size:25px;padding-left:4px;transition:background .2s}
+.astra-reel-main:hover .astra-reel-play{background:#23496c}
+.astra-reel-label{position:absolute;z-index:2;bottom:16px;left:18px;right:18px;display:flex;flex-direction:column;gap:4px;font-size:10px;color:#efd2a1;font-weight:800;letter-spacing:.12em}
+.astra-reel-label strong{font-size:18px;letter-spacing:0;color:#fff}
+.astra-reel-under{display:grid;grid-template-columns:38% minmax(0,1fr);gap:14px;align-items:stretch;margin-top:14px}
+.astra-reel-site{border-radius:12px;overflow:hidden;border:1px solid var(--astra-rule)}
+.astra-reel-site img{width:100%;height:100%;aspect-ratio:16/10;object-fit:cover}
+.astra-reel-note{border:1px solid var(--astra-rule);border-radius:12px;padding:15px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:rgba(16,31,49,.8)}
+.astra-reel-note span{font-size:10px;letter-spacing:.1em;font-weight:800;color:#d8b784}
+.astra-reel-note strong{font-size:16px;color:#fff}
+.astra-reel-note a{font-size:12px;font-weight:800;color:#e6c58c}
+.astra-reel-note a span{font-size:14px}
+@media(max-width:720px){.astra-reel-stage{max-width:100%}.astra-reel-play{width:54px;height:54px;font-size:20px}.astra-reel-under{grid-template-columns:42% minmax(0,1fr)}.astra-reel-note{padding:10px}.astra-reel-note strong{font-size:14px}}

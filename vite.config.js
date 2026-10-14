@@ -6,6 +6,11 @@ function cleanUrlRoutes() {
   const rewrite = (req, _res, next) => {
     if (req.url === "/privacy") req.url = "/privacy/index.html";
     if (req.url === "/author-websites") req.url = "/author-websites.html";
+    if (req.url === "/our-work") req.url = "/our-work.html";
+    if (req.url === "/discover-books") req.url = "/discover-books.html";
+    for (const project of ["john-oross", "frank-roberts", "queen-of-intelligence"]) {
+      if (req.url === "/projects/" + project) req.url = "/projects/" + project + ".html";
+    }
     if (req.url === "/thank-you") req.url = "/thank-you.html";
     next();
   };
@@ -27,6 +32,11 @@ function getPagePath(pathname = "/") {
   }
   if (pathname === "/author-websites" || pathname === "/author-websites.html") {
     return "/author-websites";
+  }
+  if (pathname === "/our-work" || pathname === "/our-work.html") return "/our-work";
+  if (pathname === "/discover-books" || pathname === "/discover-books.html") return "/discover-books";
+  for (const project of ["john-oross", "frank-roberts", "queen-of-intelligence"]) {
+    if (pathname === "/projects/" + project || pathname === "/projects/" + project + ".html") return "/projects/" + project;
   }
   if (pathname === "/thank-you" || pathname === "/thank-you.html") {
     return "/thank-you";
@@ -61,6 +71,11 @@ export default defineConfig(({ mode }) => {
         input: {
           main: resolve(process.cwd(), "index.html"),
           authorWebsites: resolve(process.cwd(), "author-websites.html"),
+          ourWork: resolve(process.cwd(), "our-work.html"),
+          discoverBooks: resolve(process.cwd(), "discover-books.html"),
+          projectJohnOross: resolve(process.cwd(), "projects/john-oross.html"),
+          projectFrankRoberts: resolve(process.cwd(), "projects/frank-roberts.html"),
+          projectQueenOfIntelligence: resolve(process.cwd(), "projects/queen-of-intelligence.html"),
           thankYou: resolve(process.cwd(), "thank-you.html"),
           privacy: resolve(process.cwd(), "privacy/index.html"),
         },
