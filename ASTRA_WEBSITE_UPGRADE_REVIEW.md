@@ -52,3 +52,11 @@ This branch is reserved for preview review. Do not merge to main or deploy to pr
 - QA: Vite production build passed, 40 browser page-width checks passed (0 failures after tablet overflow fix), 6 utility page-width checks passed, 10-page asset/link checks passed.
 - The site remains preview-only: verify expanded permissions/rights, external book links, legal copy, mobile/browser coverage and actual staging inquiry delivery before production launch.
 - Codex CLI was available but its cached version/model configuration could not execute this redesign reliably; implementation and QA were completed directly.
+
+## Sprint: factual case studies + safe inquiry QA (2026-10-15)
+- Codex GPT-6 Astra Medium created the three premium factual studies: /projects/queen-of-intelligence, /projects/hide-and-seek and /projects/john-oross.
+- Expanded gallery/service links to the factual case studies, preserving direct public video and author website access.
+- Added tracked npm run test:inquiry for 31 zero-network mock verification tests (all passing).
+- Staging GET/HEAD /api/inquiry: HTTP 405, Allow: POST. This DOES NOT confirm live Resend delivery.
+- Browser QA: 50 route/viewport combinations (360/390/768/1024/1440) passed, plus intercepted homepage form error and recovery behavior; NO real email POST.
+- Await owner-controlled real staging inbox test, client promotional reuse rights, factual book links and approval before production launch.

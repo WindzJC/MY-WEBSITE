@@ -6,7 +6,8 @@
     "seo:generate": "node scripts/generate-seo-files.mjs",
     "dev": "npm run seo:generate && vite --host --port 3000 --strictPort",
     "build": "npm run seo:generate && vite build",
-    "preview": "vite preview --host --port 4173 --strictPort"
+    "preview": "vite preview --host --port 4173 --strictPort",
+    "test:inquiry": "node --test tests/inquiry.test.mjs"
   },
   "devDependencies": {
     "vite": "^7.1.0"
