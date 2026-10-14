@@ -7,13 +7,13 @@ Preview branch: astra-site-upgrade-preview-20261015
 
 ## Delivered in preview
 - Homepage repositioned around From the story to the reader.
-- Clearer primary actions, featured work moved near opening, 3 service categories, creation-to-promotion explanation, and about section.
-- New /our-work: type filters and clear separation of completed work vs concepts.
+- Clearer primary actions, featured work moved near opening, 3 service categories, streamlined audit, creation-to-promotion explanation, and about section; testimonial block removed.
+- Updated /our-work: 2 verified author website examples and 11 published Astra YouTube videos; concept preview removed.
 - Three project detail pages under /projects.
 - New /discover-books: preliminary reader showcase referencing only existing public portfolio projects and verified external links.
 - All existing pricing tiers preserved: $499, $999, $1299, $399.
 - Existing inquiry form and /api/inquiry code untouched.
-- Added clean routes and Vite multi-page build inputs.
+- Added clean routes, Vite multi-page build inputs, and book-trailers service page with realistic production scope and deliverables.
 - Added a proposed Astra Author Spotlight one-time organic publishing pilot, scope and rights limits, and a separate future paid-promotion direction.
 
 ## Publication requirements
@@ -27,3 +27,8 @@ Preview branch: astra-site-upgrade-preview-20261015
 
 Use npm ci then npm run build or npm run dev from this worktree.
 This branch is reserved for preview review. Do not merge to main or deploy to production without approval.
+
+## Latest quality verification
+- 44 browser page/viewport checks across 360, 390, 768 and 1440 widths: passed with zero errors after mobile menu and media corrections.
+- Gallery images fetched and verified; author concept removed from author websites as well as Our Work.
+- Contact form markup is present, but successful live email delivery was NOT exercised.

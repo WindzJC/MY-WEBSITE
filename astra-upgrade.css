@@ -1,4 +1,4 @@
-/* Astra Productions — studio / portfolio upgrade preview, 2026-10-15 */
+/* Astra Productions â€” studio / portfolio upgrade preview, 2026-10-15 */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{--astra-paper:#f4f0e7;--astra-gold:#d5b383;--astra-blue:#101c31;--astra-rule:rgba(213,179,131,.24)}
 body.studio-home,body.astra-page{font-family:"Manrope","Poppins",system-ui,sans-serif;background:radial-gradient(circle at 86% -15%,rgba(41,85,129,.3),transparent 35%),linear-gradient(180deg,#060b16 0%,#08101c 52%,#070b12 100%);color:var(--astra-paper)}
@@ -175,3 +175,42 @@ body.studio-home .hero-kicker,body.astra-page .section-eyebrow{color:var(--astra
 .astra-services-followup a{font-weight:750;color:#edca97;text-decoration:underline;text-underline-offset:4px}
 @media(max-width:1100px){.astra-spotlight-channel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.astra-spotlight-opening,.astra-spotlight-bottom{grid-template-columns:1fr;gap:18px}.astra-spotlight-aside{padding:20px}.astra-spotlight-channel-grid{grid-template-columns:1fr;margin:22px 0}.astra-spotlight-channel{padding:20px}.astra-spotlight-final{margin-top:16px}}
+
+/* Published trailer gallery and book trailer service */
+.astra-video-thumb{display:block;position:relative}
+.astra-video-thumb figure{position:relative}
+.astra-video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:54px;height:54px;padding-left:4px;color:#fff;border:1px solid rgba(255,255,255,.68);border-radius:50%;background:rgba(6,13,25,.72);font-size:20px;transition:background .2s}
+.astra-video-thumb:hover .astra-video-play{background:rgba(32,91,131,.9)}
+.astra-catalog-note{margin-top:28px;color:#b4c3d5;font-size:13px;line-height:1.8}
+.astra-catalog-note a{font-weight:800;color:#edce9f}
+.astra-production-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-top:24px}
+.astra-production-steps article{padding:24px 22px;border:1px solid var(--astra-rule);border-radius:16px;background:rgba(19,36,54,.7)}
+.astra-production-steps article span{display:block;font-size:12px;color:#deb987;font-weight:800;margin-bottom:20px}
+.astra-production-steps article h3{font-size:19px;line-height:1.3;margin-bottom:12px;color:#fff}
+.astra-production-steps article p{font-size:13px;line-height:1.83;color:#b9c7d8}
+@media(max-width:960px){.astra-production-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.astra-production-steps{grid-template-columns:1fr}}
+
+/* Accessible mobile navigation: all key pages remain one tap away */
+.astra-mobile-menu{display:none}
+.astra-trailer-stage{display:block;position:relative;border:1px solid var(--astra-rule);border-radius:18px;overflow:hidden;aspect-ratio:16/9;background:#101a2d;box-shadow:0 20px 55px rgba(0,0,0,.38)}
+.astra-trailer-stage img{width:100%;height:100%;object-fit:cover}
+.astra-trailer-stage-label{position:absolute;bottom:16px;left:20px;color:#fff;font-size:11px;font-weight:800;letter-spacing:.12em;padding:8px 12px;border-radius:8px;background:rgba(8,16,28,.8)}
+.astra-trailer-stage:hover .astra-video-play{background:rgba(32,91,131,.93)}
+@media(max-width:720px){
+  .astra-mobile-menu{display:block;position:relative;z-index:32;margin-left:auto}
+  .astra-mobile-menu>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid var(--astra-rule);border-radius:10px;color:#fff;font-size:13px;font-weight:800;background:rgba(25,40,58,.7)}
+  .astra-mobile-menu>summary::-webkit-details-marker{display:none}
+  .astra-mobile-menu>summary span{font-size:16px;color:#efd0a0}
+  .astra-mobile-menu[open]>nav{position:absolute;top:calc(100% + 10px);right:0;display:grid;gap:0;padding:8px;width:min(80vw,290px);max-height:70vh;overflow-y:auto;border:1px solid var(--astra-rule);border-radius:14px;background:#101e31;box-shadow:0 20px 65px rgba(0,0,0,.55);z-index:50}
+  .astra-mobile-menu nav a{display:block;padding:12px 14px;color:#e6edf5;border-radius:9px;font-size:14px;font-weight:700}
+  .astra-mobile-menu nav a:hover,.astra-mobile-menu nav a:focus-visible{background:rgba(213,179,131,.15);color:#fff}
+  .studio-home .studio-header .commandbar-inner{display:flex;justify-content:space-between;align-items:center;min-height:72px;padding:8px 13px;gap:12px}
+  .studio-home .studio-header .nav-pills{display:none}
+  .studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{height:48px;width:145px}
+  .astra-page .astra-subnav{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px}
+  .astra-page .astra-subnav>nav{display:none}
+}
+
+/* The dedicated-page nav width constraint must not clip the mobile dropdown. */
+@media(max-width:720px){.astra-page .astra-mobile-menu[open]>nav{max-width:none;width:min(80vw,290px);display:grid;align-items:stretch;overflow-x:hidden}.astra-page .astra-mobile-menu nav a{white-space:normal;min-width:0}}
