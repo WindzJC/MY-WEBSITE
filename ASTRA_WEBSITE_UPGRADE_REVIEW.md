@@ -1,6 +1,6 @@
 # Astra Productions Website Upgrade Preview
 
-Status: LOCAL REVIEW ONLY. NOT deployed, NOT approved for final publication.
+Status: Cloudflare preview deployed for review only. NOT live-domain production, NOT approved for final publication.
 Preview worktree: D:/VS/astra-website-upgrade-preview
 Source main checkout: D:/VS/MY WEBSITE (untouched)
 Preview branch: astra-site-upgrade-preview-20261015
@@ -14,6 +14,7 @@ Preview branch: astra-site-upgrade-preview-20261015
 - All existing pricing tiers preserved: $499, $999, $1299, $399.
 - Existing inquiry form and /api/inquiry code untouched.
 - Added clean routes and Vite multi-page build inputs.
+- Added a proposed Astra Author Spotlight one-time organic publishing pilot, scope and rights limits, and a separate future paid-promotion direction.
 
 ## Publication requirements
 1. Obtain author/client permissions before developing complete author profiles and using new materials.
