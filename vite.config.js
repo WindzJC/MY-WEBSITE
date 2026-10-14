@@ -8,6 +8,8 @@ function cleanUrlRoutes() {
     if (req.url === "/author-websites") req.url = "/author-websites.html";
     if (req.url === "/book-trailers") req.url = "/book-trailers.html";
     if (req.url === "/our-work") req.url = "/our-work.html";
+    if (req.url === "/our-work/book-trailers") req.url = "/our-work/book-trailers.html";
+    if (req.url === "/our-work/author-websites") req.url = "/our-work/author-websites.html";
     if (req.url === "/discover-books") req.url = "/discover-books.html";
     for (const project of ["john-oross", "frank-roberts", "queen-of-intelligence"]) {
       if (req.url === "/projects/" + project) req.url = "/projects/" + project + ".html";
@@ -36,6 +38,8 @@ function getPagePath(pathname = "/") {
   }
   if (pathname === "/book-trailers" || pathname === "/book-trailers.html") return "/book-trailers";
   if (pathname === "/our-work" || pathname === "/our-work.html") return "/our-work";
+  if (pathname === "/our-work/book-trailers" || pathname === "/our-work/book-trailers.html") return "/our-work/book-trailers";
+  if (pathname === "/our-work/author-websites" || pathname === "/our-work/author-websites.html") return "/our-work/author-websites";
   if (pathname === "/discover-books" || pathname === "/discover-books.html") return "/discover-books";
   for (const project of ["john-oross", "frank-roberts", "queen-of-intelligence"]) {
     if (pathname === "/projects/" + project || pathname === "/projects/" + project + ".html") return "/projects/" + project;
@@ -75,6 +79,8 @@ export default defineConfig(({ mode }) => {
           authorWebsites: resolve(process.cwd(), "author-websites.html"),
           bookTrailers: resolve(process.cwd(), "book-trailers.html"),
           ourWork: resolve(process.cwd(), "our-work.html"),
+          workTrailers: resolve(process.cwd(), "our-work/book-trailers.html"),
+          workWebsites: resolve(process.cwd(), "our-work/author-websites.html"),
           discoverBooks: resolve(process.cwd(), "discover-books.html"),
           projectJohnOross: resolve(process.cwd(), "projects/john-oross.html"),
           projectFrankRoberts: resolve(process.cwd(), "projects/frank-roberts.html"),

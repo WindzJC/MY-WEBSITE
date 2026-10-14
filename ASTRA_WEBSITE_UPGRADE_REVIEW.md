@@ -38,3 +38,17 @@ This branch is reserved for preview review. Do not merge to main or deploy to pr
 - Rebuilt film-first featured work, three visual service panels, high-contrast conversion actions, swipeable mobile trailer previews and coordinated internal-page styling.
 - Kept real-book portfolio, approved project boundaries, original service prices, free review and inquiry form.
 - Browser smoke checks: 40 routes/viewport combinations, zero failures. Contact delivery and permissions still require sign-off before production.
+
+## Full-site cinematic redesign + separated portfolio galleries (2026-10-15)
+
+- Removed category filter pills from /our-work and replaced with two prominent project entry points.
+- Created /our-work/book-trailers containing 10 published video teasers/trailers; excluded separately classified author-profile video.
+- Created /our-work/author-websites with exactly 2 completed client websites, no concepts.
+- Rebuilt /author-websites and /book-trailers as premium cinematic service pages with real imagery, scoped process details, realistic limits and preserved starting prices ($499/$999).
+- Rebuilt /discover-books, 3 project detail pages, /privacy, and /thank-you to share a consistent studio header and overall visual direction with homepage.
+- Unified navigation: Home, Our Work, Book Trailers, Author Websites, Discover Books, After Production, plus Start a Project CTA.
+- Preserved homepage inquiry form and existing /api/inquiry code; changed no production checkout files.
+- Added Vite MPA inputs, canonical path mapping and clean URL rewrites for nested gallery routes.
+- QA: Vite production build passed, 40 browser page-width checks passed (0 failures after tablet overflow fix), 6 utility page-width checks passed, 10-page asset/link checks passed.
+- The site remains preview-only: verify expanded permissions/rights, external book links, legal copy, mobile/browser coverage and actual staging inquiry delivery before production launch.
+- Codex CLI was available but its cached version/model configuration could not execute this redesign reliably; implementation and QA were completed directly.

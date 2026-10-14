@@ -153,6 +153,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="/astra-upgrade.css" />
 <link rel="stylesheet" href="/astra-cinema.css" />
+<link rel="stylesheet" href="/astra-unified.css" />
 
 </head>
 
@@ -167,40 +168,13 @@
   </div>
 
   <div class="page">
-    <header class="commandbar studio-header">
-      <div class="commandbar-inner">
-      <div class="brand brand-only">
-        <a class="brand-mark" href="#top" aria-label="Astra Productions home">
-          <span class="logo-sweep" aria-hidden="true">
-            <img class="brand-logo-img" src="LOGOASTRA.png" alt="" width="1563" height="1563" decoding="async" />
-          </span>
-        </a>
-      </div>
-        <nav class="nav-pills" aria-label="Main navigation">
-          <a class="nav-pill is-active" href="#overview" data-target="overview" aria-current="page">Home</a>
-          <a class="nav-pill" href="/our-work">Our Work</a>
-          <a class="nav-pill" href="/discover-books">Discover Books</a>
-          <a class="nav-pill" href="/book-trailers">Book Trailers</a>
-          <a class="nav-pill" href="/author-websites">Websites</a>
-          <a class="nav-pill" href="#spotlight" data-target="spotlight">After Production</a>
-          <a class="nav-pill" href="#start" data-target="start">Get Started</a>
-        </nav>
-        <details class="astra-mobile-menu"><summary>Menu <span aria-hidden="true">☰</span></summary>
-          <nav aria-label="Mobile navigation">
-            <a href="#overview">Home</a><a href="/our-work">Our Work</a>
-            <a href="/discover-books">Discover Books</a><a href="/author-websites">Author Websites</a>
-            <a href="/book-trailers">Book Trailers</a><a href="#spotlight">After Production</a>
-            <a href="#pricing">Pricing</a><a href="#start">Get Started</a>
-          </nav>
-        </details>
-        <div class="commandbar-actions">
-          <a class="btn btn-main" href="#start" data-analytics-event="hero-concept-cta">START A PROJECT</a>
-        </div>
-      </div>
-      <div class="progress" aria-hidden="true">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-    </header>
+    <header class="commandbar studio-header as-site-header">
+    <div class="as-header-inner">
+      <a class="as-logo" href="/" aria-label="Astra Productions homepage"><span class="as-logo-frame"><img src="/LOGOASTRA.png" alt="Astra Productions" width="1563" height="1563" /></span></a>
+      <nav class="as-desktop-nav" aria-label="Primary navigation"><a href="/" aria-current="page">HOME</a><a href="/our-work">OUR WORK</a><a href="/book-trailers">BOOK TRAILERS</a><a href="/author-websites">AUTHOR WEBSITES</a><a href="/discover-books">DISCOVER BOOKS</a><a href="/#spotlight">AFTER PRODUCTION</a></nav>
+      <a class="as-header-cta" href="/#start" data-analytics-event="service-cta">START A PROJECT <span aria-hidden="true">↗</span></a>
+      <details class="as-mobile-nav"><summary aria-label="Open website navigation">MENU <span aria-hidden="true">☰</span></summary><nav aria-label="Mobile navigation"><a href="/" aria-current="page">Home</a><a href="/our-work">Our Work</a><a href="/book-trailers">Book Trailers</a><a href="/author-websites">Author Websites</a><a href="/discover-books">Discover Books</a><a href="/#spotlight">After Production</a></nav></details>
+    </div></header>
 
     <main id="main">
       <section class="astra-cinema-hero" id="overview" aria-labelledby="astra-cinema-title">
@@ -210,7 +184,7 @@
           <h1 id="astra-cinema-title">MAKE THEM <span>FEEL THE STORY.</span></h1>
           <p class="astra-cinema-summary">Cinematic book trailers. Author websites. Creative work built around the books behind them.</p>
           <div class="astra-cinema-actions">
-            <a class="astra-cinema-button is-primary" href="/our-work?type=trailer" data-analytics-event="portfolio-open">WATCH OUR TRAILERS <span aria-hidden="true">↗</span></a>
+            <a class="astra-cinema-button is-primary" href="/our-work/book-trailers" data-analytics-event="portfolio-open">WATCH OUR TRAILERS <span aria-hidden="true">↗</span></a>
             <a class="astra-cinema-button is-secondary" href="#start" data-analytics-event="hero-concept-cta">START YOUR PROJECT <span aria-hidden="true">→</span></a>
           </div>
           <div class="astra-cinema-caption"><span class="astra-film-frame">01 / 03</span><span>STILL FROM <em>HIDE AND SEEK</em> — PUBLISHED ASTRA BOOK TRAILER</span></div>
@@ -247,7 +221,7 @@
         </div>
         <p class="astra-cinema-swipe">SWIPE TO EXPLORE MORE TRAILERS <span aria-hidden="true">→</span></p>
         <div class="astra-cinema-bottomrow"><span>AVAILABLE ON ASTRA'S PUBLIC YOUTUBE CHANNEL</span>
-          <a href="/projects/john-oross">ALSO EXPLORE OUR AUTHOR WEBSITES <span aria-hidden="true">↗</span></a></div>
+          <a href="/our-work/author-websites">ALSO EXPLORE OUR AUTHOR WEBSITES <span aria-hidden="true">↗</span></a></div>
       </section>
 
       <section class="astra-cinema-services" id="services" aria-labelledby="astra-services-title">
@@ -539,7 +513,7 @@
 
     <footer class="footer">
       <div>© 2021–2026 Astra Productions · From the story to the reader.</div>
-      <div><a href="/our-work">Our Work</a> · <a href="/discover-books">Discover Books</a> · <a href="/author-websites">Author Websites</a> · <a href="/book-trailers">Book Trailers</a> · <a href="/privacy">Privacy Policy</a> · <a href="#top">Back to top</a></div>
+      <div><a href="/our-work">Our Work</a> · <a href="/our-work/book-trailers">Trailer Projects</a> · <a href="/our-work/author-websites">Website Projects</a> · <a href="/discover-books">Discover Books</a> · <a href="/author-websites">Author Websites</a> · <a href="/book-trailers">Book Trailers</a> · <a href="/privacy">Privacy Policy</a> · <a href="#top">Back to top</a></div>
     </footer>
   </div>
 
