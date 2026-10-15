@@ -61,6 +61,17 @@ test('inquiry contract with network fully mocked', async t => {
     await submit(); assert.equal(calls[2].headers['Idempotency-Key'], internal.headers['Idempotency-Key']);
     assert.equal(calls[3].headers['Idempotency-Key'], confirmation.headers['Idempotency-Key']);
   });
+  await t.test('different authors on one shared IP use independent internal keys', async () => {
+    calls = [];
+    const first = await submit({ body: { ...fixture(), user_email: 'author-one@example.test', request_id: 'first-author-001' } });
+    const second = await submit({ body: { ...fixture(), user_email: 'author-two@example.test', request_id: 'second-author-002' } });
+    assert.equal(first.status, 200);
+    assert.equal(second.status, 200);
+    assert.equal(calls.length, 4);
+    assert.notEqual(calls[0].headers['Idempotency-Key'], calls[2].headers['Idempotency-Key']);
+    assert.deepEqual(calls[0].payload.to, ['jc@astraproductions.co']);
+    assert.deepEqual(calls[2].payload.to, ['jc@astraproductions.co']);
+  });
   for (const failure of [{ status: 500 }, { throw: true }]) await t.test('internal failure ' + JSON.stringify(failure), async () => {
     calls = []; replies = [failure]; const res = await submit(); assert.equal(res.status, 502); assert.equal(calls.length, 1);
     assert.deepEqual(await res.json(), { ok: false, error: 'We could not send your request. Please try again.' });

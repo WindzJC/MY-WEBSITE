@@ -18,6 +18,6 @@ test('embeds use the privacy-enhanced player', () => {
   for (const id of ASTRA_TRAILERS) assert.match(embedUrl(id), /^https:\/\/www\.youtube-nocookie\.com\/embed\/[\w-]{11}\?autoplay=1/);
 });
 
-test('removed trailer is not playable', () => {
-  assert.equal(trailerIdFrom('https://www.youtube.com/watch?v=luX6gA05Si4'), null);
+test('restored Hide and Seek trailer is playable', () => {
+  assert.equal(trailerIdFrom('https://www.youtube.com/watch?v=luX6gA05Si4'), 'luX6gA05Si4');
 });

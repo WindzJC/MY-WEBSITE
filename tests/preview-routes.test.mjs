@@ -9,6 +9,7 @@ for (const hook of ['configureServer', 'configurePreviewServer']) {
     for (const [url, expected] of [
       ['/our-work?type=websites', '/our-work.html?type=websites'],
       ['/projects/queen-of-intelligence?ref=portfolio', '/projects/queen-of-intelligence.html?ref=portfolio'],
+      ['/projects/hide-and-seek?ref=portfolio', '/projects/hide-and-seek.html?ref=portfolio'],
       ['/privacy?ref=form', '/privacy/index.html?ref=form'],
       ['/author-websites', '/author-websites.html'],
       ['/api/inquiry?x=1', '/api/inquiry?x=1'],

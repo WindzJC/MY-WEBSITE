@@ -1,7 +1,7 @@
 // Plays Astra trailers in an on-page player instead of sending visitors to YouTube.
 // Without JavaScript, or with a modifier key held, links still open YouTube normally.
 // No YouTube request is made until a visitor chooses to play a trailer.
-export const ASTRA_TRAILERS = new Set([
+export const ASTRA_TRAILERS = new Set(['luX6gA05Si4',
   'fNwTSZKmpis', '96weNjdV0A4', 'YJNUH5L8cFc', '7IXqTkSNAvM', '3HxP2U8cevY',
   'KiO5WABFP6c', 'ipDFxcGCqcY', 'o0Vr7hwgJsc', 'F4SyiYhcBBQ',
 ]);
