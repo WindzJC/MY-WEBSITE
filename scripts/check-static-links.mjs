@@ -23,7 +23,12 @@ for (const file of files.filter(p => /\.(html|css|js)$/.test(p))) {
   }
   if (file.endsWith('.html')) {
     if (/__(?:CANONICAL_URL|OG_IMAGE_URL)__/.test(source)) errors.push(`${file}: unresolved SEO token`);
-    if (!/<meta name="robots" content="noindex, follow"/.test(source)) errors.push(`${file}: preview is not noindex`);
+    const production = process.env.SITE_INDEXABLE === 'true' || process.env.CF_PAGES_BRANCH === 'main';
+    const noindex = /<meta name="robots" content="noindex, follow"/.test(source);
+    const privatePage = /john-oross|thank-you/.test(file);
+    if (!production && !noindex) errors.push(`${file}: preview is not noindex`);
+    if (production && !privatePage && noindex) errors.push(`${file}: live page is noindex`);
+    if (production && privatePage && !noindex) errors.push(`${file}: private page is indexable`);
   }
 }
 console.log(JSON.stringify({ pages: files.filter(p => p.endsWith('.html')).length, references, externalUrlsUnverified: external.size, errors }, null, 2));

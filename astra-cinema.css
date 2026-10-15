@@ -220,3 +220,12 @@ body.studio-home{overflow-x:clip}
 }
 .studio-home #faq>.astra-cinema-section-head,.studio-home #start>.astra-cinema-section-head{align-self:start;display:block;margin-bottom:0}
 html:has(body.studio-home){overflow-x:clip}
+
+/* Sample free review */
+.ah-sample{margin-top:22px;padding:clamp(24px,3.5vw,40px);border:1px dashed rgba(75,212,244,.5);border-radius:3px;background:#081019}
+.ah-sample-head{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;align-items:baseline;margin-bottom:20px}
+.ah-sample-note{font-size:15px;line-height:1.6;color:#a9bac8;max-width:560px}
+.ah-sample-list{margin:0;padding-left:24px;display:grid;gap:18px}
+.ah-sample-list li{font-size:16px;line-height:1.7;color:#c9d5df;padding-left:6px}
+.ah-sample-list li::marker{color:#4bd4f4;font-weight:800}
+.ah-sample-list strong{color:#fff}

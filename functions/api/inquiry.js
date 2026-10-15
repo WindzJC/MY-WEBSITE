@@ -116,10 +116,11 @@ async function sendEmail(apiKey, payload, idempotencyKey) {
   return result;
 }
 
-async function buildRateLimitKey(request) {
+async function buildRateLimitKey(request, email) {
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   const bucket = Math.floor(Date.now() / RATE_WINDOW_MS);
-  const material = new TextEncoder().encode(`${ip}|${bucket}`);
+  // Keyed by network AND sender, so two authors on the same Wi-Fi are not blocked by each other.
+  const material = new TextEncoder().encode(`${ip}|${String(email || "").trim().toLowerCase()}|${bucket}`);
   const digest = await crypto.subtle.digest("SHA-256", material);
   const hash = [...new Uint8Array(digest)]
     .map((byte) => byte.toString(16).padStart(2, "0"))
@@ -162,11 +163,11 @@ function buildInternalHtml(data, meta) {
 }
 
 function buildConfirmationText(data) {
-  return `Hi ${data.user_name},\n\nThanks for sending your project to Astra Productions.\n\nWe received your request and will review the book, your current online presence, and the information you provided to identify the three priorities we would address first.\n\nBook / project: ${data.book_link}\n\nYou do not need to send anything else right now. If additional information would help with the review, we will reply to this email.\n\nAstra Productions\nStrategic creative direction for authors\nhttps://astraproductions.co/`;
+  return `Hi ${data.user_name},\n\nThanks for sending your project to Astra Productions.\n\nWe received your request and will review the book, your current online presence, and the information you provided to identify the three priorities we would address first.\n\nBook / project: ${data.book_link}\n\nYou do not need to send anything else right now. If additional information would help with the review, we will reply to this email.\n\nAstra Productions\nCinematic book trailers and author websites\nhttps://astraproductions.co/`;
 }
 
 function buildConfirmationHtml(data) {
-  return `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#111827;line-height:1.6"><p>Hi ${escapeHtml(data.user_name)},</p><p>Thanks for sending your project to Astra Productions.</p><p>We received your request and will review the book, your current online presence, and the information you provided to identify the three priorities we would address first.</p><p><strong>Book / project:</strong> ${escapeHtml(data.book_link)}</p><p>You do not need to send anything else right now. If additional information would help with the review, we will reply to this email.</p><p><strong>Astra Productions</strong><br>Strategic creative direction for authors<br><a href="https://astraproductions.co/">astraproductions.co</a></p></body></html>`;
+  return `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#111827;line-height:1.6"><p>Hi ${escapeHtml(data.user_name)},</p><p>Thanks for sending your project to Astra Productions.</p><p>We received your request and will review the book, your current online presence, and the information you provided to identify the three priorities we would address first.</p><p><strong>Book / project:</strong> ${escapeHtml(data.book_link)}</p><p>You do not need to send anything else right now. If additional information would help with the review, we will reply to this email.</p><p><strong>Astra Productions</strong><br>Cinematic book trailers and author websites<br><a href="https://astraproductions.co/">astraproductions.co</a></p></body></html>`;
 }
 
 export async function onRequest(context) {
@@ -253,7 +254,7 @@ export async function onRequest(context) {
     requestId,
     submittedAt: new Date(submittedAtMs).toISOString(),
   };
-  const rateLimitKey = await buildRateLimitKey(request);
+  const rateLimitKey = await buildRateLimitKey(request, data.user_email);
 
   try {
     await sendEmail(

@@ -55,7 +55,10 @@ function getPagePath(pathname = "/") {
   return "/";
 }
 
-function seoMetaDefaults(siteUrl) {
+// Concept and thank-you pages stay out of search even on the live domain.
+const NOINDEX_PATHS = new Set(["/projects/john-oross", "/thank-you"]);
+
+function seoMetaDefaults(siteUrl, indexable) {
   return {
     name: "seo-meta-defaults",
     transformIndexHtml(html, ctx) {
@@ -63,9 +66,11 @@ function seoMetaDefaults(siteUrl) {
       const canonicalUrl = `${siteUrl}${pagePath}`;
       const ogImageUrl = `${siteUrl}/astra-productions-social.png`;
 
-      return html
+      const out = html
         .replaceAll("__CANONICAL_URL__", canonicalUrl)
         .replaceAll("__OG_IMAGE_URL__", ogImageUrl);
+      if (!indexable || NOINDEX_PATHS.has(pagePath)) return out;
+      return out.replace(/<meta name="robots" content="noindex, follow"\s*\/?>/g, '<meta name="robots" content="index, follow" />');
     },
   };
 }
@@ -73,10 +78,12 @@ function seoMetaDefaults(siteUrl) {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const siteUrl = getSiteUrl(env);
+  // Indexable only on the production branch (or when explicitly requested); previews stay noindex.
+  const indexable = (process.env.SITE_INDEXABLE ?? env.SITE_INDEXABLE) === "true" || (process.env.CF_PAGES_BRANCH ?? env.CF_PAGES_BRANCH) === "main";
 
   return {
     appType: "mpa",
-    plugins: [cleanUrlRoutes(), seoMetaDefaults(siteUrl)],
+    plugins: [cleanUrlRoutes(), seoMetaDefaults(siteUrl, indexable)],
     build: {
       rollupOptions: {
         input: {
