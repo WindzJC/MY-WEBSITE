@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const commandbar = document.querySelector(".commandbar");
+  const commandbar = document.querySelector(".commandbar, .as-site-header");
   const pills = Array.from(document.querySelectorAll(".nav-pill[data-target]"));
   const sections = pills
     .map((pill) => document.getElementById(pill.getAttribute("data-target")))
@@ -84,7 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ? 0
         : target.getBoundingClientRect().top + window.scrollY - getOffset();
 
-    window.scrollTo({ top, behavior: reduceMotion.matches ? "auto" : "smooth" });
+    const instant = href === "#start" || reduceMotion.matches;
+    window.scrollTo({ top, behavior: instant ? "instant" : "smooth" });
 
     // Focus the section for keyboard/screen reader users (no jump)
     if (href !== "#top") {
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         target.focus({ preventScroll: true });
         if (prevTabIndex === null) target.removeAttribute("tabindex");
         else target.setAttribute("tabindex", prevTabIndex);
-      }, reduceMotion.matches ? 0 : 350);
+      }, instant ? 0 : 350);
     }
   });
 

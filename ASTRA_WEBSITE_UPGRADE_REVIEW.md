@@ -60,3 +60,39 @@ This branch is reserved for preview review. Do not merge to main or deploy to pr
 - Staging GET/HEAD /api/inquiry: HTTP 405, Allow: POST. This DOES NOT confirm live Resend delivery.
 - Browser QA: 50 route/viewport combinations (360/390/768/1024/1440) passed, plus intercepted homepage form error and recovery behavior; NO real email POST.
 - Await owner-controlled real staging inbox test, client promotional reuse rights, factual book links and approval before production launch.
+
+## Focused case-study refinement (2026-10-15; local implementation)
+
+- Queen: replaced the large white retailer-card hero with a dark typographic opening and an immediately available player. Kept Harvey Havel and the full book attribution. The original public end card is a small, explicitly labeled detail; no substitute scene or fictional character was created.
+- Hide and Seek: moved playback directly below the opening, shortened defensive copy, and added a full-width, credited view of the existing forest still with composition/color callouts. Observations concern that visible frame; no plot, author, filming team or outcomes were invented.
+- John Oross: retained the genuine homepage capture and added three architecture callouts linking to the existing completed-site URL. No interior screenshots were available at initial inspection. Links explicitly instruct readers to choose the named navigation item on the site; no unverified deep routes were invented.
+- Shared case-study-video.js creates one YouTube privacy-enhanced iframe only on explicit poster/hero activation. Exact IDs: fNwTSZKmpis and luX6gA05Si4. Native keyboard button, labeled iframe, focus transfer, immediate scroll, modified-link behavior and always-visible external fallback included. No decorative autoplay or video preconnection.
+- Inquiry root cause: styles.css globally requests smooth scrolling, and script.js animates internal anchor clicks. Scoped CSS makes /#start arrival immediate; the handler makes #start clicks immediate and measures the actual shared header. Form markup, submission, validation and API implementation remain unchanged.
+- Existing case-study noindex metadata and navigation preserved. The homepage's pre-existing index, follow metadata was not changed; controller must review preview-wide indexing policy before publication.
+
+### Local QA evidence
+
+- npm run build: passed (Vite 7.3.1). Build-generated SEO date/line-ending changes were returned to their pre-sprint content; no SEO artifact changes retained.
+- npm run test:inquiry: 31 passed, provider requests fully mocked; no real email.
+- node --test tests/case-study-video.test.mjs: 4 passed (inert initial state, exact privacy URLs, duplicate activation, modified navigation and unrecognized-ID rejection).
+- node --check script.js and node --check case-study-video.js: passed.
+- Local Chrome: 12 case-study/viewport combinations at 360/390/768/1440 passed: no horizontal overflow, missing images or page script errors; unchanged six-link navigation and noindex present.
+- Both hero activation and keyboard Space activation created exactly one player with the expected URL and moved focus into it. Zero video requests before activation; all external page requests, including the 16 attempted video loads, were blocked by QA interception. Live YouTube playback was not exercised.
+- Eight homepage arrival checks (four widths, normal/reduced motion) passed: immediate scroll behavior, form present, no overflow, section positioned about 115px below the viewport top. JavaScript-disabled viewing retained the direct YouTube fallback.
+- Visual captures reviewed with external fonts blocked. Evidence: qa/refinement-results.json, qa/refinement-qa.cjs and qa/refinement-{project}-{390,1440}.png (local ignored QA artifacts).
+- git diff --check: passed after correcting CRLF whitespace on the three edited script lines. Initial lazy-image QA assertion was corrected to await image decoding; final checks passed.
+
+### Controller handoff / rights still pending
+
+- Confirm client approval for expanded portfolio presentation and reuse of footage, music, book artwork, retailer branding and website screenshots. Public availability is not a reuse license.
+- Verify current YouTube embedding/playback, external completed-site/book links and final typography online in the controller's authorized review environment. No external content was fetched for this implementation.
+- Six new files appeared concurrently under public/case-studies/stills (queen-establishing/response/window and hide-door/forest/movement). They were not created or modified by this sprint and remain unreferenced pending controller confirmation of provenance. Current layouts are complete without them.
+- No dependencies, active Codex/global settings, production checkout, production runtime or recipient state changed. No commit, push or deployment performed. Rollback is limited to the seven implementation/document files and new video regression test listed in the final report; preserve concurrent assets and pre-existing .codex work.
+
+## Focused cinematic case-study polish (15 October 2026)
+- Replaced Queen retailer-logo poster with a verified backlit frame from Astra's published video; added a three-frame Queen sequence and three real Hide and Seek film frames captured from Astra's public trailer uploads.
+- Improved desktop poster coverage and corrected mobile/desktop gallery aspect ratios after visual screenshot inspection.
+- Added three real page screenshots from the published John Oross site concept (Book, Explore, About). The original public site explicitly identifies itself as a concept; portfolio and service pages now label John accordingly, not as a verified client launch.
+- Retained Codex's tested click-to-load privacy-enhanced player, immediate inquiry navigation and concise factual case-study writing. Browser confirmed inline embed loads correctly with referring page context; external YouTube links remain a fallback.
+- Latest local tests: 31 inquiry mocks + 4 player tests passed, Vite build passed, 24 viewport/page browser checks passed and mobile project CTA brought the contact form into view.
+- Media capture provenance and usage-rights caution documented in CASE_STUDY_MEDIA_PROVENANCE.md. No live-email test was sent. Production stays unchanged.

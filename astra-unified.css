@@ -304,3 +304,66 @@ body.studio-home .as-site-header{width:100%;max-width:100%}
 .cs-selected-links a{text-decoration:underline;text-underline-offset:5px}
 @media(max-width:970px){.cs-hero{gap:25px}.cs-editorial{gap:35px}.cs-beats{gap:20px}.cs-web-intro{align-items:flex-start;flex-direction:column}}
 @media(max-width:700px){.cs-hero{grid-template-columns:1fr;padding:48px 0}.cs-hero h1,.cs-web-hero h1{font-size:clamp(48px,12.5vw,78px)}.cs-hero figure{transform:none}.cs-hero-copy>p:not(.as-kicker){font-size:17px}.cs-facts{grid-template-columns:1fr;padding:22px 0;gap:18px}.cs-facts>div{display:flex;justify-content:space-between;align-items:baseline;gap:20px}.cs-facts strong{text-align:right;font-size:13px;margin:0}.cs-section{padding:50px 0}.cs-editorial,.cs-beats,.cs-reader-flow,.cs-related{grid-template-columns:1fr;gap:24px}.cs-editorial{gap:10px}.cs-section h2{font-size:46px}.cs-prose p{font-size:15px}.cs-hide{padding:55px 4vw;min-height:600px}.cs-hide h1{font-size:96px}.cs-backdrop{object-position:60% center}.cs-web-hero{padding-top:48px}.cs-web-intro .as-button{white-space:normal}.cs-browser{padding:5px}.cs-browser-bar{font-size:8px;gap:12px}.cs-reader-flow{gap:1px}.cs-reader-flow li{padding:25px}.cs-related h3{font-size:25px}.cs-selected-links{flex-direction:column}}
+/* Focused case-study viewing: local posters, explicit playback, no motion. */
+html:has(#start:target){scroll-behavior:auto}
+.studio-home #start{scroll-margin-top:115px}
+.cs-queen{grid-template-columns:1.05fr 1fr;gap:45px;padding:65px 0;background:radial-gradient(ellipse at 75% 50%,#14283b66,transparent 65%)}
+.cs-queen h1{font-size:clamp(54px,6.8vw,98px)}
+.cs-hero>*{min-width:0}
+.cs-watch{width:min(92vw,1000px);margin:35px auto 55px;scroll-margin-top:115px}
+.cs-watch h2{font-size:clamp(32px,4vw,48px);margin:12px 0 24px}
+.cs-queen .cs-watch{width:100%;margin:0;padding:25px;border:1px solid var(--as-line);background:#09121d;box-shadow:0 25px 70px #0006}
+.cs-player{aspect-ratio:16/9;position:relative;min-width:0;background:#02060a;border:1px solid #426074;scroll-margin-top:115px}
+.cs-play{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0;border:0;color:#effaff;background:radial-gradient(ellipse at top,#1d354b,#050c14);cursor:pointer}
+.cs-play>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.cs-play-label{position:relative;display:inline-flex;align-items:center;gap:14px;border:1px solid #8cdcf1;padding:13px 22px;background:#07131fee;font-weight:800;font-size:14px;box-shadow:0 5px 25px #0008}
+.cs-play-label>span{font-size:19px;color:#9ae5f6}
+.cs-play:hover .cs-play-label{background:#21465b}
+.cs-play:focus-visible{outline:3px solid #80e9ff;outline-offset:5px}
+.cs-watch-queen .cs-player{aspect-ratio:4/3}
+.cs-watch-queen .cs-play>img{position:static;width:150px;height:auto;max-width:42%;border:1px solid #5a6d7b}
+.cs-poster-credit{font-size:10px;color:#aec2d1;text-align:center;padding:0 8px}
+.cs-player iframe{display:block;width:100%;height:100%;border:0}
+.cs-video-fallback,.cs-proof-link{display:inline-block;margin-top:13px;color:#9ae5f6!important;font-size:12px;font-weight:800;text-decoration:underline!important;text-underline-offset:5px}
+.cs-proof-link{margin-top:22px}
+.cs-film-study{margin-bottom:35px!important}
+.cs-film-study img{width:100%;height:auto}
+.cs-film-study figcaption{font-size:12px;color:#a9bdcc;padding-top:12px}
+.cs-hide{min-height:460px;padding-block:45px}
+.cs-hide h1{font-size:clamp(80px,8vw,116px)}
+@media(max-width:970px){.cs-queen{grid-template-columns:1fr;gap:30px}.cs-queen .cs-watch{max-width:680px}.cs-watch-queen .cs-player{aspect-ratio:16/9}}
+@media(max-width:700px){.cs-queen{padding:38px 0}.cs-queen h1{font-size:clamp(48px,12.5vw,78px)}.cs-queen .cs-watch{padding:18px}.cs-watch-queen .cs-player{aspect-ratio:4/3}.cs-watch-queen .cs-play>img{width:120px}.cs-play-label{padding:10px 16px}.cs-hide{min-height:440px;padding:40px 4vw}.cs-watch{margin:28px auto 40px}.cs-watch h2{font-size:36px}.cs-film-study figcaption{font-size:11px}}
+
+/* Actual film frames and concept-site screenshots: clearly marked, responsive. */
+.cs-frame-section{width:min(92vw,1260px);margin:58px auto 20px;padding:35px 0;border-top:1px solid var(--as-line);border-bottom:1px solid var(--as-line)}
+.cs-frame-heading{margin-bottom:26px;max-width:860px}
+.cs-frame-heading h2{font:800 clamp(39px,5vw,65px)/1 "Barlow Condensed","Arial Narrow",Impact,sans-serif;margin:11px 0 13px;text-transform:uppercase}
+.cs-frame-heading>p:last-child{font-size:14px;line-height:1.8;color:#b7cbdc}
+.cs-frame-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.cs-frame-gallery figure{margin:0;min-width:0;border:1px solid rgba(183,214,233,.2);background:#101925;border-radius:4px;overflow:hidden}
+.cs-frame-gallery img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#07111b}
+.cs-frame-gallery figcaption{padding:14px 15px;font-size:11px;color:#d3e7f4;font-weight:800;letter-spacing:.045em}
+.cs-frame-gallery a:focus-visible{outline:3px solid #92e7ff;outline-offset:-3px}
+.cs-frame-gallery a:hover img{filter:brightness(1.1)}
+.cs-concept-section .cs-frame-gallery img{aspect-ratio:16/10;object-position:top}
+.cs-frame-hint{display:none}
+.cs-disclosure{width:min(92vw,1260px);margin:26px auto 6px;padding:15px 18px;border-left:3px solid #70c7e6;background:#101b29;color:#bed5e6;font:500 12px/1.85 "Manrope",sans-serif}
+.cs-disclosure strong{color:#fff}
+@media(max-width:720px){
+ .cs-frame-section{padding:27px 0;margin:32px auto 12px}
+ .cs-frame-heading h2{font-size:43px}
+ .cs-frame-gallery{display:flex;overflow-x:auto;gap:13px;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:15px}
+ .cs-frame-gallery figure{flex:0 0 min(82vw,330px);scroll-snap-align:start}
+ .cs-frame-hint{display:block;font-size:11px;color:#8ee2f9;letter-spacing:.06em;margin-top:8px}
+}
+
+/* Visual QA fixes: film poster fills the player, and actual screenshots keep intrinsic proportion. */
+.cs-watch-queen .cs-player{aspect-ratio:16/9}
+.cs-watch-queen .cs-play{isolation:isolate}
+.cs-watch-queen .cs-play>img{position:absolute;inset:0;width:100%;max-width:none;height:100%;object-fit:cover;border:0;filter:brightness(.62)}
+.cs-watch-queen .cs-play::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#07142022,#07142044);pointer-events:none}
+.cs-watch-queen .cs-play-label,.cs-watch-queen .cs-poster-credit{position:relative;z-index:2}
+.cs-watch-queen .cs-poster-credit{color:#e2f0f8;text-shadow:0 1px 4px #03080e}
+.cs-frame-section{scroll-margin-top:115px}
+.cs-frame-gallery img{height:auto;object-fit:cover}
+.cs-concept-section .cs-frame-gallery img{height:auto;object-fit:contain}
