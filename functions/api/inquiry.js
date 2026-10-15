@@ -13,6 +13,7 @@ const LIMITS = {
   author_website: 500,
   book_link: 1000,
   service: 160,
+  inquiry_type: 16,
   message: 5000,
   deadline: 200,
   company: 200,
@@ -134,6 +135,7 @@ function inquiryRows(data, meta) {
     ["Email", data.user_email],
     ["Author website", data.author_website || "Not provided"],
     ["Book title / official link", data.book_link],
+    ["Request type", data.inquiry_type === "quote" ? "Project quote request" : "Free 3-point review"],
     ["Assessment focus", data.service],
     ["Context / message", data.message || "Not provided"],
     ["Timeline", data.deadline || "Not provided"],
@@ -159,15 +161,27 @@ function buildInternalHtml(data, meta) {
     )
     .join("");
 
-  return `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#111827;line-height:1.5"><h2>New Astra project review</h2><table style="border-collapse:collapse;width:100%;max-width:760px">${rows}</table></body></html>`;
+  return `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#111827;line-height:1.5"><h2>New Astra project inquiry</h2><table style="border-collapse:collapse;width:100%;max-width:760px">${rows}</table></body></html>`;
 }
 
 function buildConfirmationText(data) {
-  return `Hi ${data.user_name},\n\nThanks for sending your project to Astra Productions.\n\nWe received your request and will review the book, your current online presence, and the information you provided to identify the three priorities we would address first.\n\nBook / project: ${data.book_link}\n\nYou do not need to send anything else right now. If additional information would help with the review, we will reply to this email.\n\nAstra Productions\nCinematic book trailers and author websites\nhttps://astraproductions.co/`;
+  const description = data.inquiry_type === "quote"
+    ? "Thanks for requesting a project quote. We received your information and will review the scope to discuss what would be involved before giving you a price and schedule."
+    : "Thanks for requesting a free three-point review. We received your information and will review the book, its online presence and the next steps interested readers can take.";
+  return "Hi " + data.user_name + "\n\n" + description + "\n\nBook / project: " + data.book_link
+    + "\n\nIf we need more details, we'll reply to this email. Nothing is charged through the form."
+    + "\n\nAstra Productions\nCinematic book trailers and author websites\nhttps://astraproductions.co/";
 }
 
 function buildConfirmationHtml(data) {
-  return `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#111827;line-height:1.6"><p>Hi ${escapeHtml(data.user_name)},</p><p>Thanks for sending your project to Astra Productions.</p><p>We received your request and will review the book, your current online presence, and the information you provided to identify the three priorities we would address first.</p><p><strong>Book / project:</strong> ${escapeHtml(data.book_link)}</p><p>You do not need to send anything else right now. If additional information would help with the review, we will reply to this email.</p><p><strong>Astra Productions</strong><br>Cinematic book trailers and author websites<br><a href="https://astraproductions.co/">astraproductions.co</a></p></body></html>`;
+  const description = data.inquiry_type === "quote"
+    ? "Thanks for requesting a project quote. We received your information and will review the scope to discuss what would be involved before giving you a price and schedule."
+    : "Thanks for requesting a free three-point review. We received your information and will review the book, its online presence and the next steps interested readers can take.";
+  return '<!doctype html><html><body style="font-family:Arial,sans-serif;color:#111827;line-height:1.6"><p>Hi ' + escapeHtml(data.user_name)
+    + '</p><p>' + description + '</p><p><strong>Book / project:</strong> ' + escapeHtml(data.book_link)
+    + '</p><p>If we need more details, we will reply to this email. Nothing is charged through the form.</p>'
+    + '<p><strong>Astra Productions</strong><br>Cinematic book trailers and author websites<br>'
+    + '<a href="https://astraproductions.co/">astraproductions.co</a></p></body></html>';
 }
 
 export async function onRequest(context) {
@@ -225,6 +239,12 @@ export async function onRequest(context) {
     return json({ ok: false, error: "Invalid request" }, 400);
   }
 
+  if (data.inquiry_type && !["review", "quote"].includes(data.inquiry_type)) {
+    return json({ ok: false, error: "Invalid request type." }, 400);
+  }
+  // Older forms without this field remain compatible with the free review route.
+  data.inquiry_type ||= "review";
+
   if (!data.user_name || !data.user_email || !data.book_link || !data.service) {
     return json({ ok: false, error: "Please complete the required fields." }, 400);
   }
@@ -263,7 +283,7 @@ export async function onRequest(context) {
         from: INTERNAL_FROM,
         to: [INTERNAL_RECIPIENT],
         reply_to: data.user_email,
-        subject: `New Astra project review — ${safeSubjectName(data.user_name)}`,
+        subject: (data.inquiry_type === "quote" ? "New Astra quote request" : "New Astra free review") + " — " + safeSubjectName(data.user_name),
         text: buildInternalText(data, meta),
         html: buildInternalHtml(data, meta),
       },

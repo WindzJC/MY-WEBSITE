@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  
+
   // Auto-fill assessment focus while preserving known legacy service links.
   const legacyServiceValues = new Map([
     ["Author Website ($499)", "Author website / online presence"],
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // Init measurements and listeners
-  
+
   // If a service is passed via query string, preselect it (e.g., ?service=Bundle%20($1299))
   try{
     const sp = new URLSearchParams(window.location.search);
@@ -176,6 +176,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const contactForm = document.getElementById("contact-form");
   const statusEl = document.getElementById("contact-status");
+  // Two paths to the same secure inquiry form; selection does not transmit data.
+  const inquiryIntro = document.getElementById("inquiry-intro");
+  const inquiryChoice = contactForm?.querySelectorAll('input[name="inquiry_type"]') || [];
+  const setInquiryMode = (mode) => {
+    if (!contactForm) return;
+    const nextMode = mode === "quote" ? "quote" : "review";
+    const input = contactForm.querySelector('input[name="inquiry_type"][value="' + nextMode + '"]');
+    if (input) input.checked = true;
+    if (inquiryIntro) inquiryIntro.textContent = nextMode === "quote"
+      ? "Already have a project in mind? Tell us what you want to create. We’ll follow up to confirm the scope and next steps before discussing a quote."
+      : "Not sure what your book needs? Request a free three-point review of how readers encounter it. You’re welcome to ask about a specific service too.";
+    const submit = contactForm.querySelector('button[type="submit"]');
+    if (submit) submit.textContent = nextMode === "quote" ? "Request My Project Quote" : "Get My Free Review";
+  };
+  inquiryChoice.forEach((option) => option.addEventListener("change", () => {
+    if (option.checked) setInquiryMode(option.value);
+  }));
+  document.querySelectorAll("[data-inquiry-intent]").forEach((link) => {
+    link.addEventListener("click", () => setInquiryMode(link.getAttribute("data-inquiry-intent")));
+  });
+  try {
+    const fromQuery = new URLSearchParams(window.location.search).get("intent");
+    if (fromQuery === "quote") setInquiryMode("quote");
+  } catch (_) {}
+
   const formStartedAt = Date.now();
   let pendingRequestId = null;
   let pendingSubmittedAt = null;
@@ -246,6 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
           statusEl.focus({ preventScroll: true });
         }
         contactForm.reset();
+        setInquiryMode("review");
         window.setTimeout(() => {
           window.location.assign("/thank-you");
         }, 1200);

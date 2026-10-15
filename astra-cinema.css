@@ -229,3 +229,55 @@ html:has(body.studio-home){overflow-x:clip}
 .ah-sample-list li{font-size:16px;line-height:1.7;color:#c9d5df;padding-left:6px}
 .ah-sample-list li::marker{color:#4bd4f4;font-weight:800}
 .ah-sample-list strong{color:#fff}
+
+/* A reader's path: a clear reflection between portfolio proof and Astra services. */
+.studio-home .ah-reader-journey{margin-top:clamp(85px,10vw,140px);scroll-margin-top:116px;padding:clamp(28px,4vw,62px);border:1px solid rgba(122,190,218,.24);border-radius:6px;background:radial-gradient(ellipse at 92% 12%,rgba(47,132,168,.15),transparent 48%),linear-gradient(160deg,#0a131c,#090f17)}
+.ah-journey-intro{max-width:960px}
+.studio-home .ah-reader-journey h2{font:800 clamp(45px,6vw,88px)/.96 "Barlow Condensed","Arial Narrow",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.012em;color:#fff;margin:15px 0 22px;text-wrap:balance}
+.ah-journey-intro h2 em{font-style:normal;color:#75ddf5}
+.ah-journey-intro>p:last-child{max-width:800px;color:#b9cad5;font:500 clamp(15px,1.5vw,18px)/1.75 "Manrope",sans-serif}
+.ah-journey-contrast{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);align-items:stretch;gap:12px;margin-top:40px}
+.ah-journey-side{min-width:0;padding:clamp(22px,3vw,35px);border:1px solid rgba(255,255,255,.13);border-radius:5px;background:rgba(9,16,25,.75)}
+.ah-journey-scattered{border-color:rgba(255,255,255,.14)}
+.ah-journey-connected{background:linear-gradient(145deg,#122839,#0c1824);border-color:rgba(75,212,244,.34)}
+.ah-journey-label{color:#88d9ec;font:800 10px/1.5 "Manrope",sans-serif;letter-spacing:.15em}
+.ah-journey-side h3{font:800 clamp(28px,3vw,41px)/1.04 "Barlow Condensed","Arial Narrow",Impact,sans-serif;text-transform:uppercase;color:#fff;margin:16px 0 28px;max-width:390px}
+.ah-journey-side ul{list-style:none;display:grid;gap:0;margin:0;padding:0}
+.ah-journey-side li{display:flex;align-items:flex-start;gap:13px;padding:15px 0;border-top:1px solid rgba(255,255,255,.1);color:#d3e1e9;font:500 14px/1.6 "Manrope",sans-serif}
+.ah-journey-side li span{font:800 11px/2 "Manrope",sans-serif;color:#76d9f0;letter-spacing:.1em}
+.ah-journey-note{margin-top:25px;color:#aabdc9;font:500 13px/1.75 "Manrope",sans-serif}
+.ah-journey-arrow{align-self:center;justify-self:center;color:#6ad8f1;font:700 38px "Manrope",sans-serif}
+.ah-journey-outro{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:30px;padding-top:30px;border-top:1px solid rgba(255,255,255,.17)}
+.ah-journey-prompt{color:#9db7c5;font:700 13px/1.65 "Manrope",sans-serif}
+.ah-journey-answer{max-width:540px;color:#f1f8fb;font:500 clamp(18px,2vw,23px)/1.5 "Manrope",sans-serif;margin-top:7px}
+.ah-journey-answer strong{font-weight:800}
+.ah-journey-actions{display:flex;align-items:center;flex-direction:column;gap:11px;flex:none}
+.ah-journey-actions .astra-cinema-button{min-width:245px}
+.ah-journey-quote{font:700 12px/1.5 "Manrope",sans-serif;color:#c2e7f5;text-decoration:underline;text-underline-offset:5px;text-align:center}
+.ah-journey-quote:hover{color:white}
+.ah-inquiry-choice{padding:0;margin:0 0 26px;border:0;min-width:0}
+.ah-inquiry-choice legend{font:800 15px/1.5 "Manrope",sans-serif;color:#f3f7fb;margin-bottom:12px}
+.ah-inquiry-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ah-inquiry-option{display:flex;align-items:flex-start;gap:12px;padding:18px 17px;min-width:0;border:1px solid rgba(255,255,255,.19);border-radius:5px;background:#0c1823;cursor:pointer;transition:border-color .2s,background .2s}
+.ah-inquiry-option:has(input:checked){border-color:#64d5f1;background:#102737}
+.ah-inquiry-option:has(input:focus-visible){outline:3px solid #9ce9ff;outline-offset:2px}
+.ah-inquiry-option input{margin-top:4px;accent-color:#52cdec;flex:none}
+.ah-inquiry-option span{display:grid;gap:6px}
+.ah-inquiry-option strong{font:800 14px/1.35 "Manrope",sans-serif;color:#f5faff}
+.ah-inquiry-option small{font:500 12px/1.6 "Manrope",sans-serif;color:#b6c9d6}
+#inquiry-choice-hint{font:500 12px/1.7 "Manrope",sans-serif;color:#9eb1c0;margin-top:10px}
+@media(max-width:920px){.ah-journey-outro{flex-direction:column;align-items:flex-start}.ah-journey-actions{flex-direction:row;flex-wrap:wrap;align-items:center}}
+@media(max-width:720px){
+ .studio-home .ah-reader-journey{margin-top:64px;padding:26px 19px}
+ .studio-home .ah-reader-journey h2{font-size:clamp(41px,11vw,58px)}
+ .ah-journey-contrast{grid-template-columns:1fr;gap:12px;margin-top:27px}
+ .ah-journey-arrow{transform:rotate(90deg);font-size:26px;line-height:1}
+ .ah-journey-side{padding:20px}
+ .ah-journey-side li{font-size:13px}
+ .ah-journey-outro{gap:22px}
+ .ah-journey-actions{width:100%;flex-direction:column;align-items:stretch}
+ .ah-journey-actions .astra-cinema-button{width:100%;min-width:0}
+ .ah-inquiry-options{grid-template-columns:1fr}
+ .ah-inquiry-option{padding:16px}
+}
+@media(prefers-reduced-motion:reduce){.ah-inquiry-option{transition:none}}

@@ -32,7 +32,8 @@ test('inquiry contract with network fully mocked', async t => {
   const cases = [
     ['GET', { method: 'GET' }, 405], ['cross origin', { headers: { Origin: 'https://other.example.test' } }, 403],
     ['missing origin', { headers: { Origin: '' } }, 403], ['cross site', { headers: { 'Sec-Fetch-Site': 'cross-site' } }, 403],
-    ['missing key', { env: {} }, 503], ['content type', { headers: { 'Content-Type': 'text/plain' } }, 415],
+    ['missing key', { env: {} }, 503],
+    ['invalid inquiry mode', { body: { ...fixture(), inquiry_type: 'unknown' } }, 400], ['content type', { headers: { 'Content-Type': 'text/plain' } }, 415],
     ['malformed JSON', { raw: '{' }, 400], ['array', { body: [] }, 400], ['null', { body: null }, 400],
     ['honeypot', { body: { ...fixture(), bot_field: 'bot' } }, 400],
     ...['user_name', 'user_email', 'book_link', 'service'].map(key => ['required ' + key, { body: { ...fixture(), [key]: '' } }, 400]),
@@ -71,6 +72,28 @@ test('inquiry contract with network fully mocked', async t => {
     assert.notEqual(calls[0].headers['Idempotency-Key'], calls[2].headers['Idempotency-Key']);
     assert.deepEqual(calls[0].payload.to, ['jc@astraproductions.co']);
     assert.deepEqual(calls[2].payload.to, ['jc@astraproductions.co']);
+  });
+  await t.test('explicit quote inquiry reaches Astra and receives a quote-specific confirmation', async () => {
+    calls = [];
+    replies = [];
+    const res = await submit({ body: { ...fixture(), inquiry_type: 'quote', request_id: 'quote-example-123' } });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { ok: true, confirmationSent: true });
+    assert.equal(calls.length, 2);
+    assert.match(calls[0].payload.subject, /New Astra quote request/);
+    assert.match(calls[0].payload.text, /Request type:\nProject quote request/);
+    assert.match(calls[1].payload.text, /Thanks for requesting a project quote/);
+    assert.doesNotMatch(calls[1].payload.text, /Thanks for requesting a free three-point review/);
+    assert.ok(calls[1].payload.text.includes('\n\n'));
+  });
+  await t.test('explicit free review inquiry is labeled accurately', async () => {
+    calls = [];
+    replies = [];
+    const res = await submit({ body: { ...fixture(), inquiry_type: 'review', request_id: 'review-example-123' } });
+    assert.equal(res.status, 200);
+    assert.match(calls[0].payload.subject, /New Astra free review/);
+    assert.match(calls[0].payload.text, /Free 3-point review/);
+    assert.match(calls[1].payload.text, /free three-point review/);
   });
   for (const failure of [{ status: 500 }, { throw: true }]) await t.test('internal failure ' + JSON.stringify(failure), async () => {
     calls = []; replies = [failure]; const res = await submit(); assert.equal(res.status, 502); assert.equal(calls.length, 1);
