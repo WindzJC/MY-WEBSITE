@@ -16,7 +16,7 @@ body.studio-home,body.astra-page{background:#070a0f;color:var(--astra-white)}
 .studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{width:185px}
 .studio-home .studio-header .brand-logo-img{width:330px;height:330px}
 .studio-home .astra-cinema-hero{position:relative;isolation:isolate;display:flex;align-items:center;width:100vw;left:50%;margin-left:-50vw;margin-top:-105px;min-height:clamp(670px,85vh,850px);padding:165px 0 105px;background:#050910;overflow:hidden}
-.astra-cinema-scene{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,rgba(3,6,12,.96) 0%,rgba(5,8,14,.83) 31%,rgba(5,9,14,.44) 58%,rgba(5,9,14,.2) 100%),linear-gradient(0deg,rgba(3,6,12,.95) 0%,transparent 36%,rgba(3,6,12,.15) 95%),url('/cinema/luX6gA05Si4.jpg');background-size:cover;background-position:center 40%;filter:saturate(.82);transform:scale(1.01)}
+.astra-cinema-scene{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(90deg,rgba(3,6,12,.96) 0%,rgba(5,8,14,.83) 31%,rgba(5,9,14,.44) 58%,rgba(5,9,14,.2) 100%),linear-gradient(0deg,rgba(3,6,12,.95) 0%,transparent 36%,rgba(3,6,12,.15) 95%),url('/case-studies/stills/queen-establishing.jpg');background-size:cover;background-position:center 40%;filter:saturate(.82);transform:scale(1.01)}
 .astra-cinema-hero::after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 75% 30%,transparent 26%,rgba(2,6,13,.28) 71%),linear-gradient(90deg,rgba(0,13,19,.13),transparent 65%);pointer-events:none}
 .astra-cinema-content{position:relative;width:min(92vw,1360px);margin:0 auto;padding:45px 0 0}
 .astra-cinema-kicker{display:flex;align-items:center;gap:10px;font:800 11px/1.5 "Manrope",sans-serif;color:#e1eff6;letter-spacing:.18em;margin-bottom:20px}
@@ -111,7 +111,7 @@ body.studio-home,body.astra-page{background:#070a0f;color:var(--astra-white)}
  .studio-home .studio-header .brand-mark,.studio-home .studio-header .logo-sweep{height:48px;width:150px}
  .studio-home .studio-header .brand-logo-img{width:240px;height:240px}
  .studio-home .astra-cinema-hero{min-height:680px;margin-top:-95px;padding:128px 0 45px;display:flex;align-items:center}
- .astra-cinema-scene{background-image:linear-gradient(90deg,rgba(4,8,15,.88) 0%,rgba(4,8,15,.6) 50%,rgba(4,8,15,.42) 100%),linear-gradient(0deg,rgba(4,7,13,.99),transparent 67%),url('/cinema/luX6gA05Si4.jpg');background-position:56% center}
+ .astra-cinema-scene{background-image:linear-gradient(90deg,rgba(4,8,15,.88) 0%,rgba(4,8,15,.6) 50%,rgba(4,8,15,.42) 100%),linear-gradient(0deg,rgba(4,7,13,.99),transparent 67%),url('/case-studies/stills/queen-establishing.jpg');background-position:56% center}
  .astra-cinema-content{padding:80px 0 10px}
  .astra-cinema-kicker{font-size:9px;flex-wrap:wrap;gap:7px;letter-spacing:.1em;max-width:95%}
  .studio-home .astra-cinema-hero h1{font-size:clamp(63px,15.6vw,98px);line-height:.88;max-width:92vw}
@@ -162,3 +162,61 @@ body.studio-home,body.astra-page{background:#070a0f;color:var(--astra-white)}
  .astra-cinema-film,.astra-cinema-film:last-child{grid-column:auto;flex:0 0 min(79vw,320px);aspect-ratio:4/4.35;scroll-snap-align:start}
  .astra-cinema-swipe{display:block;font:800 10px/1.6 "Manrope",sans-serif;letter-spacing:.14em;color:#79d7f0;margin:3px 0 7px}
 }
+
+/* Homepage lower sections rebuilt in the cinematic style (Oct 2026 review) */
+body.studio-home{overflow-x:clip}
+.studio-home .ah-section{margin-top:clamp(75px,9vw,130px);scroll-margin-top:116px}
+.ah-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.ah-steps li{border-top:2px solid #4bd4f4;background:#0b121a;padding:26px 24px 30px;border-radius:0 0 3px 3px}
+.ah-steps span{font:800 11px "Manrope",sans-serif;letter-spacing:.16em;color:#4bd4f4}
+.ah-steps h3{font:800 clamp(26px,2.4vw,34px)/1 "Barlow Condensed","Arial Narrow",Impact,sans-serif;color:#fff;margin:18px 0 12px;text-transform:uppercase}
+.ah-steps p{font-size:14px;line-height:1.7;color:#a9bac8}
+.ah-quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.ah-quotes figure{margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:26px;padding:32px 28px;background:#0b121a;border:1px solid rgba(255,255,255,.12);border-radius:3px}
+.ah-quotes blockquote{margin:0;font:600 clamp(19px,1.7vw,23px)/1.45 "Manrope",sans-serif;color:#f1f6fb;letter-spacing:-.01em}
+.ah-quotes figcaption{display:flex;flex-direction:column;gap:5px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+.ah-quotes figcaption strong{font:800 12px "Manrope",sans-serif;letter-spacing:.1em;color:#fff;text-transform:uppercase}
+.ah-quotes figcaption span{font-size:13px;color:#8fa5b6}
+.ah-prices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.ah-prices article{position:relative;display:flex;flex-direction:column;padding:30px 26px;background:#0b121a;border:1px solid rgba(255,255,255,.12);border-radius:3px}
+.ah-prices article.is-featured{border-color:#4bd4f4;background:linear-gradient(180deg,#0f2130,#0b121a)}
+.ah-tag{position:absolute;top:-1px;right:20px;background:#4bd4f4;color:#05131d;padding:6px 10px;border-radius:0 0 3px 3px;font:800 9px "Manrope",sans-serif;letter-spacing:.16em}
+.ah-prices h3{font:800 26px/1 "Barlow Condensed","Arial Narrow",Impact,sans-serif;text-transform:uppercase;color:#fff;margin:0}
+.ah-price{font:800 52px/1 "Barlow Condensed","Arial Narrow",Impact,sans-serif;color:#fff;margin:18px 0 8px}
+.ah-price small{font:700 11px "Manrope",sans-serif;letter-spacing:.14em;color:#8fa5b6;margin-right:8px;vertical-align:middle;text-transform:uppercase}
+.ah-desc{font-size:14px;line-height:1.6;color:#b4c4d1;min-height:46px}
+.ah-prices ul{list-style:none;margin:20px 0;padding:18px 0 0;border-top:1px solid rgba(255,255,255,.1);display:grid;align-content:start;gap:10px;flex:1}
+.ah-prices li{font-size:13px;line-height:1.5;color:#d3dee7;padding-left:20px;position:relative}
+.ah-prices li::before{content:"";position:absolute;left:0;top:6px;width:7px;height:7px;border-radius:50%;background:#4bd4f4}
+.ah-time{font:800 10px "Manrope",sans-serif;letter-spacing:.14em;color:#7ad7f3;text-transform:uppercase}
+.ah-fine{margin-top:22px;font-size:13px;line-height:1.7;color:#8fa5b6}
+.ah-fine a{color:#9be6fa;border-bottom:1px solid rgba(75,212,244,.6)}
+.ah-spotlight{padding:clamp(28px,4vw,54px);background:linear-gradient(120deg,#10202d,#0a1118);border:1px solid rgba(75,212,244,.28);border-radius:3px}
+.ah-spotlight-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:start}
+.studio-home .ah-spotlight h2,.studio-home .ah-about h2{font:800 clamp(38px,4.4vw,64px)/.98 "Barlow Condensed","Arial Narrow",Impact,sans-serif;color:#f5f8fd;margin:12px 0 16px}
+.ah-spotlight p:not(.astra-cinema-eyebrow),.ah-about p:not(.astra-cinema-eyebrow){font-size:15px;line-height:1.75;color:#b4c4d1}
+.ah-spotlight-list{list-style:none;margin:0;padding:0}
+.ah-spotlight-list li{display:flex;flex-direction:column;gap:3px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.ah-spotlight-list strong{font:800 12px "Manrope",sans-serif;letter-spacing:.12em;color:#fff;text-transform:uppercase}
+.ah-spotlight-list span{font-size:14px;color:#a9bac8}
+.ah-about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:44px;border-top:1px solid rgba(255,255,255,.16);padding-top:44px}
+.ah-about-grid p+p{margin-top:14px}
+.ah-about .astra-cinema-textlink{display:inline-block;margin-top:22px}
+.ah-faq{border-top:1px solid rgba(255,255,255,.16)}
+.ah-faq details{border-bottom:1px solid rgba(255,255,255,.16)}
+.ah-faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 2px;font:700 17px/1.4 "Manrope",sans-serif;color:#f1f6fb}
+.ah-faq summary::-webkit-details-marker{display:none}
+.ah-faq summary::after{content:"+";flex:none;color:#4bd4f4;font-size:24px;line-height:1}
+.ah-faq details[open] summary::after{content:"–"}
+.ah-faq details p{padding:0 2px 24px;max-width:820px;font-size:15px;line-height:1.75;color:#a9bac8}
+.studio-home #start.ah-form-panel{margin-top:clamp(75px,9vw,130px);background:#0b121a;border:1px solid rgba(255,255,255,.14);border-radius:3px;padding:clamp(24px,4vw,48px);box-shadow:none}
+@media(max-width:1100px){.ah-steps,.ah-prices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){
+ .studio-home .ah-section{margin-top:64px}
+ .ah-steps,.ah-prices,.ah-quotes{grid-template-columns:1fr}
+ .ah-spotlight-inner,.ah-about-grid{grid-template-columns:1fr;gap:20px}
+ .ah-faq summary{font-size:15px}
+ .ah-price{font-size:46px}
+}
+.studio-home #faq>.astra-cinema-section-head,.studio-home #start>.astra-cinema-section-head{align-self:start;display:block;margin-bottom:0}
+html:has(body.studio-home){overflow-x:clip}

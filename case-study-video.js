@@ -1,6 +1,6 @@
 // No player or third-party video request exists until an explicit activation.
 const player = document.querySelector('[data-video-id]');
-const allowedVideos = new Set(['fNwTSZKmpis', 'luX6gA05Si4']);
+const allowedVideos = new Set(['fNwTSZKmpis']);
 
 function playTrailer() {
   if (!player || !allowedVideos.has(player.dataset.videoId)) return;

@@ -368,3 +368,12 @@ html:has(#start:target){scroll-behavior:auto}
 .cs-frame-section{scroll-margin-top:115px}
 .cs-frame-gallery img{height:auto;object-fit:cover}
 .cs-concept-section .cs-frame-gallery img{height:auto;object-fit:contain}
+
+/* Author testimonials on service and project pages (Oct 2026 review) */
+.as-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.as-quotes-single{grid-template-columns:minmax(0,760px)}
+.as-quotes figure{margin:0;padding:30px 28px;border:1px solid var(--as-line);border-radius:6px;background:#0d1520;display:flex;flex-direction:column;justify-content:space-between;gap:22px}
+.as-quotes blockquote{margin:0;font:600 20px/1.5 "Manrope",system-ui,sans-serif;color:#f4f8ff}
+.as-quotes figcaption{font-size:13px;line-height:1.6;color:#a7bbc9;border-top:1px solid var(--as-line);padding-top:16px}
+.as-quotes figcaption strong{display:block;color:#fff;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:12px;margin-bottom:4px}
+@media(max-width:720px){.as-quotes{grid-template-columns:1fr}.as-quotes blockquote{font-size:17px}}

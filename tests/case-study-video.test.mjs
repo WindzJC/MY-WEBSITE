@@ -31,7 +31,7 @@ function setup(videoId) {
   return { handlers, frame: () => frame, count: () => created };
 }
 
-for (const id of ['fNwTSZKmpis', 'luX6gA05Si4']) {
+for (const id of ['fNwTSZKmpis']) {
   test(`${id}: inert until activation, privacy embed, one player`, () => {
     const state = setup(id);
     assert.equal(state.count(), 0);
