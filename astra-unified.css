@@ -3,6 +3,7 @@
 .as-body,.as-body *{box-sizing:border-box}
 .as-body{margin:0;background:var(--as-bg);color:var(--as-ink);font:400 15px/1.75 "Manrope",system-ui,sans-serif}
 .as-body img{max-width:100%;display:block}
+.as-project-detail .astra-preview-frame img{width:100%;height:auto}
 .as-body a{text-decoration:none;color:inherit}
 .as-body button,.as-body input{font:inherit}
 .as-body h1,.as-body h2,.as-body h3,.as-body p,.as-body figure{margin:0}

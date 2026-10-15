@@ -2,8 +2,12 @@ import { defineConfig, loadEnv } from "vite";
 import { resolve } from "node:path";
 import { getSiteUrl } from "./seo.config.mjs";
 
-function cleanUrlRoutes() {
+export function cleanUrlRoutes() {
   const rewrite = (req, _res, next) => {
+    const originalUrl = req.url;
+    const queryIndex = originalUrl.indexOf("?");
+    const query = queryIndex < 0 ? "" : originalUrl.slice(queryIndex);
+    req.url = queryIndex < 0 ? originalUrl : originalUrl.slice(0, queryIndex);
     if (req.url === "/privacy") req.url = "/privacy/index.html";
     if (req.url === "/author-websites") req.url = "/author-websites.html";
     if (req.url === "/book-trailers") req.url = "/book-trailers.html";
@@ -15,6 +19,7 @@ function cleanUrlRoutes() {
       if (req.url === "/projects/" + project) req.url = "/projects/" + project + ".html";
     }
     if (req.url === "/thank-you") req.url = "/thank-you.html";
+    req.url += query;
     next();
   };
 

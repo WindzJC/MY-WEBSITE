@@ -263,6 +263,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (submitBtn && !wasSuccessful) submitBtn.disabled = false;
       }
     });
+    // Enable only after the submit handler is attached; avoid native GET data leaks.
+    contactForm.querySelector('button[type="submit"]').disabled = false;
   }
 
 });

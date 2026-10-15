@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Astra Productions — Cinematic Book Trailers &amp; Author Websites</title>
   <meta name="description" content="Astra Productions creates cinematic book trailers, author websites and promotional assets shaped around the story and its readers." />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="__CANONICAL_URL__" />
   <meta name="theme-color" content="#060913" />
   <meta name="color-scheme" content="dark light" />
@@ -452,25 +452,25 @@
         <form class="contact-form contact-form-streamlined" id="contact-form" data-analytics-event="form-start">
           <div class="hp" aria-hidden="true">
             <label for="bot_field">Website</label>
-            <input id="bot_field" name="bot_field" type="text" tabindex="-1" autocomplete="off" />
+            <input id="bot_field" name="bot_field" maxlength="200" type="text" tabindex="-1" autocomplete="off" />
           </div>
 
           <div class="contact-primary-grid">
             <div class="contact-field contact-field-third">
               <label for="name">Name</label>
-              <input id="name" name="user_name" type="text" placeholder="Your name" autocomplete="name" required />
+              <input id="name" name="user_name" maxlength="100" type="text" placeholder="Your name" autocomplete="name" required />
             </div>
             <div class="contact-field contact-field-third">
               <label for="email">Email</label>
-              <input id="email" name="user_email" type="email" placeholder="you@email.com" autocomplete="email" required />
+              <input id="email" name="user_email" maxlength="254" type="email" placeholder="you@email.com" autocomplete="email" required />
             </div>
             <div class="contact-field contact-field-third contact-field-website">
               <label for="author_website">Current author website <span class="field-note">optional</span></label>
-              <input id="author_website" name="author_website" type="url" placeholder="https://yourauthorwebsite.com" />
+              <input id="author_website" name="author_website" maxlength="500" type="url" placeholder="https://yourauthorwebsite.com" />
             </div>
             <div class="contact-field contact-field-wide">
               <label for="book_link">Book title or official link</label>
-              <input id="book_link" name="book_link" type="text" placeholder="Book title, Amazon, Goodreads, or official project link" required />
+              <input id="book_link" name="book_link" maxlength="1000" type="text" placeholder="Book title, Amazon, Goodreads, or official project link" required />
             </div>
             <div class="contact-field contact-field-wide">
               <label for="service">What are you trying to improve?</label>
@@ -485,25 +485,25 @@
             </div>
             <div class="contact-field contact-field-wide">
               <label for="short_blurb">Context or message <span class="field-note">optional</span></label>
-              <textarea id="short_blurb" name="message" rows="4" placeholder="Share what feels unclear, underused, or most important to improve."></textarea>
+              <textarea id="short_blurb" name="message" maxlength="5000" rows="4" placeholder="Share what feels unclear, underused, or most important to improve."></textarea>
             </div>
           </div>
 
           <details class="contact-optional">
             <summary>Add optional project details</summary>
             <div class="contact-optional-grid">
-              <div class="contact-field contact-field-optional"><label for="deadline">Timeline</label><input id="deadline" name="deadline" type="text" placeholder="e.g., Launch on Feb 10" /></div>
-              <div class="contact-field contact-field-optional"><label for="company">Company</label><input id="company" name="company" type="text" placeholder="Publisher or company" autocomplete="organization" /></div>
-              <div class="contact-field contact-field-optional"><label for="genre">Genre</label><input id="genre" name="genre" type="text" placeholder="Fantasy, romance, thriller…" /></div>
-              <div class="contact-field contact-field-optional contact-field-wide"><label for="extra_notes">Additional notes</label><textarea id="extra_notes" name="extra_notes" rows="4" placeholder="Tone references, must-haves, scenes, quotes, platform notes, or anything else worth knowing."></textarea></div>
+              <div class="contact-field contact-field-optional"><label for="deadline">Timeline</label><input id="deadline" name="deadline" maxlength="200" type="text" placeholder="e.g., Launch on Feb 10" /></div>
+              <div class="contact-field contact-field-optional"><label for="company">Company</label><input id="company" name="company" maxlength="200" type="text" placeholder="Publisher or company" autocomplete="organization" /></div>
+              <div class="contact-field contact-field-optional"><label for="genre">Genre</label><input id="genre" name="genre" maxlength="200" type="text" placeholder="Fantasy, romance, thriller…" /></div>
+              <div class="contact-field contact-field-optional contact-field-wide"><label for="extra_notes">Additional notes</label><textarea id="extra_notes" name="extra_notes" maxlength="5000" rows="4" placeholder="Tone references, must-haves, scenes, quotes, platform notes, or anything else worth knowing."></textarea></div>
             </div>
           </details>
 
           <div class="contact-submit-row">
-            <button class="btn btn-main" type="submit">Send My Project for Review</button>
+            <button class="btn btn-main" type="submit" disabled>Send My Project for Review</button>
             <div class="contact-status" id="contact-status" role="status" aria-live="polite" tabindex="-1" data-analytics-event="form-submit-success"></div>
           </div>
-          <p class="contact-clarification">After you submit, Astra will email you a confirmation that your request was received.</p>
+          <p class="contact-clarification" id="contact-fallback">If the form is unavailable, email <a href="mailto:jc@astraproductions.co">jc@astraproductions.co</a>.</p><p class="contact-clarification">After a successful submission, we attempt to send an email confirmation. The on-page message confirms whether Astra received your request.</p>
           <p class="contact-clarification">Astra will review the book and current online presence and identify the three improvements we would prioritize first. If a visual concept would help demonstrate the recommendation, Astra may offer one.</p>
           <p class="contact-clarification">Paid implementation begins only after scope and pricing are agreed.</p>
           <p class="contact-legal">By sending this form, you agree to our <a href="/privacy">Privacy Policy</a>.</p>
