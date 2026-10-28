@@ -729,7 +729,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .work-site-bg{
   background:
-    url("https://frankroberts.pages.dev/hero-bg.png") center/cover no-repeat,
+    url("/case-studies/jeffery-sealing-author-website.webp") center/cover no-repeat,
     linear-gradient(135deg, rgba(122,47,62,.25), rgba(10,7,11,.92));
   transform: scale(1.03);
 }

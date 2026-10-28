@@ -401,3 +401,9 @@ body:has(.astra-player[open]){overflow:hidden}
 .astra-player-cta a{color:#7de1fa;font-weight:800;border-bottom:1px solid currentColor}
 @media(max-width:720px){.astra-player{width:100vw;border-radius:0;border-inline:0}.astra-player-inner{padding:10px}}
 .astra-player[open]{position:fixed;inset:0;margin:auto;height:fit-content}
+
+/* Website portfolio thumbnails link to the live site */
+.as-site-thumb{display:block;color:inherit}
+.as-site-thumb img{transition:transform .35s ease}
+.as-site-thumb:hover img,.as-site-thumb:focus-visible img{transform:scale(1.02)}
+.as-features-more{margin-top:24px;text-align:right}

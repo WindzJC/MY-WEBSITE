@@ -64,7 +64,7 @@ body.studio-home,body.astra-page{background:#070a0f;color:var(--astra-white)}
 .astra-cinema-service{position:relative;isolation:isolate;display:flex;align-items:end;min-height:410px;overflow:hidden;background:#101a21;border:1px solid rgba(255,255,255,.16);border-radius:3px}
 .astra-service-photo{position:absolute;inset:0;z-index:-2;transition:transform .4s;background-size:cover;background-position:center}
 .astra-cinema-service.is-trailer .astra-service-photo{background-image:url('/cinema/YJNUH5L8cFc.jpg')}
-.astra-cinema-service.is-website .astra-service-photo{background-image:url('/case-studies/john-oross-author-website.webp');background-position:center 25%}
+.astra-cinema-service.is-website .astra-service-photo{background-image:url('/case-studies/jeffery-sealing-author-website.webp');background-position:center 25%}
 .astra-cinema-service.is-launch .astra-service-photo{background-image:url('/cinema/96weNjdV0A4.jpg')}
 .astra-cinema-service::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(3,5,9,.3) 0%,rgba(5,8,12,.5) 30%,rgba(3,6,11,.96) 100%);pointer-events:none}
 .astra-cinema-service:hover .astra-service-photo{transform:scale(1.045)}
