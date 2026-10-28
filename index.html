@@ -23,124 +23,132 @@
   <meta name="twitter:image" content="__OG_IMAGE_URL__" />
 
   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "Organization",
+      "@id": "https://astraproductions.co/#organization",
+      "name": "Astra Productions",
+      "url": "https://astraproductions.co/",
+      "logo": "https://astraproductions.co/LOGOASTRA.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Windelle JC",
+        "sameAs": [
+          "https://www.linkedin.com/in/windelle-jc-reboquio-a78348371/",
+          "https://www.facebook.com/profile.php?id=61583993483886"
+        ]
+      },
+      "description": "Strategic creative direction, author websites, book trailers, and launch visuals for authors.",
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61583993483886",
+        "https://www.youtube.com/@astraproduction"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://astraproductions.co/#website",
+      "url": "https://astraproductions.co/",
+      "name": "Astra Productions",
+      "publisher": {
+        "@id": "https://astraproductions.co/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://astraproductions.co/#author-services",
+      "name": "Strategic author direction, websites, book trailers, and launch visuals",
+      "provider": {
+        "@id": "https://astraproductions.co/#organization"
+      },
+      "areaServed": "Worldwide",
+      "serviceType": [
+        "Strategic author audit",
+        "Author website design",
+        "Book trailer production",
+        "Book cover and promotional graphics"
+      ],
+      "offers": [
         {
-          "@type": "Organization",
-          "@id": "https://astraproductions.co/#organization",
-          "name": "Astra Productions",
-          "url": "https://astraproductions.co/",
-          "logo": "https://astraproductions.co/LOGOASTRA.png",
-          "founder": {
-            "@type": "Person",
-            "name": "Windelle JC"
-          },
-          "description": "Strategic creative direction, author websites, book trailers, and launch visuals for authors."
+          "@type": "Offer",
+          "name": "Author Website",
+          "price": "499",
+          "priceCurrency": "USD",
+          "description": "Starting price for the typical scope shown; final quote depends on project scope."
         },
         {
-          "@type": "WebSite",
-          "@id": "https://astraproductions.co/#website",
-          "url": "https://astraproductions.co/",
-          "name": "Astra Productions",
-          "publisher": {
-            "@id": "https://astraproductions.co/#organization"
+          "@type": "Offer",
+          "name": "Cinematic Book Trailer",
+          "price": "999",
+          "priceCurrency": "USD",
+          "description": "Starting price for the typical scope shown; final quote depends on project scope."
+        },
+        {
+          "@type": "Offer",
+          "name": "Website and Trailer",
+          "price": "1299",
+          "priceCurrency": "USD",
+          "description": "Starting price for the typical scope shown; final quote depends on project scope."
+        },
+        {
+          "@type": "Offer",
+          "name": "Cover and Launch Graphics",
+          "price": "399",
+          "priceCurrency": "USD",
+          "description": "Starting price for the typical scope shown; final quote depends on project scope."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://astraproductions.co/#faq-schema",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Astra review?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Astra reviews the book, author, current website, retailer presence, reviews, recognition, media, current projects, and purchase path using public information and anything the author supplies."
           }
         },
         {
-          "@type": "Service",
-          "@id": "https://astraproductions.co/#author-services",
-          "name": "Strategic author direction, websites, book trailers, and launch visuals",
-          "provider": {
-            "@id": "https://astraproductions.co/#organization"
-          },
-          "areaServed": "Worldwide",
-          "serviceType": [
-            "Strategic author audit",
-            "Author website design",
-            "Book trailer production",
-            "Book cover and promotional graphics"
-          ],
-          "offers": [
-            {
-              "@type": "Offer",
-              "name": "Author Website",
-              "price": "499",
-              "priceCurrency": "USD",
-              "description": "Starting price for the typical scope shown; final quote depends on project scope."
-            },
-            {
-              "@type": "Offer",
-              "name": "Cinematic Book Trailer",
-              "price": "999",
-              "priceCurrency": "USD",
-              "description": "Starting price for the typical scope shown; final quote depends on project scope."
-            },
-            {
-              "@type": "Offer",
-              "name": "Website and Trailer",
-              "price": "1299",
-              "priceCurrency": "USD",
-              "description": "Starting price for the typical scope shown; final quote depends on project scope."
-            },
-            {
-              "@type": "Offer",
-              "name": "Cover and Launch Graphics",
-              "price": "399",
-              "priceCurrency": "USD",
-              "description": "Starting price for the typical scope shown; final quote depends on project scope."
-            }
-          ]
+          "@type": "Question",
+          "name": "Is the initial Strategic Author Audit free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The initial review identifies the strongest priorities and strategic direction. A focused concept may be provided where it helps demonstrate the recommendation; it is not automatically a completed website, finished trailer, or full free production project."
+          }
         },
         {
-          "@type": "FAQPage",
-          "@id": "https://astraproductions.co/#faq-schema",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What does Astra review?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Astra reviews the book, author, current website, retailer presence, reviews, recognition, media, current projects, and purchase path using public information and anything the author supplies."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is the initial Strategic Author Audit free?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. The initial review identifies the strongest priorities and strategic direction. A focused concept may be provided where it helps demonstrate the recommendation; it is not automatically a completed website, finished trailer, or full free production project."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I need to know whether I need a website, trailer, or something else?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. Astra starts with the project and reader journey, then recommends the website, redesign, book experience, trailer, launch direction, or combination that best addresses the priorities."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What happens if I want Astra to build the recommendation?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Astra defines the scope, deliverables, price, timeline, and revision plan with you. Paid implementation begins only after those terms are agreed."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do you guarantee book sales or traffic?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Astra guarantees the agreed creative work, functionality, revisions, and delivery. Sales, traffic, and audience response depend on factors outside the website or trailer itself."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Do I need to know whether I need a website, trailer, or something else?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Astra starts with the project and reader journey, then recommends the website, redesign, book experience, trailer, launch direction, or combination that best addresses the priorities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I want Astra to build the recommendation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Astra defines the scope, deliverables, price, timeline, and revision plan with you. Paid implementation begins only after those terms are agreed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you guarantee book sales or traffic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Astra guarantees the agreed creative work, functionality, revisions, and delivery. Sales, traffic, and audience response depend on factors outside the website or trailer itself."
+          }
         }
       ]
     }
-  </script>
+  ]
+}
+</script>
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
@@ -373,6 +381,7 @@
         <div class="ah-about-grid">
           <div><p class="astra-cinema-eyebrow">ABOUT ASTRA PRODUCTIONS</p><h2 id="about-title">A studio built around authors.</h2></div>
           <div><p>Astra Productions was founded by Windelle JC, who has spent more than six years creating trailers, websites and launch visuals for authors.</p>
+            <p class="ah-social">You can find Windelle on <a href="https://www.linkedin.com/in/windelle-jc-reboquio-a78348371/" target="_blank" rel="noopener noreferrer">LinkedIn</a> and <a href="https://www.facebook.com/profile.php?id=61583993483886" target="_blank" rel="noopener noreferrer">Facebook</a>, and every Astra trailer on <a href="https://www.youtube.com/@astraproduction" target="_blank" rel="noopener noreferrer">YouTube</a>.</p>
             <p>Every book is treated as its own creative project, with personal attention from the first review to the final file. We don’t promise bestsellers. We focus on the agreed creative work, realistic deadlines and clear communication.</p>
             <a class="astra-cinema-textlink" href="#start">GET MY FREE REVIEW <span aria-hidden="true">↗</span></a>
           </div>
@@ -476,7 +485,7 @@
 
     <footer class="footer">
       <div>© 2021–2026 Astra Productions · From the story to the reader.</div>
-      <div><a href="/our-work">Our Work</a> · <a href="/our-work/book-trailers">Trailer Projects</a> · <a href="/our-work/author-websites">Website Projects</a> · <a href="/discover-books">Discover Books</a> · <a href="/author-websites">Author Websites</a> · <a href="/book-trailers">Book Trailers</a> · <a href="/privacy">Privacy Policy</a> · <a href="#top">Back to top</a></div>
+      <div><a href="/our-work">Our Work</a> · <a href="/our-work/book-trailers">Trailer Projects</a> · <a href="/our-work/author-websites">Website Projects</a> · <a href="/discover-books">Discover Books</a> · <a href="/author-websites">Author Websites</a> · <a href="/book-trailers">Book Trailers</a> · <a href="/privacy">Privacy Policy</a> · <a href="https://www.facebook.com/profile.php?id=61583993483886" target="_blank" rel="noopener noreferrer">Facebook</a> · <a href="https://www.linkedin.com/in/windelle-jc-reboquio-a78348371/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.youtube.com/@astraproduction" target="_blank" rel="noopener noreferrer">YouTube</a> · <a href="#top">Back to top</a></div>
     </footer>
   </div>
 

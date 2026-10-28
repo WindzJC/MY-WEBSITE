@@ -281,3 +281,6 @@ html:has(body.studio-home){overflow-x:clip}
  .ah-inquiry-option{padding:16px}
 }
 @media(prefers-reduced-motion:reduce){.ah-inquiry-option{transition:none}}
+
+.ah-about .ah-social a{color:#9be6fa;border-bottom:1px solid rgba(75,212,244,.6)}
+.ah-about .ah-social a:hover{color:#fff}
