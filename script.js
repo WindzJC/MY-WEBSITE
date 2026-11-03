@@ -89,12 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Focus the section for keyboard/screen reader users (no jump)
     if (href !== "#top") {
-      const prevTabIndex = target.getAttribute("tabindex");
-      target.setAttribute("tabindex", "-1");
+      const needsTemporaryTabIndex = !target.hasAttribute("tabindex");
+      if (needsTemporaryTabIndex) target.setAttribute("tabindex", "-1");
       window.setTimeout(() => {
         target.focus({ preventScroll: true });
-        if (prevTabIndex === null) target.removeAttribute("tabindex");
-        else target.setAttribute("tabindex", prevTabIndex);
+        if (needsTemporaryTabIndex) {
+          target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+        }
       }, instant ? 0 : 350);
     }
   });
