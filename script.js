@@ -148,8 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true }
   );
 
-  // Keep the mobile CTA clear of the contact form and footer.
-  const mobileCta = document.querySelector(".mobile-sticky-cta");
+  // The mobile review action lives in the header, leaving page content unobstructed.
+  const mobileCta = document.querySelector(".studio-home .as-header-cta");
   const mobileCtaHideTargets = [
     document.getElementById("overview"),
     document.getElementById("start"),
@@ -164,9 +164,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (entry.isIntersecting) visibleTargets.add(entry.target);
           else visibleTargets.delete(entry.target);
         });
-        mobileCta.classList.toggle("is-hidden", visibleTargets.size > 0);
+        mobileCta.classList.toggle("is-mobile-hidden", visibleTargets.size > 0);
       },
-      { threshold: 0.05 }
+      { threshold: 0, rootMargin: "80px 0px" }
     );
 
     mobileCtaHideTargets.forEach((target) => mobileCtaObserver.observe(target));

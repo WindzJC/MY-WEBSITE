@@ -395,3 +395,28 @@ html:has(body.studio-home){overflow-x:clip}
 }
 
 @media(prefers-reduced-motion:reduce){.ah-proof-card img{transition:none}}
+
+/* Focused release corrections: equal work discovery, early prices, unobstructed mobile action. */
+.astra-cinema-film-grid.ah-featured-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;padding:0}
+.ah-featured-pair .astra-cinema-film{aspect-ratio:auto;min-height:360px}
+.ah-featured-pair .astra-cinema-film img{position:absolute;inset:0}
+.ah-featured-pair .ah-proof-card.is-client{grid-column:auto}
+.ah-preview-link{margin-top:14px;color:#8ee8ff;font:800 12px/1.5 "Manrope",sans-serif}
+.ah-proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.astra-service-content>.ah-service-price{font-size:13px;line-height:1.5;letter-spacing:0;color:#b2f0ff}
+.ah-cta-mobile{display:none}
+@media(max-width:970px){
+ .studio-home .as-header-cta{display:flex;min-height:44px;font-size:11px!important;padding:10px;gap:5px}
+ .ah-cta-desktop{display:none}.ah-cta-mobile{display:inline}
+ .studio-home .as-header-cta.is-mobile-hidden{visibility:hidden;pointer-events:none}
+ .studio-home .as-site-header .as-header-inner{gap:8px}
+ .studio-home .as-logo,.studio-home .as-logo-frame{width:105px}
+ .studio-home .as-logo-frame img{width:190px;height:190px}
+ .studio-home .as-mobile-nav{margin-left:0}
+ .studio-home .as-mobile-nav summary{font-size:11px;padding:10px;gap:6px;min-height:44px}
+}
+@media(max-width:720px){
+ .astra-cinema-film-grid.ah-featured-pair{grid-template-columns:1fr;gap:14px}
+ .ah-featured-pair .astra-cinema-film{flex:none;min-height:300px;grid-column:auto}
+ .ah-featured-pair .ah-proof-card{width:100%;flex:none}
+}

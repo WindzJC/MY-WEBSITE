@@ -42,6 +42,18 @@ test("three core services use the approved public offer names", () => {
   assert.match(services, /CINEMATIC BOOK TRAILERS/);
   assert.match(services, /BOOK COVER DESIGN/);
   assert.doesNotMatch(services, /LAUNCH GRAPHICS|Cover &amp; Launch Graphics/i);
+  for (const price of [699, 999, 299]) assert.match(services, new RegExp(`Starting at \\$${price} USD`));
+  assert.match(services, /Promotional graphics quoted separately/);
+});
+
+test("the first featured pair exposes a trailer and client website without duplicate cards", () => {
+  const pair = homepage.match(/<div class="astra-cinema-film-grid ah-featured-pair">([\s\S]*?)<\/article>\s*<\/div>/)?.[1];
+  assert.ok(pair);
+  assert.match(pair, /fNwTSZKmpis/);
+  assert.match(pair, /jeffery-sealing-website\.pages\.dev/);
+  assert.match(pair, /CLIENT WEBSITE · IN PROGRESS/);
+  assert.equal((homepage.match(/alt="Homepage of Jeffery Sealing’s author website"/g) ?? []).length, 1);
+  assert.doesNotMatch(homepage, /class="mobile-sticky-cta/);
 });
 
 test("reader journey is concise and does not promise sales", () => {
