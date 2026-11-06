@@ -420,3 +420,23 @@ html:has(body.studio-home){overflow-x:clip}
  .ah-featured-pair .astra-cinema-film{flex:none;min-height:300px;grid-column:auto}
  .ah-featured-pair .ah-proof-card{width:100%;flex:none}
 }
+
+/* Focused inquiry clarity: quote-ready visitors and exploring authors have distinct paths. */
+.ah-bundle-actions{grid-column:2;align-self:end;justify-self:start;display:flex;flex-direction:column;align-items:flex-start;gap:13px;margin-left:34px;position:relative;z-index:1}
+.ah-bundle-actions .ah-bundle-cta{grid-column:auto;margin:0}
+.ah-bundle-review{font:700 12px/1.5 "Manrope",sans-serif;color:#bcecff;text-decoration:underline;text-underline-offset:4px}
+.ah-bundle-review:hover,.ah-bundle-review:focus-visible{color:#fff}
+@media(max-width:1100px){.ah-bundle-actions{grid-column:1/-1;margin-left:0}}
+@media(max-width:720px){.ah-bundle-actions{width:100%;align-items:stretch}.ah-bundle-actions .ah-bundle-cta{width:100%;justify-content:center}.ah-bundle-review{text-align:center}}
+/* Narrow-phone fit for short 320px screens: keep hero action and header controls fully accessible. */
+@media(max-width:359px){
+ .studio-home .as-site-header .as-header-inner{gap:5px}
+ .studio-home .as-logo,.studio-home .as-logo-frame{width:90px}
+ .studio-home .as-logo-frame img{width:165px;height:165px}
+ .studio-home .as-header-cta{font-size:10px!important;padding:8px 6px;gap:3px}
+ .studio-home .as-mobile-nav summary{font-size:10px;padding:8px 6px;gap:3px}
+ .studio-home .astra-cinema-hero{padding-top:106px}
+ .studio-home .astra-cinema-hero h1{font-size:45px}
+ .studio-home .astra-cinema-summary{margin-top:16px;line-height:1.56}
+ .studio-home .astra-cinema-actions{margin-top:18px}
+}

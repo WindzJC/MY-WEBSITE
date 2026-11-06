@@ -92,3 +92,16 @@ test("internal anchor focus persists until the destination loses focus", () => {
   assert.match(homepageScript, /addEventListener\("blur", \(\) => target\.removeAttribute\("tabindex"\), \{ once: true \}\)/);
   assert.doesNotMatch(homepageScript, /target\.focus\(\{ preventScroll: true \}\);\s*if \([^)]*\) target\.removeAttribute\("tabindex"\)/);
 });
+test("pricing differentiates quote-ready and exploring authors", () => {
+  const pricing = section("#pricing");
+  assert.match(pricing, /ah-bundle-actions/);
+  assert.match(pricing, /REQUEST A PROJECT QUOTE/);
+  assert.match(pricing, /data-inquiry-intent="quote"/);
+  assert.match(pricing, /Exploring your options\? Get a free review/);
+  assert.match(pricing, /data-inquiry-intent="review"/);
+  assert.match(pricing, /Two revision rounds normally included/);
+  assert.match(pricing, /30 days of post-launch website bug fixes/);
+  assert.match(pricing, /Ownership and handoff follow the agreed terms/);
+  assert.match(pricing, /domain registration, renewal and any paid hosting are separate/i);
+  assert.match(homepageScript, /setInquiryMode\(link\.getAttribute\("data-inquiry-intent"\)\)/);
+});
