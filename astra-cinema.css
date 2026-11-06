@@ -440,3 +440,8 @@ html:has(body.studio-home){overflow-x:clip}
  .studio-home .astra-cinema-summary{margin-top:16px;line-height:1.56}
  .studio-home .astra-cinema-actions{margin-top:18px}
 }
+
+/* Local integrated review 2026-11-07: preserve the validated featured pair and mobile navigation. */
+.ah-prices{grid-auto-flow:dense}
+.ah-prices>article:first-child{border-color:rgba(75,212,244,.45)}
+@media(max-width:720px){.ah-featured-pair .ah-proof-card{order:0}.ah-featured-pair .astra-cinema-film{order:1}}

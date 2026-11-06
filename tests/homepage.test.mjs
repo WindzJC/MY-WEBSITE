@@ -16,7 +16,7 @@ test("first screen states the problem, solution, outcome, and primary next step"
   const hero = section("astra-cinema-hero");
   assert.match(hero, /MAKE THEM FEEL THE STORY\./);
   assert.match(hero, /GIVE THEM SOMEWHERE TO GO\./);
-  assert.match(hero, /Someone discovers your book\. Where do they go next\?/);
+  assert.match(hero, /Someone discovers your book\. Can they find the rest of your work\?/);
   assert.match(hero, /GET MY FREE REVIEW/);
   assert.match(hero, /SEE OUR WORK/);
   assert.match(hero, /Play The Queen of Intelligence book trailer/);
@@ -25,14 +25,14 @@ test("first screen states the problem, solution, outcome, and primary next step"
 
 test("homepage proof balances real trailers with accurately labeled website work", () => {
   const proof = section("astra-cinema-featured");
-  assert.match(proof, /CLIENT WEBSITE · IN PROGRESS/);
+  assert.match(proof, /COMMISSIONED AUTHOR WEBSITE/);
   assert.match(proof, /Jeffery Sealing/);
   assert.match(proof, /Robert S\. Maiden/);
   assert.match(proof, /David Graham/);
   assert.equal((proof.match(/<small>HOMEPAGE CONCEPT<\/small>/g) ?? []).length, 2);
-  assert.match(proof, /10<\/strong><span>trailers and teasers/);
-  assert.match(proof, /7<\/strong><span>author website projects/);
-  assert.match(proof, /FREE<\/strong><span>three-point review, no obligation/);
+  assert.doesNotMatch(proof, /ah-proof-facts|author website projects<\/span>/);
+  assert.equal((proof.match(/COMMISSIONED AUTHOR WEBSITE/g) ?? []).length, 1);
+  assert.ok(proof.indexOf('COMMISSIONED AUTHOR WEBSITE') < proof.indexOf('BOOK TRAILER'), 'commissioned author proof precedes the trailer');
   assert.doesNotMatch(proof, /CLIENT WEBSITE[^<]*Robert S\. Maiden|CLIENT WEBSITE[^<]*David Graham/i);
 });
 
@@ -47,11 +47,12 @@ test("three core services use the approved public offer names", () => {
 });
 
 test("the first featured pair exposes a trailer and client website without duplicate cards", () => {
-  const pair = homepage.match(/<div class="astra-cinema-film-grid ah-featured-pair">([\s\S]*?)<\/article>\s*<\/div>/)?.[1];
+  const pair = homepage.match(/<div class="astra-cinema-film-grid ah-featured-pair">([\s\S]*?)<\/div>/)?.[1];
   assert.ok(pair);
   assert.match(pair, /fNwTSZKmpis/);
   assert.match(pair, /jeffery-sealing-website\.pages\.dev/);
-  assert.match(pair, /CLIENT WEBSITE · IN PROGRESS/);
+  assert.match(pair, /COMMISSIONED AUTHOR WEBSITE/);
+  assert.ok(pair.indexOf('Jeffery Sealing') < pair.indexOf('fNwTSZKmpis'), 'website first, trailer second');
   assert.equal((homepage.match(/alt="Homepage of Jeffery Sealing’s author website"/g) ?? []).length, 1);
   assert.doesNotMatch(homepage, /class="mobile-sticky-cta/);
 });
@@ -99,9 +100,22 @@ test("pricing differentiates quote-ready and exploring authors", () => {
   assert.match(pricing, /data-inquiry-intent="quote"/);
   assert.match(pricing, /Exploring your options\? Get a free review/);
   assert.match(pricing, /data-inquiry-intent="review"/);
-  assert.match(pricing, /Two revision rounds normally included/);
+  assert.match(pricing, /Two standard revision rounds included/);
+  assert.ok(pricing.indexOf('<h3>Author Website</h3>') < pricing.indexOf('class="is-featured ah-bundle"'), 'website is presented before optional bundle');
   assert.match(pricing, /30 days of post-launch website bug fixes/);
   assert.match(pricing, /Ownership and handoff follow the agreed terms/);
-  assert.match(pricing, /domain registration, renewal and any paid hosting are separate/i);
+  assert.match(pricing, /Domain and hosting are separate/);
+  assert.match(pricing, /additional functionality and later updates are quoted first/i);
+  assert.match(pricing, /No Astra monthly subscription/);
   assert.match(homepageScript, /setInquiryMode\(link\.getAttribute\("data-inquiry-intent"\)\)/);
+});
+
+test("FAQ explains author updates, costs and realistic reader outcomes", () => {
+  const faq = section("#faq");
+  assert.match(faq, /Can Astra update my website when I publish another book/);
+  assert.match(faq, /quoted and approved first/);
+  assert.match(faq, /What.s included in the \$699 author website/);
+  assert.match(faq, /two revision rounds/);
+  assert.match(faq, /30 days of post-launch bug fixes/);
+  assert.match(faq, /Traffic and book sales depend on many factors/);
 });

@@ -33,6 +33,9 @@ test("structured offers match the customer-facing prices", () => {
 
 test("author website service page uses the approved one-time starting price", () => {
   assert.match(authorWebsites, /<strong>\$699 <small>USD<\/small><\/strong>/);
-  assert.match(authorWebsites, /One-time website design and development fee for an agreed scope\./);
+  assert.match(authorWebsites, /Website design and development from \$699, paid once for the agreed scope/);
   assert.match(authorWebsites, /Domain registration, renewal and any paid hosting are separate/);
+  assert.match(authorWebsites, /Two standard revision rounds included/);
+  assert.match(authorWebsites, /30 days of post-launch bug fixes/);
+  assert.match(authorWebsites, /Additional functionality and future updates are quoted and approved/);
 });
