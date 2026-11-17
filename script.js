@@ -177,19 +177,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const contactForm = document.getElementById("contact-form");
   const statusEl = document.getElementById("contact-status");
-  // Two paths to the same secure inquiry form; selection does not transmit data.
+  // Three paths to the same secure inquiry form; selection does not transmit data.
   const inquiryIntro = document.getElementById("inquiry-intro");
   const inquiryChoice = contactForm?.querySelectorAll('input[name="inquiry_type"]') || [];
+  const inquiryModes = {
+    review: {
+      intro: "Not sure what your book needs? Request a free three-point review of how readers encounter it. You’re welcome to ask about a specific service too.",
+      submit: "Get My Free Review",
+    },
+    concept: {
+      intro: "Request a complimentary homepage concept inspired by your book’s cover and story. We’ll review your project and confirm whether it’s a fit before creating the concept.",
+      submit: "Request My Free Homepage Concept",
+    },
+    quote: {
+      intro: "Already have a project in mind? Tell us what you want to create. We’ll follow up to confirm the scope and next steps before discussing a quote.",
+      submit: "Request My Project Quote",
+    },
+  };
   const setInquiryMode = (mode) => {
     if (!contactForm) return;
-    const nextMode = mode === "quote" ? "quote" : "review";
+    const nextMode = Object.hasOwn(inquiryModes, mode) ? mode : "review";
     const input = contactForm.querySelector('input[name="inquiry_type"][value="' + nextMode + '"]');
     if (input) input.checked = true;
-    if (inquiryIntro) inquiryIntro.textContent = nextMode === "quote"
-      ? "Already have a project in mind? Tell us what you want to create. We’ll follow up to confirm the scope and next steps before discussing a quote."
-      : "Not sure what your book needs? Request a free three-point review of how readers encounter it. You’re welcome to ask about a specific service too.";
+    if (inquiryIntro) inquiryIntro.textContent = inquiryModes[nextMode].intro;
     const submit = contactForm.querySelector('button[type="submit"]');
-    if (submit) submit.textContent = nextMode === "quote" ? "Request My Project Quote" : "Get My Free Review";
+    if (submit) submit.textContent = inquiryModes[nextMode].submit;
   };
   inquiryChoice.forEach((option) => option.addEventListener("change", () => {
     if (option.checked) setInquiryMode(option.value);
@@ -199,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   try {
     const fromQuery = new URLSearchParams(window.location.search).get("intent");
-    if (fromQuery === "quote") setInquiryMode("quote");
+    if (fromQuery === "quote" || fromQuery === "concept") setInquiryMode(fromQuery);
   } catch (_) {}
 
   const formStartedAt = Date.now();

@@ -95,6 +95,19 @@ test('inquiry contract with network fully mocked', async t => {
     assert.match(calls[0].payload.text, /Free 3-point review/);
     assert.match(calls[1].payload.text, /free three-point review/);
   });
+  await t.test('explicit homepage concept inquiry is labeled distinctly', async () => {
+    calls = [];
+    replies = [];
+    const res = await submit({ body: { ...fixture(), inquiry_type: 'concept', request_id: 'concept-example-123' } });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { ok: true, confirmationSent: true });
+    assert.equal(calls.length, 2);
+    assert.match(calls[0].payload.subject, /New Astra homepage concept request/);
+    assert.match(calls[0].payload.text, /Request type:\nFree homepage concept request/);
+    assert.match(calls[1].payload.text, /complimentary homepage concept/);
+    assert.match(calls[1].payload.text, /confirm whether it's a fit/);
+    assert.doesNotMatch(calls[1].payload.text, /free three-point review|project quote/);
+  });
   for (const failure of [{ status: 500 }, { throw: true }]) await t.test('internal failure ' + JSON.stringify(failure), async () => {
     calls = []; replies = [failure]; const res = await submit(); assert.equal(res.status, 502); assert.equal(calls.length, 1);
     assert.deepEqual(await res.json(), { ok: false, error: 'We could not send your request. Please try again.' });

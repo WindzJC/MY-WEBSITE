@@ -16,7 +16,8 @@ test("homepage advertises the approved prices and savings", () => {
     assert.match(homepage, new RegExp(text.replace("$", "\\$")));
   }
   assert.match(homepage, /<del>\$1,698<\/del> when purchased separately/);
-  assert.match(homepage, /LIMITED-TIME BUNDLE OFFER/);
+  assert.match(homepage, /WEBSITE \+ TRAILER BUNDLE/);
+  assert.doesNotMatch(homepage, /limited[- ]time/i);
   assert.doesNotMatch(homepage, /countdown|last chance|validThrough/i);
 });
 
@@ -26,7 +27,7 @@ test("structured offers match the customer-facing prices", () => {
   assert.deepEqual(prices, {
     "Author Website": "699",
     "Cinematic Book Trailer": "999",
-    "Limited-Time Author Website and Cinematic Book Trailer Bundle": "1499",
+    "Website + Trailer Bundle": "1499",
     "Book Cover Design": "299",
   });
 });

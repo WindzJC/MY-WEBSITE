@@ -81,7 +81,13 @@ test("inquiry contract and legacy public anchors remain present", () => {
     assert.match(homepage, new RegExp(`name="${name}"`));
   }
   assert.match(homepage, /value="review" checked/);
+  assert.match(homepage, /value="concept"/);
   assert.match(homepage, /value="quote"/);
+  const choices = [...homepage.matchAll(/name="inquiry_type" value="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(choices, ["review", "concept", "quote"]);
+  for (const label of ["Free 3-point review", "Request a free homepage concept", "Request a project quote"]) {
+    assert.match(homepage, new RegExp(`<strong>${label}</strong>`));
+  }
   assert.match(homepage, /value="Book cover design">Book cover design/);
 
   const ids = [...homepage.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
@@ -118,4 +124,30 @@ test("FAQ explains author updates, costs and realistic reader outcomes", () => {
   assert.match(faq, /two revision rounds/);
   assert.match(faq, /30 days of post-launch bug fixes/);
   assert.match(faq, /Traffic and book sales depend on many factors/);
+});
+
+test("homepage concept invitation sits inside the concept proof and preselects the concept route", () => {
+  const proof = homepage.match(/<div class="ah-website-proof"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(proof, /See what your author website could become\./);
+  assert.match(proof, /Request a complimentary homepage concept inspired by your book's cover and story\./);
+  assert.match(proof, /confirm whether it's a fit before creating the concept/);
+  assert.match(proof, /No charge\. No obligation\./);
+  assert.match(proof, /href="#start" data-inquiry-intent="concept"[^>]*>REQUEST MY FREE HOMEPAGE CONCEPT/);
+  assert.match(homepageScript, /concept: \{/);
+  assert.match(homepageScript, /fromQuery === "concept"/);
+});
+
+test("FAQ separates the free review from the homepage concept", () => {
+  const faq = section("#faq");
+  assert.match(faq, /three useful recommendations about your reader journey/);
+  assert.match(faq, /What is the free homepage concept\?/);
+  assert.match(faq, /One bespoke first-draft direction/);
+  assert.match(faq, /not a complete free website/);
+  assert.match(faq, /no payment or obligation to view the draft/);
+  assert.doesNotMatch(faq, /every request|limited spots|only \d+ (spots|concepts)/i);
+});
+
+test("Facebook and LinkedIn links are removed while YouTube remains", () => {
+  assert.doesNotMatch(homepage, /facebook\.com|linkedin\.com/i);
+  assert.match(homepage, /https:\/\/www\.youtube\.com\/@astraproduction/);
 });

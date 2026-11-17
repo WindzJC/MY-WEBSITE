@@ -129,13 +129,31 @@ async function buildRateLimitKey(request, email) {
   return `inquiry-window/${hash.slice(0, 40)}`;
 }
 
+const REQUEST_TYPES = {
+  review: {
+    label: "Free 3-point review",
+    subject: "New Astra free review",
+    confirmation: "Thanks for requesting a free three-point review. We received your information and will review the book, its online presence and the next steps interested readers can take.",
+  },
+  concept: {
+    label: "Free homepage concept request",
+    subject: "New Astra homepage concept request",
+    confirmation: "Thanks for requesting a complimentary homepage concept. We received your information and will review your project to confirm whether it's a fit before creating a concept inspired by your book. There is no charge and no obligation.",
+  },
+  quote: {
+    label: "Project quote request",
+    subject: "New Astra quote request",
+    confirmation: "Thanks for requesting a project quote. We received your information and will review the scope to discuss what would be involved before giving you a price and schedule.",
+  },
+};
+
 function inquiryRows(data, meta) {
   return [
     ["Name", data.user_name],
     ["Email", data.user_email],
     ["Author website", data.author_website || "Not provided"],
     ["Book title / official link", data.book_link],
-    ["Request type", data.inquiry_type === "quote" ? "Project quote request" : "Free 3-point review"],
+    ["Request type", REQUEST_TYPES[data.inquiry_type].label],
     ["Assessment focus", data.service],
     ["Context / message", data.message || "Not provided"],
     ["Timeline", data.deadline || "Not provided"],
@@ -165,18 +183,14 @@ function buildInternalHtml(data, meta) {
 }
 
 function buildConfirmationText(data) {
-  const description = data.inquiry_type === "quote"
-    ? "Thanks for requesting a project quote. We received your information and will review the scope to discuss what would be involved before giving you a price and schedule."
-    : "Thanks for requesting a free three-point review. We received your information and will review the book, its online presence and the next steps interested readers can take.";
+  const description = REQUEST_TYPES[data.inquiry_type].confirmation;
   return "Hi " + data.user_name + "\n\n" + description + "\n\nBook / project: " + data.book_link
     + "\n\nIf we need more details, we'll reply to this email. Nothing is charged through the form."
     + "\n\nAstra Productions\nCinematic book trailers and author websites\nhttps://astraproductions.co/";
 }
 
 function buildConfirmationHtml(data) {
-  const description = data.inquiry_type === "quote"
-    ? "Thanks for requesting a project quote. We received your information and will review the scope to discuss what would be involved before giving you a price and schedule."
-    : "Thanks for requesting a free three-point review. We received your information and will review the book, its online presence and the next steps interested readers can take.";
+  const description = REQUEST_TYPES[data.inquiry_type].confirmation;
   return '<!doctype html><html><body style="font-family:Arial,sans-serif;color:#111827;line-height:1.6"><p>Hi ' + escapeHtml(data.user_name)
     + '</p><p>' + description + '</p><p><strong>Book / project:</strong> ' + escapeHtml(data.book_link)
     + '</p><p>If we need more details, we will reply to this email. Nothing is charged through the form.</p>'
@@ -239,7 +253,7 @@ export async function onRequest(context) {
     return json({ ok: false, error: "Invalid request" }, 400);
   }
 
-  if (data.inquiry_type && !["review", "quote"].includes(data.inquiry_type)) {
+  if (data.inquiry_type && !Object.hasOwn(REQUEST_TYPES, data.inquiry_type)) {
     return json({ ok: false, error: "Invalid request type." }, 400);
   }
   // Older forms without this field remain compatible with the free review route.
@@ -283,7 +297,7 @@ export async function onRequest(context) {
         from: INTERNAL_FROM,
         to: [INTERNAL_RECIPIENT],
         reply_to: data.user_email,
-        subject: (data.inquiry_type === "quote" ? "New Astra quote request" : "New Astra free review") + " — " + safeSubjectName(data.user_name),
+        subject: REQUEST_TYPES[data.inquiry_type].subject + " — " + safeSubjectName(data.user_name),
         text: buildInternalText(data, meta),
         html: buildInternalHtml(data, meta),
       },
