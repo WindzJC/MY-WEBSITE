@@ -40,3 +40,15 @@ test("author website service page uses the approved one-time starting price", ()
   assert.match(authorWebsites, /30 days of post-launch bug fixes/);
   assert.match(authorWebsites, /Additional functionality and future updates are quoted and approved/);
 });
+
+test("author website page CTAs request the complimentary homepage concept", () => {
+  const ctas = [...authorWebsites.matchAll(/<a class="as-button primary" href="([^"]+)">([^<]+)/g)];
+  assert.equal(ctas.length, 3);
+  for (const [, href, label] of ctas) {
+    assert.equal(href, "/?intent=concept#start");
+    assert.match(label, /^REQUEST MY FREE HOMEPAGE CONCEPT/);
+  }
+  assert.doesNotMatch(authorWebsites, /class="as-button primary"[^>]*>GET MY FREE REVIEW/);
+  assert.match(authorWebsites, /See a bespoke homepage direction inspired by your books, with no obligation to proceed\./);
+  assert.match(authorWebsites, /confirm it’s a fit before creating the concept/);
+});

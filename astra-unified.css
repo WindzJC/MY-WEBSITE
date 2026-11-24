@@ -202,6 +202,7 @@
 .as-split-banner>img{max-height:220px}
 .as-hero-actions{margin-top:13px;gap:9px}
 .as-hero-actions .as-button{width:100%}
+.as-hero-actions .as-button,.as-price-panel .as-button{white-space:normal}
 .as-service-hero{min-height:490px}
 .as-value-grid article,.as-process-grid article{padding:22px}
 .as-price-layout{grid-template-columns:1fr;gap:25px}
