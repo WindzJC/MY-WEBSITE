@@ -12,15 +12,16 @@ const section = (classOrId, endTag = "section") => {
   return homepage.match(pattern)?.[0] ?? "";
 };
 
-test("first screen states the problem, solution, outcome, and primary next step", () => {
+test("first screen states what Astra does and the primary next step", () => {
   const hero = section("astra-cinema-hero");
-  assert.match(hero, /MAKE THEM FEEL THE STORY\./);
-  assert.match(hero, /GIVE THEM SOMEWHERE TO GO\./);
-  assert.match(hero, /Someone discovers your book\. Can they find the rest of your work\?/);
-  assert.match(hero, /GET MY FREE REVIEW/);
-  assert.match(hero, /SEE OUR WORK/);
+  assert.match(hero, /<span>YOUR BOOKS\. YOUR STORY\.<\/span><span>YOUR OWN WEBSITE\.<\/span>/);
+  assert.match(hero, /We create custom author websites, cinematic book trailers, and book covers designed around your story\./);
+  assert.match(hero, /href="#start" data-inquiry-intent="concept"[^>]*>REQUEST A FREE HOMEPAGE CONCEPT/);
+  assert.match(hero, /href="\/our-work"[^>]*>VIEW OUR WORK/);
+  assert.match(hero, /See the creative direction before deciding\. No charge or obligation\./);
   assert.match(hero, /Play The Queen of Intelligence book trailer/);
-  assert.ok(hero.indexOf("GET MY FREE REVIEW") < hero.indexOf("SEE OUR WORK"), "free review remains the primary hero action");
+  assert.equal((hero.match(/is-primary/g) ?? []).length, 1, "one primary hero action");
+  assert.ok(hero.indexOf("REQUEST A FREE HOMEPAGE CONCEPT") < hero.indexOf("VIEW OUR WORK"), "concept is the primary hero action");
 });
 
 test("homepage proof balances real trailers with accurately labeled website work", () => {
@@ -64,10 +65,16 @@ test("reader journey is concise and does not promise sales", () => {
   assert.match(journey, /does not create an audience by itself/i);
 });
 
-test("free review process is explicit and its fictional sample is optional", () => {
+test("how it works explains the concept path and keeps review and quote routes", () => {
   const process = section("#process");
-  assert.match(process, /Get three priorities/);
+  for (const step of ["Tell us about your book", "See a free homepage concept", "Review your quote", "Go ahead if you choose"]) {
+    assert.match(process, new RegExp(`<h3>${step}</h3>`));
+  }
+  assert.match(process, /If it’s a good fit/);
+  assert.match(process, /not a finished website/);
   assert.match(process, /Nothing starts until you agree\./);
+  assert.match(process, /data-inquiry-intent="review">Ask for a free 3-point review/);
+  assert.match(process, /data-inquiry-intent="quote">request a project quote/);
   assert.match(process, /<details class="ah-sample">/);
   assert.match(process, /OPTIONAL EXAMPLE/);
   assert.match(process, /made-up novel/);
@@ -150,4 +157,34 @@ test("FAQ separates the free review from the homepage concept", () => {
 test("Facebook and LinkedIn links are removed while YouTube remains", () => {
   assert.doesNotMatch(homepage, /facebook\.com|linkedin\.com/i);
   assert.match(homepage, /https:\/\/www\.youtube\.com\/@astraproduction/);
+});
+
+test("homepage sections use plain headings in the author journey order", () => {
+  const headings = [...homepage.matchAll(/<h2 id="([^"]+)">([^<]+)/g)].map((match) => match[2].trim());
+  assert.deepEqual(headings, [
+    "Our Work",
+    "Our Services",
+    "Why You Need an Author Website",
+    "How It Works",
+    "Pricing",
+    "A studio built around authors.",
+    "An Author Spotlight, when it fits.",
+    "Frequently Asked Questions",
+    "Get in Touch",
+  ]);
+  assert.match(section("#pricing"), /Larger or more complex website projects are quoted according to their requirements\./);
+  assert.match(section("#start"), /mailto:jc@astraproductions\.co/);
+});
+
+test("every page header offers Contact, and the mobile menu includes Home and Contact", async () => {
+  const { readFile: read } = await import("node:fs/promises");
+  const pages = ["index.html", "author-websites.html", "book-trailers.html", "our-work.html", "our-work/author-websites.html", "our-work/book-trailers.html", "discover-books.html", "privacy/index.html", "projects/hide-and-seek.html", "projects/queen-of-intelligence.html", "thank-you.html"];
+  for (const page of pages) {
+    const html = await read(new URL(`../${page}`, import.meta.url), "utf8");
+    assert.match(html, /class="as-header-cta"[^>]*>(?:<span class="ah-cta-desktop">)?CONTACT US/, page);
+    assert.match(html, /<nav aria-label="Mobile navigation"><a href="\/">Home<\/a>[\s\S]*?<a href="\/#start">Contact<\/a><\/nav>/, page);
+    for (const link of ["/our-work", "/author-websites", "/book-trailers", "/#pricing", "/#about"]) {
+      assert.match(html, new RegExp(`<nav class="as-desktop-nav"[^]*?href="${link}"`), page);
+    }
+  }
 });

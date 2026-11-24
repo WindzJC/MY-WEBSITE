@@ -255,6 +255,7 @@ html:has(body.studio-home){overflow-x:clip}
 .studio-home .ah-reader-journey h2{font:800 clamp(45px,6vw,88px)/.96 "Barlow Condensed","Arial Narrow",Impact,sans-serif;text-transform:uppercase;letter-spacing:-.012em;color:#fff;margin:15px 0 22px;text-wrap:balance}
 .ah-journey-intro h2 em{font-style:normal;color:#75ddf5}
 .ah-journey-intro>p:last-child{max-width:800px;color:#b9cad5;font:500 clamp(15px,1.5vw,18px)/1.75 "Manrope",sans-serif}
+.ah-journey-intro>p strong{display:block;color:#f1f8fb;font-weight:800}
 .ah-journey-contrast{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);align-items:stretch;gap:12px;margin-top:40px}
 .ah-journey-side{min-width:0;padding:clamp(22px,3vw,35px);border:1px solid rgba(255,255,255,.13);border-radius:5px;background:rgba(9,16,25,.75)}
 .ah-journey-scattered{border-color:rgba(255,255,255,.14)}
@@ -311,6 +312,12 @@ html:has(body.studio-home){overflow-x:clip}
 .astra-cinema-summary{max-width:760px;margin-top:25px}
 .astra-cinema-summary strong{display:block;margin-bottom:5px;color:#fff;font-weight:800}
 .astra-cinema-caption{margin-top:clamp(34px,5vh,64px)}
+.ah-process-alt{margin:22px 0 0;max-width:860px;font:500 15px/1.75 "Manrope",sans-serif;color:#c3d3de}
+.ah-process-alt a,.ah-contact-direct a{color:#9be6fa;text-decoration:underline;text-underline-offset:4px;font-weight:700}
+.ah-process-alt a:hover,.ah-contact-direct a:hover{color:#fff}
+.ah-process-alt a:focus-visible,.ah-contact-direct a:focus-visible{outline:3px solid #92e7ff;outline-offset:3px;border-radius:2px}
+.ah-contact-direct{margin-top:12px;font:600 15px/1.6 "Manrope",sans-serif;color:#d8e3e9;overflow-wrap:anywhere}
+.astra-cinema-reassure{margin-top:14px;font:600 14px/1.6 "Manrope",system-ui,sans-serif;color:#d8e3e9;text-shadow:0 2px 14px rgba(0,0,0,.6)}
 
 .ah-website-proof{margin-top:clamp(48px,6vw,82px);padding-top:clamp(32px,4vw,50px);border-top:1px solid rgba(255,255,255,.16)}
 .ah-proof-heading{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(340px,1.15fr);gap:8px 50px;align-items:end;margin-bottom:24px}
