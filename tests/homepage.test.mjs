@@ -15,7 +15,7 @@ const section = (classOrId, endTag = "section") => {
 test("first screen states what Astra does and the primary next step", () => {
   const hero = section("astra-cinema-hero");
   assert.match(hero, /<span>YOUR BOOKS\. YOUR STORY\.<\/span><span>YOUR OWN WEBSITE\.<\/span>/);
-  assert.match(hero, /We create custom author websites, cinematic book trailers, and book covers designed around your story\./);
+  assert.match(hero, /We help authors connect with readers, bring their stories to life, and make their books easier to discover and explore through bespoke author websites, cinematic book trailers, and distinctive book covers\./);
   assert.match(hero, /href="#start" data-inquiry-intent="concept"[^>]*>REQUEST A FREE HOMEPAGE CONCEPT/);
   assert.match(hero, /href="\/our-work"[^>]*>VIEW OUR WORK/);
   assert.match(hero, /See the creative direction before deciding\. No charge or obligation\./);
